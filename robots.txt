@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://springlearning.mx/sitemap.xml
