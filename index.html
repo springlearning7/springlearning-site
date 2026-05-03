@@ -732,6 +732,56 @@ footer a:hover{color:var(--sun)}
   .work:hover{transform:none !important}
   .book-card:hover{transform:rotate(-1.5deg) !important}
 }
+
+/* ============================================================
+   PORTRAIT ORIENTATION OVERRIDES — fires regardless of detected
+   viewport width. Belt-and-suspenders so phones in portrait ALWAYS
+   stack to 1 column even if width-based @media doesn't trigger.
+   ============================================================ */
+@media (orientation: portrait) and (max-width: 1024px){
+  /* Force every grid to a single column on any portrait device */
+  .doors-grid,
+  .talk-grid,
+  .gallery-grid,
+  .tier-grid,
+  .hero-grid,
+  .bookclub-grid,
+  .contact-grid,
+  .foot-grid{
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  /* Decorative connector under tier cards */
+  .tier-grid::before{display:none !important}
+
+  /* Containment so nothing pushes width past viewport */
+  .door, .talk, .work, .tier, .book-card, .photo-frame, form.join, .contact-side{
+    max-width: 100% !important;
+    min-width: 0 !important;
+    width: auto !important;
+  }
+  /* Section side-padding sane for portrait */
+  .wrap{padding-left:18px; padding-right:18px}
+  /* Hide the bleeding hero blobs in portrait — they're decorative */
+  .hero-shape, .hero-shape.right{display:none !important}
+
+  /* Type tightening for portrait */
+  h1{font-size:clamp(32px, 8vw, 44px)}
+  h2{font-size:clamp(26px, 6.5vw, 34px)}
+  body{font-size:16px}
+
+  /* Card-scale typography */
+  .door h3{font-size:20px}
+  .door p{font-size:14.5px; line-height:1.5}
+  .door .icon{font-size:26px}
+
+  /* Force the gallery oval to a sensible portrait shape */
+  .work{aspect-ratio: 5/6 !important; max-width: 320px; margin:0 auto}
+
+  /* Polaroid book card sized for portrait */
+  .book-card{flex-direction:column !important; max-width:300px; margin:0 auto}
+  .book-cover{width:120px; height:170px; margin:0 auto 16px}
+}
 </style>
 </head>
 <body>
