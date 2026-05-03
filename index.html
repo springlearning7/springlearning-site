@@ -46,13 +46,7 @@ img{max-width:100%; display:block}
 a{color:var(--sprout-deep)}
 
 /* ---------- ambient bg pattern: dotted grid (tech texture) ---------- */
-.dotgrid{
-  position:absolute; inset:0; pointer-events:none; z-index:0;
-  background-image:radial-gradient(circle at 1px 1px, rgba(27,42,47,0.07) 1px, transparent 0);
-  background-size:22px 22px;
-  mask-image:radial-gradient(ellipse at center, #000 30%, transparent 70%);
-  -webkit-mask-image:radial-gradient(ellipse at center, #000 30%, transparent 70%);
-}
+.dotgrid{display:none}  /* dotted-grid texture removed — too busy */
 
 /* ---------- nav ---------- */
 .nav{
@@ -120,7 +114,7 @@ section{padding:96px 0; position:relative}
 h1,h2,h3{font-family:'Yeseva One',serif; font-weight:400; line-height:1.12; letter-spacing:-0.01em; margin:0 0 .35em}
 h1{font-size:clamp(42px, 7vw, 84px)}
 h2{font-size:clamp(32px, 4.4vw, 52px)}
-h3{font-family:'Abril Fatface',serif; font-size:28px; color:var(--sprout-deep)}
+h3{font-family:'Inter',sans-serif; font-weight:700; font-size:28px; color:var(--sprout-deep)}
 .eyebrow{
   font-family:'Inter',sans-serif; font-size:12px; letter-spacing:.22em;
   text-transform:uppercase; color:var(--bloom); font-weight:700;
@@ -130,18 +124,98 @@ h3{font-family:'Abril Fatface',serif; font-size:28px; color:var(--sprout-deep)}
 .eyebrow.sky{color:var(--sky-deep)}
 
 /* ---------- HERO ---------- */
-.hero{padding:60px 0 80px; position:relative; overflow:hidden}
-.hero-bg-blob{
-  position:absolute; top:-100px; right:-200px; width:700px; height:700px;
-  background:radial-gradient(circle, var(--sun) 0%, transparent 65%);
-  opacity:0.35; z-index:0; filter:blur(30px);
-  animation:blob-float 18s ease-in-out infinite;
+/* ===== HERO — editorial, type-driven, photo-ready ===== */
+.hero{padding:80px 0 110px; position:relative; overflow:hidden; background:var(--page)}
+.hero-shape{
+  position:absolute; top:80px; left:-100px; width:420px; height:420px;
+  z-index:0; pointer-events:none; opacity:0.42;
 }
-.hero-bg-blob.two{
-  top:auto; bottom:-200px; right:auto; left:-150px; width:500px; height:500px;
-  background:radial-gradient(circle, var(--sky) 0%, transparent 65%);
-  animation-duration:22s; animation-delay:-5s;
-  opacity:0.4;
+.hero-shape.right{
+  top:auto; left:auto; bottom:-80px; right:-120px; width:340px; height:340px;
+  opacity:0.32;
+}
+.hero-shape svg{width:100%; height:100%}
+.hero-bg-blob, .hero-bg-blob.two{display:none}
+
+/* photo placeholder frame (waiting for real photography) */
+.photo-frame{
+  position:relative;
+  width:100%; max-width:440px;
+  aspect-ratio:4/5;
+  margin:0 auto;
+  transform:rotate(-1.5deg);
+  border-radius:14px;
+  overflow:visible;
+  z-index:2;
+}
+.photo-frame .inner{
+  position:absolute; inset:0;
+  border-radius:14px;
+  overflow:hidden;
+  background:linear-gradient(135deg, #FDF6E8 0%, #FCE5DD 50%, #F2CDC0 100%);
+  box-shadow:0 30px 60px rgba(27,42,47,0.18), 0 8px 16px rgba(27,42,47,0.08);
+}
+.photo-frame .inner::after{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), transparent 50%);
+  pointer-events:none;
+}
+.photo-frame .scene{
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+}
+.photo-frame .scene svg{width:62%; height:auto; filter:drop-shadow(0 12px 22px rgba(27,42,47,0.18))}
+
+/* washi tape — collage detail */
+.washi-tape{
+  position:absolute;
+  width:110px; height:24px;
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.65) 0 6px, transparent 6px 12px),
+    var(--sun);
+  opacity:0.85;
+  box-shadow:0 2px 5px rgba(27,42,47,0.08);
+  z-index:3;
+}
+.washi-tape.tl{top:-10px; left:-18px; transform:rotate(-12deg)}
+.washi-tape.br{bottom:-12px; right:-22px; transform:rotate(-168deg); background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.65) 0 6px, transparent 6px 12px),
+    var(--sky)}
+
+/* polaroid frame (used on book card) */
+.polaroid{
+  background:#fff; padding:18px 18px 56px;
+  border-radius:4px;
+  box-shadow:0 18px 40px rgba(27,42,47,0.18), 0 4px 8px rgba(27,42,47,0.08);
+  transform:rotate(-1.5deg);
+  position:relative;
+}
+.polaroid .caption{
+  position:absolute; left:18px; right:18px; bottom:14px;
+  font-family:'Yeseva One',serif; font-size:18px; color:#34474d; line-height:1.1;
+}
+.polaroid:hover{transform:rotate(0deg) translateY(-4px); transition:transform .35s}
+
+/* gallery: oval portal frames (the AVEC move) */
+.gallery-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:36px 22px; margin-top:48px}
+.work{
+  border-radius:200px / 36% !important;
+  aspect-ratio:3/4 !important;
+  overflow:hidden; position:relative;
+  cursor:pointer;
+  transition:transform .35s cubic-bezier(.2,.9,.2,1.05), box-shadow .35s;
+}
+.work .work-content{padding:24px; justify-content:center; text-align:center}
+.work .work-content h4{margin:8px 0; font-size:20px}
+.work .icon-overlay{top:auto; bottom:24px; left:50%; right:auto; transform:translateX(-50%); width:48px; height:48px; font-size:18px}
+.work .work-tag{margin-top:30px}
+
+/* paper clip on the contact form */
+form.join{position:relative}
+form.join::before{
+  content:""; position:absolute; top:-6px; right:32px; width:28px; height:64px;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 64'><path d='M 14 6 Q 22 6 22 18 V 50 Q 22 58 14 58 Q 6 58 6 50 V 22 Q 6 16 12 16 Q 18 16 18 22 V 46' stroke='%23A78BFA' stroke-width='2.5' fill='none' stroke-linecap='round'/></svg>") center/contain no-repeat;
+  z-index:2;
 }
 @keyframes blob-float{
   0%,100%{transform:translate(0,0) scale(1)}
@@ -229,14 +303,20 @@ h3{font-family:'Abril Fatface',serif; font-size:28px; color:var(--sprout-deep)}
 .door:hover{transform:translateY(-8px) rotateX(2deg) rotateY(-2deg); box-shadow:var(--shadow-lg)}
 .door:hover::before{opacity:1}
 .door .icon{
-  width:60px; height:60px; border-radius:16px; display:flex; align-items:center; justify-content:center;
-  font-family:'Yeseva One',serif; font-size:28px; color:#fff; margin-bottom:16px;
-  box-shadow:var(--shadow-sm);
+  width:auto; height:auto; padding:0; margin-bottom:14px;
+  font-family:'Yeseva One',serif; font-size:34px; line-height:1;
+  color:var(--sprout-deep); background:none; box-shadow:none;
+  letter-spacing:0.04em; display:block;
 }
-.door.kids .icon{background:linear-gradient(135deg, var(--sky), var(--sky-deep)); color:var(--story)}
-.door.teens .icon{background:linear-gradient(135deg, var(--sun), #e6a800); color:var(--story)}
-.door.adults .icon{background:linear-gradient(135deg, var(--bloom), var(--bloom-deep))}
-.door.teachers .icon{background:linear-gradient(135deg, var(--pulse), var(--pulse-glow))}
+.door.kids .icon{color:var(--sky-deep)}
+.door.teens .icon{color:#b88a00}
+.door.adults .icon{color:var(--bloom-deep)}
+.door.teachers .icon{color:var(--pulse)}
+/* tiny accent line under the number */
+.door .icon::after{
+  content:""; display:block; width:32px; height:2px; background:currentColor;
+  margin-top:6px; opacity:0.6;
+}
 .door h3{margin-top:6px}
 .door .age{font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--bloom); font-weight:700; display:block; margin-bottom:6px}
 .door.teachers .age{color:var(--pulse)}
@@ -247,11 +327,7 @@ h3{font-family:'Abril Fatface',serif; font-size:28px; color:var(--sprout-deep)}
 /* ---------- OUTCOMES / FRAMEWORK ---------- */
 .outcomes{background:linear-gradient(180deg, var(--page), #fff7df 50%, var(--page) 100%); overflow:hidden}
 .tier-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:48px; position:relative}
-.tier-grid::before{
-  content:""; position:absolute; top:50%; left:5%; right:5%; height:3px;
-  background:repeating-linear-gradient(90deg, var(--sprout) 0 12px, transparent 12px 22px);
-  z-index:0; transform:translateY(-50%);
-}
+/* connector line removed per UX feedback */
 .tier{
   background:#fff; border-radius:18px; padding:30px;
   border:1px solid var(--whisper); position:relative; z-index:1;
@@ -266,7 +342,7 @@ h3{font-family:'Abril Fatface',serif; font-size:28px; color:var(--sprout-deep)}
 .tier:nth-child(2) .num{background:var(--bloom)}
 .tier:nth-child(3) .num{background:var(--pulse)}
 .tier h3{margin-top:8px}
-.tier .verb{font-family:'Abril Fatface',serif; font-size:36px; color:var(--bloom); margin:0 0 6px; line-height:1}
+.tier .verb{font-family:'Inter',sans-serif; font-weight:700; font-size:36px; color:var(--bloom); margin:0 0 6px; line-height:1}
 .tier:nth-child(2) .verb{color:var(--sun)}
 .tier:nth-child(3) .verb{color:var(--pulse)}
 .tier .meta{font-family:'Inter',sans-serif; font-size:12px; color:#5a6c71; letter-spacing:.06em; margin-bottom:10px}
@@ -333,7 +409,7 @@ h3{font-family:'Abril Fatface',serif; font-size:28px; color:var(--sprout-deep)}
   width:130px; height:185px; flex-shrink:0;
   background:linear-gradient(135deg, var(--bloom), var(--bloom-deep));
   border-radius:6px; display:flex; align-items:flex-end; padding:14px;
-  font-family:'Abril Fatface',serif; font-size:22px; color:#fff; line-height:1.05;
+  font-family:'Inter',sans-serif; font-weight:700; font-size:22px; color:#fff; line-height:1.05;
   box-shadow: 6px 6px 0 var(--sun), 8px 8px 18px rgba(0,0,0,0.15);
   transform:rotate(-2deg); transition:transform .3s;
 }
@@ -498,23 +574,7 @@ footer a:hover{color:var(--sun)}
   0%{transform:rotateY(-40deg)} 100%{transform:rotateY(0deg)}
 }
 
-/* side-of-page growing vine (right edge, follows scroll) */
-.scroll-vine{
-  position:fixed; top:0; right:14px; width:80px; height:100vh; z-index:30;
-  pointer-events:none; opacity:0; transition:opacity .6s ease;
-}
-.scroll-vine.show{opacity:0.85}
-.scroll-vine svg{width:100%; height:100%; overflow:visible}
-.scroll-vine .vine-stem{
-  stroke:var(--sprout); stroke-width:2.5; fill:none; stroke-linecap:round;
-}
-.scroll-vine .v-leaf{
-  fill:var(--sprout-glow); opacity:0; transform:scale(0); transform-origin:center;
-  transition:opacity .5s ease, transform .5s cubic-bezier(.2,1.4,.4,1);
-}
-.scroll-vine .v-leaf.bloom{fill:var(--sprout)}
-.scroll-vine .v-leaf.show{opacity:0.9; transform:scale(1)}
-@media (max-width:980px){.scroll-vine{display:none}}
+/* (side-of-page scroll vine fully removed) */
 
 /* ---------- responsive ---------- */
 @media (max-width: 980px){
@@ -542,25 +602,6 @@ footer a:hover{color:var(--sun)}
 </head>
 <body>
 
-<!-- ===== SCROLL-DRIVEN GROWING VINE (right edge, fixed) ===== -->
-<div class="scroll-vine" aria-hidden="true">
-  <svg viewBox="0 0 80 800" preserveAspectRatio="xMidYMin slice" xmlns="http://www.w3.org/2000/svg">
-    <path class="vine-stem" d="M40 0 Q30 80 45 160 Q55 240 35 320 Q25 400 50 480 Q60 560 30 640 Q20 720 45 800"
-          stroke-dasharray="1200" stroke-dashoffset="1200" id="scrollStem"/>
-    <g id="scrollLeaves">
-      <ellipse class="v-leaf" cx="22" cy="80"  rx="10" ry="5" transform="rotate(-30 22 80)"/>
-      <ellipse class="v-leaf bloom" cx="58" cy="160" rx="10" ry="5" transform="rotate(30 58 160)"/>
-      <ellipse class="v-leaf" cx="20" cy="240" rx="10" ry="5" transform="rotate(-25 20 240)"/>
-      <ellipse class="v-leaf bloom" cx="60" cy="320" rx="10" ry="5" transform="rotate(35 60 320)"/>
-      <ellipse class="v-leaf" cx="22" cy="400" rx="10" ry="5" transform="rotate(-30 22 400)"/>
-      <ellipse class="v-leaf bloom" cx="62" cy="480" rx="10" ry="5" transform="rotate(28 62 480)"/>
-      <ellipse class="v-leaf" cx="18" cy="560" rx="10" ry="5" transform="rotate(-25 18 560)"/>
-      <ellipse class="v-leaf bloom" cx="55" cy="640" rx="10" ry="5" transform="rotate(32 55 640)"/>
-      <ellipse class="v-leaf" cx="22" cy="720" rx="10" ry="5" transform="rotate(-28 22 720)"/>
-    </g>
-  </svg>
-</div>
-
 <!-- ===== NAV ===== -->
 <header class="nav">
   <div class="nav-inner">
@@ -586,7 +627,7 @@ footer a:hover{color:var(--sun)}
       <li><a class="link" href="#springtalks" data-i18n="nav.springtalks">Spring Talks</a></li>
       <li><a class="link" href="#gallery" data-i18n="nav.gallery">Galería</a></li>
       <li><a class="link" href="#contact" data-i18n="nav.contact">Contacto</a></li>
-      <li><a class="link classroom" href="https://classroom.google.com/h" target="_blank" rel="noopener" data-i18n="nav.class">Clase ↗</a></li>
+      <li><a class="link classroom" href="https://classroom.google.com/h" target="_blank" rel="noopener" data-i18n="nav.class" title="Inicia sesión con tu cuenta @springlearning.mx">Clase ↗</a></li>
     </ul>
     <div class="right">
       <div class="toggle" role="group" aria-label="Language">
@@ -600,108 +641,102 @@ footer a:hover{color:var(--sun)}
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="top">
-  <div class="hero-bg-blob"></div>
-  <div class="hero-bg-blob two"></div>
+  <!-- single organic coral shape behind type (Lowri move) -->
+  <div class="hero-shape" aria-hidden="true">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 92 10 C 158 4, 196 70, 178 130 C 162 184, 92 200, 48 178 C 4 154, -6 86, 28 44 C 50 18, 70 12, 92 10 Z" fill="#F9655A"/>
+    </svg>
+  </div>
+  <div class="hero-shape right" aria-hidden="true">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 100 12 C 162 8, 196 80, 170 140 C 144 188, 70 192, 32 156 C -6 116, 14 38, 60 18 C 76 12, 88 12, 100 12 Z" fill="#F9C846"/>
+    </svg>
+  </div>
+  <!-- minimal hero motion: 3 small leaves, not 7 mixed particles -->
   <div class="particles" aria-hidden="true">
-    <div class="particle leaf" style="left:8%;background:#4FA34A;animation-delay:0s"></div>
-    <div class="particle" style="left:18%;background:#F9C846;animation-delay:-3s"></div>
-    <div class="particle leaf" style="left:32%;background:#7DD87A;animation-delay:-6s"></div>
-    <div class="particle" style="left:48%;background:#F25F4C;animation-delay:-9s;width:6px;height:6px"></div>
-    <div class="particle" style="left:62%;background:#7C3AED;animation-delay:-2s;width:6px;height:6px"></div>
-    <div class="particle leaf" style="left:78%;background:#4FA34A;animation-delay:-5s"></div>
-    <div class="particle" style="left:88%;background:#A7D7E8;animation-delay:-11s"></div>
+    <div class="particle leaf" style="left:14%;background:#5BB849;animation-delay:0s"></div>
+    <div class="particle leaf" style="left:52%;background:#A4E089;animation-delay:-7s"></div>
+    <div class="particle leaf" style="left:84%;background:#5BB849;animation-delay:-12s"></div>
   </div>
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-copy reveal">
-        <p class="eyebrow" data-i18n="hero.eyebrow">Laboratorio creativo · Kids · Teens · Adults · Teachers</p>
+        <p class="eyebrow" data-i18n="hero.eyebrow">Laboratorio creativo de aprendizaje</p>
         <h1 data-i18n="hero.title">Aprender es como hacer brotar algo.</h1>
-        <p class="lede" data-i18n="hero.lede">Springlearning es un laboratorio creativo donde niños, adolescentes, adultos y maestros aprenden como aprenden los lectores: persiguiendo lo que les interesa y construyendo algo real con eso.</p>
-        <div class="hero-actions">
+        <div class="hero-actions" style="margin-top:22px;">
           <a href="#contact" class="cta" data-i18n="hero.cta1">Reservar clase muestra</a>
           <a href="#programs" class="cta ghost" data-i18n="hero.cta2">Conoce los programas</a>
         </div>
-        <div class="tag-row">
-          <span class="tag"><span class="dot"></span><span data-i18n="hero.tag1">Vibrante</span></span>
-          <span class="tag bloom"><span class="dot"></span><span data-i18n="hero.tag2">Lúdico</span></span>
-          <span class="tag violet"><span class="dot"></span><span data-i18n="hero.tag3">Tech-forward</span></span>
-          <span class="tag sky"><span class="dot"></span><span data-i18n="hero.tag4">Bilingüe ES/EN</span></span>
-        </div>
       </div>
       <div class="hero-illu reveal">
-        <svg class="brote" viewBox="0 0 400 380" xmlns="http://www.w3.org/2000/svg" aria-label="Brote, the Springlearning snake mascot, hugging a book">
-          <defs>
-            <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#7DD87A"/>
-              <stop offset="100%" stop-color="#4FA34A"/>
-            </linearGradient>
-            <linearGradient id="bookGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#F9655A"/>
-              <stop offset="100%" stop-color="#C84231"/>
-            </linearGradient>
-            <radialGradient id="eyeGrad">
-              <stop offset="0%" stop-color="#fff"/>
-              <stop offset="100%" stop-color="#FBF7EC"/>
-            </radialGradient>
-          </defs>
-          <ellipse cx="200" cy="200" rx="180" ry="170" fill="#A7D7E8" opacity="0.32"/>
-          <ellipse cx="200" cy="220" rx="150" ry="60" fill="#F9C846" opacity="0.28"/>
-          <g class="brote-body">
-            <!-- book -->
-            <g>
-              <rect x="120" y="200" width="160" height="115" rx="6" fill="url(#bookGrad)"/>
-              <rect x="120" y="200" width="160" height="115" rx="6" fill="none" stroke="#1B2A2F" stroke-width="2"/>
-              <line x1="200" y1="200" x2="200" y2="315" stroke="#1B2A2F" stroke-width="2"/>
-              <path d="M135 220 h50 M135 235 h50 M135 250 h45 M215 220 h50 M215 235 h50 M215 250 h45" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
-            </g>
-            <!-- snake body coiling around the book -->
-            <path d="M90 250 Q60 200 100 160 Q140 130 200 145 Q260 130 300 160 Q340 200 310 250"
-                  stroke="url(#bodyGrad)" stroke-width="28" fill="none" stroke-linecap="round"/>
-            <path d="M100 250 Q70 210 105 175 Q145 145 200 158 Q255 145 295 175 Q330 210 300 250"
-                  stroke="#7DD87A" stroke-width="14" fill="none" stroke-linecap="round" opacity="0.55"/>
-            <!-- snake head -->
-            <ellipse cx="200" cy="115" rx="60" ry="48" fill="url(#bodyGrad)"/>
-            <ellipse cx="200" cy="125" rx="46" ry="30" fill="#7DD87A" opacity="0.5"/>
-            <!-- eyes -->
-            <circle class="brote-eye-l" cx="180" cy="108" r="10" fill="url(#eyeGrad)"/>
-            <circle class="brote-eye-r" cx="220" cy="108" r="10" fill="url(#eyeGrad)"/>
-            <circle cx="182" cy="110" r="5" fill="#1B2A2F"/>
-            <circle cx="222" cy="110" r="5" fill="#1B2A2F"/>
-            <circle cx="184" cy="108" r="2" fill="#fff"/>
-            <circle cx="224" cy="108" r="2" fill="#fff"/>
-            <!-- cheeks -->
-            <circle cx="163" cy="126" r="7" fill="#F25F4C" opacity="0.55"/>
-            <circle cx="237" cy="126" r="7" fill="#F25F4C" opacity="0.55"/>
-            <!-- smile -->
-            <path d="M186 130 Q200 142 214 130" stroke="#1B2A2F" stroke-width="2.8" fill="none" stroke-linecap="round"/>
-            <!-- forked tongue -->
-            <path d="M200 140 L200 152 M200 152 L196 158 M200 152 L204 158" stroke="#F25F4C" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <!-- leaf on head -->
-            <g class="brote-leaf">
-              <path d="M200 70 Q212 52 226 58 Q220 76 206 80 Z" fill="#2E6B2C"/>
-              <line x1="200" y1="70" x2="210" y2="78" stroke="#2E6B2C" stroke-width="1.5"/>
-              <path d="M226 58 Q230 64 226 68" stroke="#2E6B2C" stroke-width="1.2" fill="none"/>
-            </g>
-          </g>
-          <!-- sparkles -->
-          <g fill="#F9C846">
-            <circle class="sparkle" cx="80" cy="120" r="3.5"/>
-            <circle class="sparkle" cx="320" cy="100" r="4.5"/>
-            <circle class="sparkle" cx="345" cy="180" r="3"/>
-            <circle class="sparkle" cx="55" cy="200" r="3"/>
-          </g>
-          <!-- tech dots, subtle violet flourish -->
-          <g fill="#7C3AED" opacity="0.6">
-            <circle cx="60" cy="80" r="2"/>
-            <circle cx="350" cy="60" r="2.5"/>
-            <circle cx="370" cy="140" r="1.8"/>
-          </g>
-        </svg>
+        <div class="photo-frame" aria-label="Editorial photo placeholder — replace with a real photograph of hands, books, or a class scene">
+          <span class="washi-tape tl" aria-hidden="true"></span>
+          <span class="washi-tape br" aria-hidden="true"></span>
+          <div class="inner">
+            <div class="scene">
+              <!-- editorial still life: stacked books + leaf, flat-but-tasteful -->
+              <svg viewBox="0 0 320 380" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <linearGradient id="bookA" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#3F8A30"/>
+                    <stop offset="100%" stop-color="#2E6B2C"/>
+                  </linearGradient>
+                  <linearGradient id="bookB" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#FBF7EC"/>
+                    <stop offset="100%" stop-color="#E8E2D1"/>
+                  </linearGradient>
+                  <linearGradient id="bookC" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#F25F4C"/>
+                    <stop offset="100%" stop-color="#C84231"/>
+                  </linearGradient>
+                </defs>
+                <!-- table shadow -->
+                <ellipse cx="160" cy="340" rx="120" ry="10" fill="#1B2A2F" opacity="0.18"/>
+                <!-- bottom book (green) -->
+                <rect x="50" y="280" width="220" height="48" rx="3" fill="url(#bookA)"/>
+                <line x1="60" y1="294" x2="260" y2="294" stroke="#A4E089" stroke-width="1" opacity="0.5"/>
+                <line x1="60" y1="314" x2="260" y2="314" stroke="#A4E089" stroke-width="1" opacity="0.5"/>
+                <text x="160" y="312" text-anchor="middle" font-family="Yeseva One, serif" font-size="14" fill="#FBF7EC" opacity="0.85" letter-spacing="2">SPRINGLEARNING</text>
+                <!-- middle book (cream/tilted) -->
+                <g transform="rotate(-3 160 250)">
+                  <rect x="60" y="226" width="200" height="50" rx="3" fill="url(#bookB)" stroke="#A8B3B6" stroke-width="0.6"/>
+                  <line x1="70" y1="242" x2="250" y2="242" stroke="#A8B3B6" stroke-width="0.8" opacity="0.5"/>
+                  <text x="160" y="260" text-anchor="middle" font-family="Yeseva One, serif" font-size="13" fill="#34474d" letter-spacing="1.5">FELLOWSHIP OF THE BOOK</text>
+                </g>
+                <!-- top book (coral, tilted other way) -->
+                <g transform="rotate(2 160 200)">
+                  <rect x="80" y="178" width="160" height="42" rx="3" fill="url(#bookC)"/>
+                  <line x1="90" y1="192" x2="230" y2="192" stroke="#fff" stroke-width="0.8" opacity="0.5"/>
+                  <text x="160" y="208" text-anchor="middle" font-family="Yeseva One, serif" font-size="11" fill="#fff" letter-spacing="2">DISCOVERY · CREATORS · ARCHITECTS</text>
+                </g>
+                <!-- a real-feeling leaf -->
+                <g transform="translate(180,90) rotate(20)">
+                  <path d="M 0 30 Q -20 10 0 -10 Q 35 -25 55 -10 Q 60 25 30 35 Q 10 38 0 30 Z" fill="#5BB849"/>
+                  <path d="M 0 30 Q 20 10 35 5 Q 45 0 50 -5" stroke="#3F8A30" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+                  <path d="M 50 -8 Q 55 -16 58 -22" stroke="#3F8A30" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                </g>
+                <!-- a small loose page corner -->
+                <g transform="translate(60,60) rotate(-15)">
+                  <rect x="0" y="0" width="48" height="60" fill="#fff" stroke="#A8B3B6" stroke-width="0.5"/>
+                  <line x1="6" y1="12" x2="42" y2="12" stroke="#A8B3B6" stroke-width="0.5"/>
+                  <line x1="6" y1="20" x2="42" y2="20" stroke="#A8B3B6" stroke-width="0.5"/>
+                  <line x1="6" y1="28" x2="36" y2="28" stroke="#A8B3B6" stroke-width="0.5"/>
+                  <path d="M 6 42 Q 18 38 30 44 Q 38 48 42 46" stroke="#F25F4C" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+                </g>
+                <!-- a fountain pen -->
+                <g transform="translate(220,320) rotate(-65)">
+                  <rect x="0" y="0" width="80" height="8" rx="2" fill="#1B2A2F"/>
+                  <polygon points="80,0 96,4 80,8" fill="#7C3AED"/>
+                  <rect x="20" y="0" width="3" height="8" fill="#F9C846"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
-
 <!-- vine separator: open book + sprouting leaves -->
 <div class="vine-sep" aria-hidden="true">
   <svg viewBox="0 0 240 120" xmlns="http://www.w3.org/2000/svg">
@@ -744,28 +779,28 @@ footer a:hover{color:var(--sun)}
     <p class="reveal" data-i18n="doors.lede" style="max-width:720px; font-size:20px; color:#34474d;">Estudiantes y maestros: cada quien recorre Discovery → Creators → Architects, adaptado a su edad, voz y oficio.</p>
     <div class="doors-grid reveal-stagger">
       <a href="#contact" class="door kids">
-        <div class="icon">K</div>
+        <div class="icon">01</div>
         <span class="age" data-i18n="doors.kids.age">Discovery · 8 – 13 años</span>
         <h3 data-i18n="doors.kids.title">Springlearning · Kids</h3>
         <p data-i18n="doors.kids.body">Historias, dibujos, juego. Aprenden inglés y a hacer preguntas como quien arma un Lego — probando, rompiendo y volviendo a armar.</p>
         <span class="more" data-i18n="doors.more">Conocer más →</span>
       </a>
       <a href="#contact" class="door teens">
-        <div class="icon">T</div>
+        <div class="icon">02</div>
         <span class="age" data-i18n="doors.teens.age">Creators · 14 – 17 años</span>
         <h3 data-i18n="doors.teens.title">Springlearning · Teens</h3>
         <p data-i18n="doors.teens.body">Proyectos que sí quieren mostrar: un podcast, una reseña, un corto. Aprenden a pensar y a publicar al mismo tiempo.</p>
         <span class="more" data-i18n="doors.more">Conocer más →</span>
       </a>
       <a href="#contact" class="door adults">
-        <div class="icon">A</div>
+        <div class="icon">03</div>
         <span class="age" data-i18n="doors.adults.age">Architects · 18+</span>
         <h3 data-i18n="doors.adults.title">Springlearning · Adults</h3>
         <p data-i18n="doors.adults.body">Escritura creativa, retórica profesional, lectura crítica. La clase de inglés (o de pensamiento) que te hubiera gustado tener.</p>
         <span class="more" data-i18n="doors.more">Conocer más →</span>
       </a>
       <a href="#contact" class="door teachers">
-        <div class="icon">M</div>
+        <div class="icon">04</div>
         <span class="age" data-i18n="doors.teachers.age">Maestros · PD + Certificación</span>
         <h3 data-i18n="doors.teachers.title">Springlearning · Teachers</h3>
         <p data-i18n="doors.teachers.body">Para maestros que quieren usar AI y Canva para mejores clases — y para quienes quieren certificarse en el método Springlearning.</p>
@@ -885,7 +920,7 @@ footer a:hover{color:var(--sun)}
         <div class="quote" data-i18n="club.quote">"Leer en compañía es la forma más barata de viajar dos veces."</div>
         <a href="#contact" class="cta" data-i18n="club.cta">Únete gratis</a>
       </div>
-      <div class="book-card reveal">
+      <div class="book-card polaroid reveal">
         <div class="book-cover" data-i18n="club.cover">Bestiario</div>
         <div>
           <p class="meta" data-i18n="club.month">Lectura del mes</p>
@@ -1007,7 +1042,7 @@ footer a:hover{color:var(--sun)}
             <span class="pin">@</span>
             <div>
               <strong data-i18n="contact.email">Correo</strong>
-              <a href="mailto:springlearning7@gmail.com">springlearning7@gmail.com</a>
+              <a href="mailto:primavera@springlearning.mx">primavera@springlearning.mx</a>
             </div>
           </li>
           <li>
@@ -1094,9 +1129,10 @@ footer a:hover{color:var(--sun)}
       <div>
         <h5 data-i18n="foot.contact">Contacto</h5>
         <ul>
-          <li><a href="mailto:springlearning7@gmail.com">springlearning7@gmail.com</a></li>
+          <li><a href="mailto:primavera@springlearning.mx">primavera@springlearning.mx</a></li>
           <li><a href="tel:+528127582207">+52 812 758 2207</a></li>
           <li><a href="https://classroom.google.com/h" target="_blank" rel="noopener" data-i18n="foot.class">Entrar a clase ↗</a></li>
+          <li style="font-size:12px; color:#8a98a0; margin-top:-2px;" data-i18n="foot.classnote">Inicia sesión con tu cuenta @springlearning.mx</li>
         </ul>
       </div>
     </div>
@@ -1115,11 +1151,9 @@ const i18n = {
     "meta.desc":"Springlearning es un laboratorio creativo de aprendizaje para niños, adolescentes, adultos y maestros. Discovery, Creators, Architects.",
     "nav.home":"Inicio","nav.programs":"Programas","nav.springtalks":"Spring Talks",
     "nav.gallery":"Galería","nav.contact":"Contacto","nav.class":"Clase ↗","nav.cta":"Reservar",
-    "hero.eyebrow":"Laboratorio creativo · Kids · Teens · Adults · Teachers",
+    "hero.eyebrow":"Laboratorio creativo de aprendizaje",
     "hero.title":"Aprender es como hacer brotar algo.",
-    "hero.lede":"Springlearning es un laboratorio creativo donde niños, adolescentes, adultos y maestros aprenden como aprenden los lectores: persiguiendo lo que les interesa y construyendo algo real con eso.",
     "hero.cta1":"Reservar clase muestra","hero.cta2":"Conoce los programas",
-    "hero.tag1":"Vibrante","hero.tag2":"Lúdico","hero.tag3":"Tech-forward","hero.tag4":"Bilingüe ES/EN",
     "doors.eyebrow":"Programas y cursos","doors.title":"Cuatro puertas. Un mismo método.",
     "doors.lede":"Estudiantes y maestros: cada quien recorre Discovery → Creators → Architects, adaptado a su edad, voz y oficio.",
     "doors.kids.age":"Discovery · 8 – 13 años","doors.kids.title":"Springlearning · Kids",
@@ -1183,6 +1217,7 @@ const i18n = {
     "foot.teachers":"Teachers","foot.companies":"Para empresas",
     "foot.community":"Comunidad","foot.bookclub":"Club de Lectura","foot.springtalks":"Spring Talks",
     "foot.gallery":"Galería","foot.about":"Sobre Springlearning","foot.contact":"Contacto","foot.class":"Entrar a clase ↗",
+    "foot.classnote":"Inicia sesión con tu cuenta @springlearning.mx",
     "foot.rights":"Todos los derechos reservados."
   },
   en: {
@@ -1190,11 +1225,9 @@ const i18n = {
     "meta.desc":"Springlearning is a creative learning laboratory for kids, teens, adults and teachers. Discovery, Creators, Architects.",
     "nav.home":"Home","nav.programs":"Programs","nav.springtalks":"Spring Talks",
     "nav.gallery":"Gallery","nav.contact":"Contact","nav.class":"Class ↗","nav.cta":"Book a class",
-    "hero.eyebrow":"Creative laboratory · Kids · Teens · Adults · Teachers",
+    "hero.eyebrow":"Creative learning laboratory",
     "hero.title":"Learning is making something sprout.",
-    "hero.lede":"Springlearning is a creative laboratory where kids, teens, adults and teachers learn the way readers learn — chasing what's interesting, then making something real with it.",
     "hero.cta1":"Book a sample class","hero.cta2":"See the programs",
-    "hero.tag1":"Vibrant","hero.tag2":"Playful","hero.tag3":"Tech-forward","hero.tag4":"Bilingual ES/EN",
     "doors.eyebrow":"Programs & courses","doors.title":"Four doors. One method.",
     "doors.lede":"Students and teachers alike walk Discovery → Creators → Architects — shaped to age, voice and craft.",
     "doors.kids.age":"Discovery · ages 8 – 13","doors.kids.title":"Springlearning · Kids",
@@ -1258,6 +1291,7 @@ const i18n = {
     "foot.teachers":"Teachers","foot.companies":"For companies",
     "foot.community":"Community","foot.bookclub":"Book Club","foot.springtalks":"Spring Talks",
     "foot.gallery":"Gallery","foot.about":"About Springlearning","foot.contact":"Contact","foot.class":"Enter class ↗",
+    "foot.classnote":"Sign in with your @springlearning.mx account",
     "foot.rights":"All rights reserved."
   }
 };
@@ -1326,37 +1360,6 @@ function setLang(lang){
     card.addEventListener('mouseleave', () => { card.style.transform = ''; });
   });
 
-  // Scroll-driven growing vine on right edge — vine "grows" with scroll,
-  // and leaves pop into view as their portion of the stem is drawn.
-  const scrollVine = document.querySelector('.scroll-vine');
-  const stem = document.getElementById('scrollStem');
-  const leaves = Array.from(document.querySelectorAll('#scrollLeaves .v-leaf'));
-  const STEM_LEN = 1200; // matches stroke-dasharray above
-  // each leaf's y-position in the SVG (out of 800) tells us when to reveal it
-  const leafTriggers = leaves.map(l => parseFloat(l.getAttribute('cy')) / 800);
-
-  let ticking = false;
-  function onScroll(){
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      const docH = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = Math.max(0, Math.min(1, window.scrollY / docH));
-      // grow stem as user scrolls
-      stem.setAttribute('stroke-dashoffset', STEM_LEN * (1 - progress));
-      // show vine after a small scroll
-      if (window.scrollY > 200) scrollVine.classList.add('show');
-      else scrollVine.classList.remove('show');
-      // pop leaves as their trigger passes
-      leafTriggers.forEach((t, i) => {
-        if (progress > t - 0.04) leaves[i].classList.add('show');
-        else leaves[i].classList.remove('show');
-      });
-      ticking = false;
-    });
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 })();
 </script>
 
