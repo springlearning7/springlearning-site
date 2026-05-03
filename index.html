@@ -289,17 +289,30 @@ form.join::before{
 .doors{background:#fff; border-top:1px solid var(--whisper); border-bottom:1px solid var(--whisper); position:relative}
 .doors-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:36px; perspective:1000px}
 .door{
-  background:var(--page); border-radius:20px; padding:28px;
-  text-decoration:none; color:var(--story); display:block;
+  background:var(--page); border-radius:20px; padding:26px 24px;
+  text-decoration:none; color:var(--story); display:flex; flex-direction:column;
   transition:transform .35s cubic-bezier(.2,.9,.2,1.05), box-shadow .35s;
-  border:1px solid var(--whisper); position:relative; overflow:hidden;
+  border:1px solid var(--whisper); position:relative;
   transform-style:preserve-3d;
+  /* overflow:hidden removed — was cropping body text on narrow cards */
 }
 .door::before{
   content:""; position:absolute; inset:0;
+  border-radius:20px;  /* match parent so the gradient stays inside rounded corners */
   background:linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.4));
   opacity:0; transition:opacity .35s; pointer-events:none;
 }
+/* card-scale typography (overrides the global h3 rule) */
+.door h3{
+  font-family:'Yeseva One',serif; font-weight:400;
+  font-size:21px; line-height:1.15;
+  margin:4px 0 6px;
+  color:var(--story);
+}
+.door p{font-size:15px; line-height:1.55; margin:6px 0 0; flex:1}
+.door .age{font-size:11px; margin-bottom:4px}
+.door .icon{font-size:30px; margin-bottom:12px}
+.door .more{font-size:13px; margin-top:14px}
 .door:hover{transform:translateY(-8px) rotateX(2deg) rotateY(-2deg); box-shadow:var(--shadow-lg)}
 .door:hover::before{opacity:1}
 .door .icon{
@@ -577,26 +590,132 @@ footer a:hover{color:var(--sun)}
 /* (side-of-page scroll vine fully removed) */
 
 /* ---------- responsive ---------- */
+/* ================== RESPONSIVE ================== */
+
+/* Tablet and below */
 @media (max-width: 980px){
   .doors-grid{grid-template-columns:repeat(2,1fr)}
   .talk-grid, .gallery-grid{grid-template-columns:repeat(2,1fr)}
   .hero-grid, .tier-grid, .bookclub-grid, .contact-grid, .foot-grid{grid-template-columns:1fr}
   .tier-grid::before{display:none}
+  .hero-grid{gap:32px}
 }
+
+/* Phone — full mobile rebuild */
 @media (max-width: 720px){
+  /* tighter section rhythm */
+  section{padding:48px 0}
+  .wrap{padding:0 20px}
+
+  /* type scaling for narrow viewports */
+  body{font-size:16px}
+  h1{font-size:clamp(34px, 8vw, 48px)}
+  h2{font-size:clamp(26px, 6.5vw, 36px)}
+  h3{font-size:22px}
+  .lede, p.lede{font-size:18px !important; line-height:1.5}
+
+  /* ===== NAV / HAMBURGER (rebuilt cleanly) ===== */
+  .nav-inner{flex-wrap:wrap; gap:10px}
+  .burger{display:block; margin-left:auto; order:2}
+  .brand{order:1}
   .nav .menu, .nav .right{display:none}
-  .nav .menu.open{
-    display:flex; flex-direction:column; position:absolute; top:100%; left:0; right:0;
-    background:var(--page); border-bottom:1px solid var(--whisper);
-    padding:16px 24px; gap:0;
+  /* when .nav has .open, both menu and right become a vertical drawer below */
+  .nav.open .menu{
+    display:flex; flex-direction:column; flex-basis:100%; order:3;
+    margin:8px 0 0; padding:8px 0 4px;
+    border-top:1px solid var(--whisper);
+    gap:0;
   }
-  .nav .menu.open li{width:100%}
-  .nav .menu.open a.link{display:block; padding:12px 8px}
-  .nav .right.open{display:flex; padding:0 24px 16px; gap:10px; background:var(--page); position:absolute; top:calc(100% + 220px); left:0; right:0; border-bottom:1px solid var(--whisper)}
-  .burger{display:block}
-  .doors-grid, .talk-grid, .gallery-grid{grid-template-columns:1fr}
-  .book-card{flex-direction:column}
-  section{padding:64px 0}
+  .nav.open .menu li{width:100%}
+  .nav.open .menu a.link{display:block; padding:12px 6px; font-size:16px}
+  .nav.open .menu a.link.classroom{margin:6px 0; text-align:center}
+  .nav.open .right{
+    display:flex; flex-basis:100%; order:4;
+    align-items:center; justify-content:space-between;
+    padding:10px 0 6px;
+    border-top:1px solid var(--whisper);
+  }
+  .nav.open .toggle{flex-shrink:0}
+  .nav.open .cta{flex:1; margin-left:14px; text-align:center}
+
+  /* ===== HERO ===== */
+  .hero{padding:24px 0 56px}
+  /* hide the bleeding background shapes on phone — they overflow ugly */
+  .hero-shape, .hero-shape.right{display:none}
+  .hero-grid{gap:28px}
+  .hero-actions{justify-content:flex-start; gap:10px}
+  .hero-actions .cta{padding:11px 18px; font-size:14px}
+  /* photo frame: smaller, still tilted */
+  .photo-frame{max-width:300px; aspect-ratio:4/5}
+  .photo-frame .scene svg{width:78%}
+  .washi-tape{width:80px; height:20px}
+  .washi-tape.tl{top:-8px; left:-12px}
+  .washi-tape.br{bottom:-10px; right:-14px}
+  /* fewer hero leaves on phone */
+  .particle.leaf{width:10px; height:10px}
+
+  /* ===== VINE SEPARATORS ===== */
+  .vine-sep{height:80px}
+  .vine-sep svg{width:160px; height:80px}
+
+  /* ===== DOORS ===== */
+  .doors-grid{grid-template-columns:1fr; gap:14px}
+  .door{padding:22px}
+  .door .icon{font-size:28px}
+
+  /* ===== OUTCOMES TIERS ===== */
+  .tier{padding:24px}
+  .tier .verb{font-size:30px}
+  .tier .num{top:-14px; width:34px; height:34px; font-size:16px}
+
+  /* ===== SPRING TALKS ===== */
+  .talk-grid{grid-template-columns:1fr; gap:14px}
+  .talk{padding:22px}
+  .talk h4{font-size:20px}
+  .talk .meta{gap:10px; font-size:11px; flex-wrap:wrap}
+
+  /* ===== BOOK CLUB / POLAROID ===== */
+  .book-card{flex-direction:column; padding:14px 14px 44px; max-width:280px; margin:0 auto}
+  .book-cover{width:110px; height:155px; font-size:18px; margin:4px auto 16px}
+  .polaroid:hover{transform:rotate(-1.5deg)}  /* don't unrotate on touch */
+
+  /* ===== GALLERY OVAL PORTALS ===== */
+  .gallery-grid{grid-template-columns:1fr; gap:24px}
+  .work{aspect-ratio:5/6 !important; border-radius:160px / 24% !important; max-width:280px; margin:0 auto}
+  .work .work-content{padding:16px}
+  .work h4{font-size:18px}
+
+  /* ===== TESTIMONIAL ===== */
+  .testimonial{padding:64px 0}
+  .testimonial::before, .testimonial::after{font-size:120px}
+
+  /* ===== CONTACT ===== */
+  .contact-grid{gap:28px}
+  form.join{padding:22px}
+  form.join::before{right:18px; width:22px; height:50px}
+  .contact-side li{font-size:16px}
+  .contact-side li .pin{width:32px; height:32px; font-size:16px}
+
+  /* ===== FOOTER ===== */
+  .foot-grid{grid-template-columns:1fr; gap:24px}
+  .foot-bottom{flex-direction:column; align-items:flex-start; font-size:11px; gap:6px}
+}
+
+/* Very narrow screens (older / smaller phones) */
+@media (max-width: 380px){
+  h1{font-size:32px}
+  .photo-frame{max-width:240px}
+  .hero-actions{flex-direction:column; align-items:stretch; width:100%}
+  .hero-actions .cta{width:100%; text-align:center}
+  .nav-inner{padding:12px 16px}
+  .wrap{padding:0 16px}
+}
+
+/* Touch devices: kill the 3D card tilt — there's no cursor to follow */
+@media (hover: none){
+  .door:hover{transform:none !important}
+  .work:hover{transform:none !important}
+  .book-card:hover{transform:rotate(-1.5deg) !important}
 }
 </style>
 </head>
@@ -627,7 +746,7 @@ footer a:hover{color:var(--sun)}
       <li><a class="link" href="#springtalks" data-i18n="nav.springtalks">Spring Talks</a></li>
       <li><a class="link" href="#gallery" data-i18n="nav.gallery">Galería</a></li>
       <li><a class="link" href="#contact" data-i18n="nav.contact">Contacto</a></li>
-      <li><a class="link classroom" href="https://classroom.google.com/h" target="_blank" rel="noopener" data-i18n="nav.class" title="Inicia sesión con tu cuenta @springlearning.mx">Clase ↗</a></li>
+      <li><a class="link classroom" href="https://classroom.google.com/?authuser=primavera@springlearning.mx" target="_blank" rel="noopener" data-i18n="nav.class" title="Inicia sesión con tu cuenta @springlearning.mx">Clase ↗</a></li>
     </ul>
     <div class="right">
       <div class="toggle" role="group" aria-label="Language">
@@ -803,7 +922,7 @@ footer a:hover{color:var(--sun)}
         <div class="icon">04</div>
         <span class="age" data-i18n="doors.teachers.age">Maestros · PD + Certificación</span>
         <h3 data-i18n="doors.teachers.title">Springlearning · Teachers</h3>
-        <p data-i18n="doors.teachers.body">Para maestros que quieren usar AI y Canva para mejores clases — y para quienes quieren certificarse en el método Springlearning.</p>
+        <p data-i18n="doors.teachers.body">Para maestros: usar AI y Canva para mejores clases, y certificación en el método Springlearning.</p>
         <span class="more" data-i18n="doors.more">Conocer más →</span>
       </a>
     </div>
@@ -1131,7 +1250,7 @@ footer a:hover{color:var(--sun)}
         <ul>
           <li><a href="mailto:primavera@springlearning.mx">primavera@springlearning.mx</a></li>
           <li><a href="tel:+528127582207">+52 812 758 2207</a></li>
-          <li><a href="https://classroom.google.com/h" target="_blank" rel="noopener" data-i18n="foot.class">Entrar a clase ↗</a></li>
+          <li><a href="https://classroom.google.com/?authuser=primavera@springlearning.mx" target="_blank" rel="noopener" data-i18n="foot.class">Entrar a clase ↗</a></li>
           <li style="font-size:12px; color:#8a98a0; margin-top:-2px;" data-i18n="foot.classnote">Inicia sesión con tu cuenta @springlearning.mx</li>
         </ul>
       </div>
@@ -1163,7 +1282,7 @@ const i18n = {
     "doors.adults.age":"Architects · 18+","doors.adults.title":"Springlearning · Adults",
     "doors.adults.body":"Escritura creativa, retórica profesional, lectura crítica. La clase de inglés (o de pensamiento) que te hubiera gustado tener.",
     "doors.teachers.age":"Maestros · PD + Certificación","doors.teachers.title":"Springlearning · Teachers",
-    "doors.teachers.body":"Para maestros que quieren usar AI y Canva para mejores clases — y para quienes quieren certificarse en el método Springlearning.",
+    "doors.teachers.body":"Para maestros: usar AI y Canva para mejores clases, y certificación en el método Springlearning.",
     "doors.more":"Conocer más →",
     "out.eyebrow":"El método · Outcomes","out.title":"Discovery → Creators → Architects.",
     "out.lede":"Tres etapas que un estudiante recorre, en su tiempo, con resultados que se pueden contar a un amigo.",
@@ -1237,7 +1356,7 @@ const i18n = {
     "doors.adults.age":"Architects · 18+","doors.adults.title":"Springlearning · Adults",
     "doors.adults.body":"Creative writing, professional rhetoric, critical reading. The class — in English or in thinking — you wish you'd had.",
     "doors.teachers.age":"Teachers · PD + Certification","doors.teachers.title":"Springlearning · Teachers",
-    "doors.teachers.body":"For teachers who want to use AI and Canva for better lessons — and for those who want to get certified in the Springlearning method.",
+    "doors.teachers.body":"For teachers: using AI and Canva for better lessons, and certification in the Springlearning method.",
     "doors.more":"Learn more →",
     "out.eyebrow":"The method · Outcomes","out.title":"Discovery → Creators → Architects.",
     "out.lede":"Three stages a student walks, in their time, with outcomes you can describe to a friend.",
@@ -1327,15 +1446,21 @@ function setLang(lang){
     b.addEventListener('click', () => setLang(b.dataset.lang));
   });
 
-  // Hamburger
+  // Hamburger — toggle .open on the .nav parent so all child layout flows naturally
   const burger = document.querySelector('.burger');
-  const menu = document.querySelector('.nav .menu');
-  const right = document.querySelector('.nav .right');
+  const navEl = document.querySelector('.nav');
   burger.addEventListener('click', () => {
     const open = burger.classList.toggle('open');
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-    menu.classList.toggle('open', open);
-    right.classList.toggle('open', open);
+    navEl.classList.toggle('open', open);
+  });
+  // Close the menu when a link inside it is tapped (so user lands on the section)
+  document.querySelectorAll('.nav .menu a').forEach(a => {
+    a.addEventListener('click', () => {
+      navEl.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
   });
 
   // Scroll reveal
