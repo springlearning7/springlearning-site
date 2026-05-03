@@ -308,9 +308,13 @@ form.join::before{
   font-size:21px; line-height:1.15;
   margin:4px 0 6px;
   color:var(--story);
+  word-wrap:break-word; overflow-wrap:break-word; min-width:0;
 }
-.door p{font-size:15px; line-height:1.55; margin:6px 0 0; flex:1}
-.door .age{font-size:11px; margin-bottom:4px}
+.door p{
+  font-size:15px; line-height:1.55; margin:6px 0 0; flex:1;
+  word-wrap:break-word; overflow-wrap:break-word; min-width:0;
+}
+.door .age{font-size:11px; margin-bottom:4px; word-break:keep-all}
 .door .icon{font-size:30px; margin-bottom:12px}
 .door .more{font-size:13px; margin-top:14px}
 .door:hover{transform:translateY(-8px) rotateX(2deg) rotateY(-2deg); box-shadow:var(--shadow-lg)}
@@ -660,8 +664,12 @@ footer a:hover{color:var(--sun)}
 
   /* ===== DOORS ===== */
   .doors-grid{grid-template-columns:1fr; gap:14px}
-  .door{padding:22px}
-  .door .icon{font-size:28px}
+  .door{padding:22px 20px}
+  .door .icon{font-size:26px; margin-bottom:10px}
+  .door h3{font-size:20px; margin-bottom:5px}
+  .door p{font-size:14.5px; line-height:1.5}
+  .door .age{font-size:10.5px; letter-spacing:.14em}
+  .door .more{font-size:13px; margin-top:12px}
 
   /* ===== OUTCOMES TIERS ===== */
   .tier{padding:24px}
@@ -709,6 +717,11 @@ footer a:hover{color:var(--sun)}
   .hero-actions .cta{width:100%; text-align:center}
   .nav-inner{padding:12px 16px}
   .wrap{padding:0 16px}
+  /* even tighter cards for the smallest phones */
+  .door{padding:20px 18px}
+  .door h3{font-size:18px}
+  .door p{font-size:14px}
+  .door .icon{font-size:24px}
 }
 
 /* Touch devices: kill the 3D card tilt — there's no cursor to follow */
