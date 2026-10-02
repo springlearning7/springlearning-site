@@ -52,7 +52,7 @@ header{position:sticky;top:0;z-index:9;background:rgba(250,248,241,.96);border-b
 .bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:6px 20px;max-width:1160px;margin:0 auto}
 .logo{text-decoration:none;display:block}
 nav{display:flex;flex-wrap:wrap;gap:2px;flex:1;justify-content:center}
-nav a{padding:10px 11px;min-height:44px;color:var(--tinta);text-decoration:none;font-weight:500;border-bottom:3px solid transparent;white-space:nowrap}
+nav a{font-size:16px;padding:10px 7px;min-height:44px;color:var(--tinta);text-decoration:none;font-weight:500;border-bottom:3px solid transparent;white-space:nowrap}
 nav a.on{font-weight:700;border-color:var(--esm)}
 .langs{display:flex;border:1.5px solid var(--tinta);border-radius:999px;overflow:hidden}
 .langs button{border:0;background:none;padding:8px 11px;min-height:40px;font:700 13px var(--txt);color:var(--tinta);cursor:pointer}
@@ -179,7 +179,7 @@ nav::-webkit-scrollbar{display:none}
 <div style="flex:1 1 320px"><div class="video"><span style="width:76px;height:76px;border-radius:50%;background:var(--brote);display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="#0F2A1D"><path d="M7 4l14 8-14 8z"/></svg></span><span data-i="v_t">Video de bienvenida, muy pronto</span></div></div>
 <div style="flex:1 1 300px">
 <h2 data-i="v_h">Hola, somos Springlearning</h2>
-<p style="margin:10px 0 18px" data-i="v_p">Un proyecto educativo nacido en Tuxtla Gutiérrez para aprender tecnología creando, en español, inglés y coreano.</p>
+<p style="margin:10px 0 18px" data-i="v_p">Un proyecto educativo nacido en Monterrey, Nuevo León, que hoy enseña desde Tuxtla Gutiérrez y en línea.</p>
 <a class="btn dark" href="#nosotros" data-i="v_b">Conoce quiénes somos →</a>
 </div>
 </section>
@@ -312,14 +312,14 @@ nav::-webkit-scrollbar{display:none}
 <div style="flex:2 1 320px">
 <div class="kicker" data-i="n5">Quiénes somos</div>
 <h1 style="margin:6px 0 14px" data-i="a_h">Somos Springlearning.</h1>
-<p style="font-size:19px;margin-bottom:12px" data-i="a_p1">Un proyecto educativo nacido en Tuxtla Gutiérrez para que niños, jóvenes, adultos y docentes aprendan a crear con tecnología, sin miedo y con criterio.</p>
+<p style="font-size:19px;margin-bottom:12px" data-i="a_p1">Un proyecto educativo nacido en Monterrey, Nuevo León, y hoy con sede en Tuxtla Gutiérrez, Chiapas. Ayudamos a que niños, jóvenes, adultos y docentes aprendan a crear con tecnología, sin miedo y con criterio.</p>
 <p data-i="a_p2"><b>Fundadora: Primavera Flores,</b> animadora 3D y docente bilingüe. Cada módulo nace de lo que ha funcionado con estudiantes y docentes reales.</p>
 </div>
 </section>
 <section style="background:var(--hoja);border-radius:28px;padding:32px;margin-bottom:56px">
 <div class="kicker" data-i="kr_k">Nuestra comunidad</div>
 <h2 style="margin:8px 0 10px" data-i="kr_h">Korean-Regios</h2>
-<p style="max-width:760px" data-i="kr_p">Así llamamos, con cariño, a las familias de niños nacidos en Corea que hoy crecen en Monterrey. Son parte del corazón de Springlearning: aprendemos juntos en línea, entre el coreano, el español y el inglés.</p>
+<p style="max-width:760px" data-i="kr_p">Así llamamos, con cariño, a las familias de niños nacidos en Corea que hoy crecen en Monterrey. Son parte del corazón de Springlearning: aprendemos juntos en línea. Las clases son en inglés y español; esta página también está en coreano para que familias y alumnos la usen con facilidad.</p>
 </section>
 <section style="margin-bottom:56px">
 <h2 style="margin-bottom:18px" data-i="a_from">De dónde venimos</h2>
@@ -339,6 +339,38 @@ nav::-webkit-scrollbar{display:none}
 <div style="flex:1 1 280px"><b style="font:700 26px var(--tit)" data-i="tk_h">Hablemos</b><br><span data-i="tk_p">Escríbenos por WhatsApp o por correo.</span></div>
 <div class="row cta" style="gap:10px"><a class="btn dark" href="https://wa.me/528127582207">WhatsApp</a><a class="btn line" href="mailto:primavera@springlearning.mx" data-i="mailw">Correo</a></div>
 </section>
+</div>
+</main>
+
+<main class="page" id="p-lista">
+<div class="wrap sec">
+<h1 data-i="wl_h">Lista de espera</h1>
+<p style="margin:8px 0 28px;max-width:720px" data-i="wl_p">Llena este formulario y te ubicamos en un grupo acorde a tu edad y nivel de inglés. Cada grupo tiene un máximo de 8 alumnos.</p>
+<form class="card" id="wait" style="max-width:720px;display:flex;flex-direction:column;gap:14px">
+<label><span data-i="w_who">¿Quién llena el formulario?</span><select id="w-who"><option data-i="w_o1">Madre, padre o tutor</option><option data-i="w_o2">Alumno (mayor de 18 años)</option></select></label>
+<label><span data-i="w_sn">Nombre del alumno</span><input id="w-sn" required autocomplete="off"></label>
+<label><span data-i="w_cn">Nombre de contacto (madre, padre o tutor)</span><input id="w-cn" autocomplete="name"></label>
+<div class="row" style="gap:14px">
+<label style="flex:1 1 240px"><span data-i="w_ph">WhatsApp o teléfono</span><input id="w-ph" type="tel" required autocomplete="tel"></label>
+<label style="flex:1 1 240px"><span data-i="w_em">Correo</span><input id="w-em" type="email" autocomplete="email"></label>
+</div>
+<fieldset style="border:1.5px solid var(--linea);border-radius:16px;padding:16px;margin:0">
+<legend style="font-weight:700;padding:0 6px" data-i="w_soc">Redes sociales (opcional)</legend>
+<div class="row" style="gap:14px">
+<label style="flex:1 1 180px">Instagram<input id="w-ig" placeholder="@"></label>
+<label style="flex:1 1 180px">Facebook<input id="w-fb"></label>
+<label style="flex:1 1 180px">TikTok<input id="w-tt" placeholder="@"></label>
+</div>
+</fieldset>
+<div class="row" style="gap:14px">
+<label style="flex:1 1 240px"><span data-i="w_dob">Fecha de nacimiento del alumno</span><input id="w-dob" type="date" required></label>
+<label style="flex:1 1 240px"><span data-i="w_pr">Programa de interés</span><select id="w-pr"><option>Discovery</option><option>Creators</option><option>Architects</option><option>Sowers</option></select></label>
+</div>
+<label><span data-i="w_lv">Nivel de inglés</span><select id="w-lv"><option data-i="w_l1">Principiante: sabe muy poco</option><option data-i="w_l2">Básico: palabras y frases cortas</option><option data-i="w_l3">Intermedio: sostiene una conversación sencilla</option><option data-i="w_l4">Avanzado: habla y escribe con soltura</option><option data-i="w_l5">No estoy seguro</option></select></label>
+<p style="font-size:15px" data-i="w_priv">Usamos estos datos solo para contactarte y ubicar al alumno en un grupo. Si el alumno es menor de 18 años, el formulario lo llena su madre, padre o tutor.</p>
+<button class="btn" type="submit" data-via="wa" data-i="b_wa">Enviar por WhatsApp</button>
+<button class="btn line" type="submit" data-via="mail" data-i="b_mail">Enviar por correo</button>
+</form>
 </div>
 </main>
 
@@ -376,7 +408,7 @@ nav::-webkit-scrollbar{display:none}
 
 <script>
 var T={
-en:{n1:'Home',n2:'Programs',n3:'For schools',n4:'Students',n5:'About us',n6:'Contact',clase:'Class',n7:'Board',tb_p:'What is happening right now at Springlearning.',tb_now:'In class this month',tb_sch:'With schools',
+en:{wl_note:'To form a group, join the waiting list. We place you by age and English level. Maximum 8 students per group.',wl_btn:'Join the waiting list →',wl_h:'Waiting list',wl_p:'Fill in this form and we will place you in a group that fits your age and English level. Each group has a maximum of 8 students.',w_who:'Who is filling this in?',w_o1:'Parent or guardian',w_o2:'Student (18 or older)',w_sn:'Student’s name',w_cn:'Contact name (parent or guardian)',w_ph:'WhatsApp or phone',w_em:'Email',w_soc:'Social media (optional)',w_dob:'Student’s date of birth',w_lv:'English level',w_l1:'Beginner: knows very little',w_l2:'Basic: words and short phrases',w_l3:'Intermediate: can hold a simple conversation',w_l4:'Advanced: speaks and writes with ease',w_l5:'I’m not sure',w_pr:'Program of interest',w_priv:'We use this information only to contact you and place the student in a group. For students under 18, a parent or guardian must fill in the form.',n1:'Home',n2:'Programs',n3:'For schools',n4:'Students',n5:'About us',n6:'Contact',clase:'Class',n7:'Board',tb_p:'What is happening right now at Springlearning.',tb_now:'In class this month',tb_sch:'With schools',
 tb_1:'<span class="kicker">Season 1</span><b class="t">My stories</b>Season 1 students are writing their own stories.',
 tb_2:'<span class="kicker">Halloween project</span><b class="t">Plan your costume</b>Students plan their costume with a digital whiteboard, AI and Amazon search, and practice project management language in English.',
 tb_3:'<span class="kicker">Portfolio</span><b class="t">My personal brand</b>Students create designs and logos for their personal brand and add them to their portfolio.',
@@ -384,7 +416,7 @@ tb_4:'<span class="kicker">Coming up</span><b class="t">SpringDeploy at Descarte
 tb_5:'<span class="kicker">Held last month</span><b class="t">SpringDeploy at Colegio Gandhi</b>Teacher training course in AI and Canva. Photos coming soon.',
 h_tag:'WE DON’T ASK PERMISSION TO LEARN',h_h1:'Learning is like making something sprout.',h_p:'Artificial intelligence, English and digital skills for kids, teens, adults, teachers and schools.',h_b1:'Book a demo class',h_b2:'Go to your class',
 c1k:'Path 1',c1t:'For you or your family',c1d:'Four programs by age and goal.',c2k:'Path 2',c2t:'For your school',c2d:'Teacher training and Canva for Education.',explore:'Click to explore →',
-d_h:'Four doors. One method.',d_p:'Tap a door to learn more.',v_t:'Welcome video coming soon',v_h:'Hi, we are Springlearning',v_p:'An education project born in Tuxtla Gutiérrez for learning technology by creating, in Spanish, English and Korean.',v_b:'Meet us →',
+d_h:'Four doors. One method.',d_p:'Tap a door to learn more.',v_t:'Welcome video coming soon',v_h:'Hi, we are Springlearning',v_p:'An education project born in Monterrey, Nuevo León, now teaching from Tuxtla Gutiérrez and online.',v_b:'Meet us →',
 pr_p:'Choose a program to see who it is for and what you learn.',
 s_h:'Let’s read the manual, together.',s_p:'Artificial intelligence for the whole school ecosystem: leadership, teachers, students and families.',r_h:'Three products. One route.',r_p:'Click each step to see what it includes.',
 st1k:'1 · Awaken',st1d:'A talk for the whole community.',st1t:'1 h 20 min',st2k:'2 · Train',st2d:'Teacher training course in AI and Canva.',st2t:'15 · 30 · 40 hours',st3k:'3 · Sustain',st3d:'Canva for Education implementation.',st3t:'4 months · teachers + staff',det:'See details',
@@ -401,16 +433,21 @@ cta_h:'Book a meeting',cta_p:'Are you a teacher who wants to train on your own? 
 e_p:'Your space: go to your class, see what your classmates have made and read what families say.',e1_h:'1. Go to your class',e1_ol:'<li>Click the button.</li><li>Choose the Google account you enrolled with.</li><li>Open your group. Can’t get in? Message us on WhatsApp.</li>',e1_b:'Go to my class →',
 e2_h:'2. Student gallery',e2_p:'Coming soon: real work by our students.',e3_h:'3. What families say',e3_p:'Your opinion helps us improve. We publish it only with your permission.',
 o_n:'Your name (first name only)',o_p:'Program',o_s:'Rating',o_m:'Your comment',b_wa:'Send by WhatsApp',b_mail:'Send by email',o_ph:'Family opinions will be published here.',
-a_h:'We are Springlearning.',a_p1:'An education project born in Tuxtla Gutiérrez so that kids, teens, adults and teachers learn to create with technology, without fear and with good judgment.',a_p2:'<b>Founder: Primavera Flores,</b> 3D animator and bilingual teacher. Every module comes from what has worked with real students and teachers.',
-kr_k:'Our community',kr_h:'Korean-Regios',kr_p:'That is our warm name for the families of children born in Korea who are now growing up in Monterrey. They are part of the heart of Springlearning: we learn together online, across Korean, Spanish and English.',
+a_h:'We are Springlearning.',a_p1:'An education project born in Monterrey, Nuevo León, and now based in Tuxtla Gutiérrez, Chiapas. We help kids, teens, adults and teachers learn to create with technology, without fear and with good judgment.',a_p2:'<b>Founder: Primavera Flores,</b> 3D animator and bilingual teacher. Every module comes from what has worked with real students and teachers.',
+kr_k:'Our community',kr_h:'Korean-Regios',kr_p:'That is our warm name for the families of children born in Korea who are now growing up in Monterrey. They are part of the heart of Springlearning: we learn together online. Classes are taught in English and Spanish; this page is also available in Korean so families and students can use it with ease.',
 a_from:'Where we come from',a_c1:'<b class="t">Art</b>Art history in Florence: that is where our way of seeing comes from.',a_c2:'<b class="t">3D animation</b>Degree in animation, environment and character design, LA Film School.',a_c3:'<b class="t">Technology</b>Canva Certified, Harvard’s CS50 and AI applied to the classroom.',a_c4:'<b class="t">Classroom</b>Bilingual teaching and a living bridge between Mexico and Korea.',
 me_k:'Our method',me_q:'“We don’t ask permission to learn.”',me_p:'Everything is learned in five steps: Explore, Investigate, Create, Apply and Reflect.',tk_h:'Let’s talk',tk_p:'Message us on WhatsApp or by email.',mailw:'Email',
 k_p:'Tell us who it is for. Your message goes straight to Primavera by WhatsApp or email.',k_n:'Your name',k_who:'Who is it for?',k_o1:'Discovery (kids 8 to 15)',k_o2:'Creators (teens)',k_o3:'Architects (adults)',k_o4:'Sowers (teachers on their own)',k_o5:'My school or institution',k_m:'Message',k_wt:'Where',k_w:'Tuxtla Gutiérrez, Chiapas, and online.',
 l_who:'Who it is for',l_learn:'What you learn',l_fmt:'Format',l_stage:'Stage',join:'Join a group',more:'Learn more →',sow_note:'Are you a school leader looking to train your whole teaching staff? That is SpringDeploy.',sow_btn:'See For schools'},
-ko:{n1:'홈',n2:'프로그램',n3:'학교 안내',n4:'학생',n5:'소개',n6:'문의',clase:'수업 입장',
+ko:{wl_note:'그룹 구성을 위해 대기자 명단에 등록해 주세요. 나이와 영어 수준에 맞춰 배정합니다. 그룹당 최대 8명입니다.',wl_btn:'대기자 명단 등록하기 →',wl_h:'대기자 명단',wl_p:'아래 양식을 작성해 주시면 나이와 영어 수준에 맞는 그룹으로 배정해 드립니다. 그룹당 정원은 최대 8명입니다.',w_who:'작성하시는 분',w_o1:'부모님 또는 보호자',w_o2:'학생 본인 (18세 이상)',w_sn:'학생 이름',w_cn:'연락 담당자 이름 (부모님 또는 보호자)',w_ph:'WhatsApp 또는 전화번호',w_em:'이메일',w_soc:'SNS (선택 사항)',w_dob:'학생 생년월일',w_lv:'영어 수준',w_l1:'입문: 거의 모름',w_l2:'기초: 단어와 짧은 문장',w_l3:'중급: 간단한 대화 가능',w_l4:'고급: 자유롭게 말하고 씀',w_l5:'잘 모르겠어요',w_pr:'관심 프로그램',w_priv:'이 정보는 연락과 그룹 배정에만 사용합니다. 18세 미만 학생은 부모님 또는 보호자께서 작성해 주세요.',n1:'홈',n2:'프로그램',n3:'학교 안내',n4:'학생',n5:'소개',n6:'문의',clase:'수업 입장',n7:'소식',tb_p:'지금 Springlearning에서 진행 중인 활동입니다.',tb_now:'이번 달 수업',tb_sch:'학교와 함께',
+tb_1:'<span class="kicker">Season 1</span><b class="t">나의 이야기</b>Season 1 학생들이 자신만의 이야기를 쓰고 있습니다.',
+tb_2:'<span class="kicker">핼러윈 프로젝트</span><b class="t">내 의상 계획하기</b>디지털 화이트보드, AI, Amazon 검색으로 핼러윈 의상을 계획하고, 프로젝트 관리 표현을 영어로 연습합니다.',
+tb_3:'<span class="kicker">포트폴리오</span><b class="t">나의 퍼스널 브랜드</b>자신의 퍼스널 브랜드를 위한 디자인과 로고를 만들어 포트폴리오에 담습니다.',
+tb_4:'<span class="kicker">예정</span><b class="t">Descartes 학교 SpringDeploy</b>AI와 Canva 교사 연수 과정이 예정되어 있습니다.',
+tb_5:'<span class="kicker">지난달 진행</span><b class="t">Colegio Gandhi SpringDeploy</b>AI와 Canva 교사 연수 과정. 사진은 곧 올라옵니다.',
 h_tag:'우리는 배움에 허락을 구하지 않습니다',h_h1:'배움은 새싹을 틔우는 일과 같습니다.',h_p:'어린이, 청소년, 성인, 교사, 학교를 위한 인공지능 · 영어 · 디지털 역량 교육.',h_b1:'체험 수업 신청',h_b2:'내 수업으로 가기',
 c1k:'길 1',c1t:'나와 우리 가족을 위해',c1d:'연령과 목표에 맞춘 네 가지 프로그램.',c2k:'길 2',c2t:'우리 학교를 위해',c2d:'교사 연수와 Canva for Education.',explore:'눌러서 살펴보기 →',
-d_h:'네 개의 문, 하나의 방법.',d_p:'문을 눌러 자세히 알아보세요.',v_t:'환영 영상 준비 중',v_h:'안녕하세요, Springlearning입니다',v_p:'멕시코 툭스틀라 구티에레스에서 시작된 교육 프로젝트입니다. 스페인어, 영어, 한국어로 만들면서 기술을 배웁니다.',v_b:'우리를 소개합니다 →',
+d_h:'네 개의 문, 하나의 방법.',d_p:'문을 눌러 자세히 알아보세요.',v_t:'환영 영상 준비 중',v_h:'안녕하세요, Springlearning입니다',v_p:'멕시코 누에보레온주 몬테레이에서 시작된 교육 프로젝트입니다. 지금은 툭스틀라 구티에레스와 온라인에서 수업합니다.',v_b:'우리를 소개합니다 →',
 pr_p:'프로그램을 선택해 대상과 배우는 내용을 확인하세요.',
 s_h:'설명서를 함께 읽어요.',s_p:'학교 공동체 모두를 위한 인공지능: 학교 운영진, 교사, 학생, 가족.',r_h:'세 가지 과정, 하나의 길.',r_p:'각 단계를 눌러 내용을 확인하세요.',
 st1k:'1 · 깨우기',st1d:'공동체 모두를 위한 강연.',st1t:'1시간 20분',st2k:'2 · 기르기',st2d:'AI와 Canva 교사 연수 과정.',st2t:'15 · 30 · 40시간',st3k:'3 · 이어가기',st3d:'Canva for Education 도입 지원.',st3t:'4개월 · 교사 + 행정팀',det:'자세히 보기',
@@ -427,26 +464,26 @@ cta_h:'상담 예약',cta_p:'개인적으로 배우고 싶은 선생님이신가
 e_p:'학생 공간입니다. 수업에 입장하고, 친구들의 작품을 보고, 가족들의 이야기를 읽어 보세요.',e1_h:'1. 수업 입장하기',e1_ol:'<li>버튼을 누르세요.</li><li>등록할 때 사용한 Google 계정을 선택하세요.</li><li>내 그룹을 여세요. 입장이 안 되면 WhatsApp으로 연락해 주세요.</li>',e1_b:'내 수업으로 가기 →',
 e2_h:'2. 작품 갤러리',e2_p:'곧 학생들의 실제 작품을 소개합니다.',e3_h:'3. 가족들의 이야기',e3_p:'소중한 의견은 더 나은 수업에 도움이 됩니다. 동의하신 경우에만 게시합니다.',
 o_n:'이름 (이름만 적어 주세요)',o_p:'프로그램',o_s:'평점',o_m:'의견',b_wa:'WhatsApp으로 보내기',b_mail:'이메일로 보내기',o_ph:'가족들의 의견이 이곳에 게시됩니다.',
-a_h:'우리는 Springlearning입니다.',a_p1:'어린이, 청소년, 성인, 교사가 두려움 없이 올바른 판단력으로 기술을 활용해 창작하도록 돕는 교육 프로젝트입니다. 툭스틀라 구티에레스에서 시작했습니다.',a_p2:'<b>설립자 프리마베라 플로레스(Primavera Flores)</b>는 3D 애니메이터이자 이중 언어 교사입니다. 모든 모듈은 실제 학생과 교사에게 효과가 있었던 것에서 출발합니다.',
-kr_k:'우리 공동체',kr_h:'Korean-Regios',kr_p:'한국에서 태어나 지금은 몬테레이에서 자라고 있는 아이들과 그 가족을 우리는 애정을 담아 Korean-Regios라고 부릅니다. Springlearning의 소중한 가족이며, 한국어와 스페인어, 영어를 오가며 온라인으로 함께 배우고 있습니다.',
+a_h:'우리는 Springlearning입니다.',a_p1:'어린이, 청소년, 성인, 교사가 두려움 없이 올바른 판단력으로 기술을 활용해 창작하도록 돕는 교육 프로젝트입니다. 누에보레온주 몬테레이에서 시작했고, 현재는 치아파스주 툭스틀라 구티에레스에 자리하고 있습니다.',a_p2:'<b>설립자 프리마베라 플로레스(Primavera Flores)</b>는 3D 애니메이터이자 이중 언어 교사입니다. 모든 모듈은 실제 학생과 교사에게 효과가 있었던 것에서 출발합니다.',
+kr_k:'우리 공동체',kr_h:'Korean-Regios',kr_p:'한국에서 태어나 지금은 몬테레이에서 자라고 있는 아이들과 그 가족을 우리는 애정을 담아 Korean-Regios라고 부릅니다. Springlearning의 소중한 가족이며, 온라인으로 함께 배우고 있습니다. 수업은 영어와 스페인어로 진행되며, 가족과 학생들이 편하게 이용하실 수 있도록 이 페이지를 한국어로도 제공합니다.',
 a_from:'우리가 걸어온 길',a_c1:'<b class="t">예술</b>피렌체에서 공부한 미술사. 우리가 세상을 보는 방식의 출발점입니다.',a_c2:'<b class="t">3D 애니메이션</b>LA Film School 애니메이션 학사, 배경 및 캐릭터 디자인 전공.',a_c3:'<b class="t">기술</b>Canva 공인 자격, 하버드 CS50, 교실에 적용하는 AI.',a_c4:'<b class="t">교실</b>이중 언어 수업, 그리고 멕시코와 한국을 잇는 다리.',
 me_k:'우리의 방법',me_q:'“우리는 배움에 허락을 구하지 않습니다.”',me_p:'모든 배움은 다섯 단계로 이루어집니다: 탐색, 조사, 창작, 적용, 성찰.',tk_h:'이야기 나눠요',tk_p:'WhatsApp이나 이메일로 연락해 주세요.',mailw:'이메일',
 k_p:'누구를 위한 문의인지 알려 주세요. 메시지는 WhatsApp 또는 이메일로 프리마베라 선생님께 바로 전달됩니다.',k_n:'이름',k_who:'누구를 위한 문의인가요?',k_o1:'Discovery (8~15세 어린이)',k_o2:'Creators (청소년)',k_o3:'Architects (성인)',k_o4:'Sowers (개인적으로 배우는 교사)',k_o5:'학교 또는 기관',k_m:'메시지',k_wt:'위치',k_w:'멕시코 치아파스주 툭스틀라 구티에레스, 그리고 온라인.',
 l_who:'대상',l_learn:'배우는 내용',l_fmt:'수업 형태',l_stage:'단계',join:'그룹 참여하기',more:'자세히 보기 →',sow_note:'교사진 전체 연수를 찾는 학교 운영진이신가요? SpringDeploy를 확인하세요.',sow_btn:'학교 안내 보기'}
 };
-var ES={l_who:'Para quién',l_learn:'Qué aprende',l_fmt:'Formato',l_stage:'Etapa',join:'Unirse a un grupo',more:'Saber más →',sow_note:'¿Eres directivo y buscas formar a toda tu planta docente? Eso es SpringDeploy.',sow_btn:'Ver Para escuelas'};
+var ES={wl_note:'Para formar grupo, inscríbete a la lista de espera. Te ubicamos por edad y nivel de inglés. Máximo 8 alumnos por grupo.',wl_btn:'Inscribirme a la lista de espera →',l_who:'Para quién',l_learn:'Qué aprende',l_fmt:'Formato',l_stage:'Etapa',join:'Unirse a un grupo',more:'Saber más →',sow_note:'¿Eres directivo y buscas formar a toda tu planta docente? Eso es SpringDeploy.',sow_btn:'Ver Para escuelas'};
 var PD={
-es:[['Descubridores','Discovery','8 a 15 años','BROTE','Quienes exploran el mundo con curiosidad: el primer brote.','Niños de 8 a 15 años.','Inglés, tecnología educativa, IA y emprendimiento.','Grupos después de clases, mínimo 5 alumnos.'],
-['Creadores','Creators','Adolescentes','FLOR','Quienes convierten ideas en proyectos reales.','Adolescentes.','Diseño 3D y gráfico, proyectos creativos.','Grupos.'],
-['Arquitectos','Architects','Adultos 18+','ÁRBOL','Quienes diseñan y construyen su propio camino profesional.','Adultos de 18 años en adelante.','Inglés y habilidades de IA.','Grupos, o instalación en escuela o empresa.'],
+es:[['Descubridores','Discovery','8 a 15 años','BROTE','Quienes exploran el mundo con curiosidad: el primer brote.','Niños de 8 a 15 años.','Inglés, tecnología educativa, IA y emprendimiento.','Grupos después de clases, de 5 a 8 alumnos.'],
+['Creadores','Creators','Adolescentes','FLOR','Quienes convierten ideas en proyectos reales.','Adolescentes.','Diseño 3D y gráfico, proyectos creativos.','Grupos de hasta 8 alumnos.'],
+['Arquitectos','Architects','Adultos 18+','ÁRBOL','Quienes diseñan y construyen su propio camino profesional.','Adultos de 18 años en adelante.','Inglés y habilidades de IA.','Grupos de hasta 8 alumnos, o instalación en escuela o empresa.'],
 ['Sembradores','Sowers','Docentes','SOL','Quienes siembran conocimiento en otros: el docente como jardinero del aprendizaje.','Grupos de docentes que desarrollan sus habilidades de IA por su cuenta, de forma independiente de su institución.','IA en el aula y Canva, con certificación SpringLearning.','Grupos de docentes. La escuela no contrata ni interviene.']],
-en:[['Discovery','Descubridores','Ages 8 to 15','SPROUT','Those who explore the world with curiosity: the first sprout.','Kids aged 8 to 15.','English, educational technology, AI and entrepreneurship.','After-school groups, minimum 5 students.'],
-['Creators','Creadores','Teens','FLOWER','Those who turn ideas into real projects.','Teens.','3D and graphic design, creative projects.','Groups.'],
-['Architects','Arquitectos','Adults 18+','TREE','Those who design and build their own professional path.','Adults 18 and over.','English and AI skills.','Groups, or on site at a school or company.'],
+en:[['Discovery','Descubridores','Ages 8 to 15','SPROUT','Those who explore the world with curiosity: the first sprout.','Kids aged 8 to 15.','English, educational technology, AI and entrepreneurship.','After-school groups of 5 to 8 students.'],
+['Creators','Creadores','Teens','FLOWER','Those who turn ideas into real projects.','Teens.','3D and graphic design, creative projects.','Groups of up to 8 students.'],
+['Architects','Arquitectos','Adults 18+','TREE','Those who design and build their own professional path.','Adults 18 and over.','English and AI skills.','Groups of up to 8 students, or on site at a school or company.'],
 ['Sowers','Sembradores','Teachers','SUN','Those who sow knowledge in others: the teacher as gardener of learning.','Groups of teachers building their AI skills on their own, independent of the institution they belong to.','AI in the classroom and Canva, with SpringLearning certification.','Groups of teachers. The school does not hire or take part.']],
-ko:[['Discovery','디스커버리','8~15세','새싹','호기심으로 세상을 탐험하는 아이들: 첫 새싹.','8세부터 15세까지의 어린이.','영어, 교육 기술, AI, 창업 감각.','방과 후 그룹 수업, 최소 5명.'],
-['Creators','크리에이터','청소년','꽃','아이디어를 실제 프로젝트로 만드는 사람들.','청소년.','3D 및 그래픽 디자인, 창작 프로젝트.','그룹 수업.'],
-['Architects','아키텍트','성인 18세 이상','나무','자신의 진로를 스스로 설계하고 만들어 가는 사람들.','18세 이상 성인.','영어와 AI 활용 역량.','그룹 수업, 또는 학교·기업 방문 수업.'],
+ko:[['Discovery','디스커버리','8~15세','새싹','호기심으로 세상을 탐험하는 아이들: 첫 새싹.','8세부터 15세까지의 어린이.','영어, 교육 기술, AI, 창업 감각.','방과 후 그룹 수업, 5~8명.'],
+['Creators','크리에이터','청소년','꽃','아이디어를 실제 프로젝트로 만드는 사람들.','청소년.','3D 및 그래픽 디자인, 창작 프로젝트.','최대 8명 그룹 수업.'],
+['Architects','아키텍트','성인 18세 이상','나무','자신의 진로를 스스로 설계하고 만들어 가는 사람들.','18세 이상 성인.','영어와 AI 활용 역량.','최대 8명 그룹 수업, 또는 학교·기업 방문 수업.'],
 ['Sowers','소워즈','교사','햇살','다른 이에게 지식의 씨앗을 뿌리는 사람들: 배움의 정원사인 교사.','소속 기관과 관계없이 스스로 AI 역량을 키우고자 하는 교사 그룹.','교실에서의 AI와 Canva, SpringLearning 수료 인증.','교사 그룹 수업. 학교가 신청하거나 관여하지 않습니다.']]};
 var META=[['discovery','brote','#9FDD58','#0F2A1D'],['creators','flor','#4E72FF','#FFFFFF'],['architects','arbol','#10B183','#0F2A1D'],['sowers','sol','#F6C945','#0F2A1D']];
 var ICON={
@@ -465,8 +502,7 @@ document.getElementById('doors').innerHTML=P.map(function(p){return '<a class="d
 document.getElementById('tabs').innerHTML=P.map(function(p){return '<button class="tab'+(p.id===cur?' on':'')+'" role="tab" aria-selected="'+(p.id===cur)+'" onclick="pick(\''+p.id+'\')">'+p.name+'</button>'}).join('');
 var p=P.filter(function(x){return x.id===cur})[0];
 var extra=p.id==='sowers'?'<div class="row" style="background:#0F2A1D;color:#fff;border-radius:20px;padding:20px;align-items:center;justify-content:space-between"><div style="flex:1 1 240px">'+t('sow_note')+'</div><a class="btn sun" href="#escuelas">'+t('sow_btn')+'</a></div>':'';
-var msg='Hola, quiero unirme a un grupo de '+PD.es[META.map(function(m){return m[0]}).indexOf(p.id)][0]+' ('+p.id+').';
-document.getElementById('prog').innerHTML='<div class="arch lift" style="background:'+p.c+';color:'+p.ink+'">'+ic(p.icon,120)+'<div class="kicker">'+t('l_stage')+' · '+p.stage+'</div><div style="font:700 clamp(32px,5vw,44px) var(--tit);line-height:1.05">'+p.name+'</div><b>'+p.alt+'</b></div><div style="flex:2 1 320px;display:flex;flex-direction:column;gap:16px"><p style="font:600 22px var(--tit)">'+p.mean+'</p><div class="row" style="gap:14px"><div class="card fact"><div class="kicker">'+t('l_who')+'</div>'+p.whoL+'</div><div class="card fact"><div class="kicker">'+t('l_learn')+'</div>'+p.learn+'</div><div class="card fact"><div class="kicker">'+t('l_fmt')+'</div>'+p.fmt+'</div></div>'+extra+'<div class="row cta" style="gap:10px"><a class="btn" href="'+WA+encodeURIComponent(msg)+'">'+t('join')+' · WhatsApp</a><a class="btn line" href="mailto:'+MAIL+'?subject='+encodeURIComponent('Grupo '+p.id)+'&body='+encodeURIComponent(msg)+'">'+t('join')+' · '+(lang==='es'?'Correo':T[lang].mailw)+'</a></div></div>';
+document.getElementById('prog').innerHTML='<div class="arch lift" style="background:'+p.c+';color:'+p.ink+'">'+ic(p.icon,120)+'<div class="kicker">'+t('l_stage')+' · '+p.stage+'</div><div style="font:700 clamp(32px,5vw,44px) var(--tit);line-height:1.05">'+p.name+'</div><b>'+p.alt+'</b></div><div style="flex:2 1 320px;display:flex;flex-direction:column;gap:16px"><p style="font:600 22px var(--tit)">'+p.mean+'</p><div class="row" style="gap:14px"><div class="card fact"><div class="kicker">'+t('l_who')+'</div>'+p.whoL+'</div><div class="card fact"><div class="kicker">'+t('l_learn')+'</div>'+p.learn+'</div><div class="card fact"><div class="kicker">'+t('l_fmt')+'</div>'+p.fmt+'</div></div>'+extra+'<div class="ph" style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between"><div style="flex:1 1 260px">'+t('wl_note')+'</div><a class="btn" href="#lista">'+t('wl_btn')+'</a></div></div></div>';
 }
 function pick(id){cur=id;draw()}
 function setLang(l){
@@ -498,6 +534,7 @@ if(via==='mail')location.href='mailto:'+MAIL+'?subject='+encodeURIComponent(subj
 else window.open(WA+encodeURIComponent(m),'_blank');};}
 send(document.getElementById('contact'),'Contacto desde springlearning.mx',function(){return 'Hola, soy '+v('c-n')+'.\nMe interesa: '+v('c-p')+'\n'+v('c-m')+'\n(Idioma del sitio: '+lang+')'});
 send(document.getElementById('opinion'),'Opinión de familia',function(){return 'Opinión para Springlearning\nNombre: '+v('o-n')+'\nPrograma: '+v('o-p')+'\nCalificación: '+v('o-s')+'\nComentario: '+v('o-m')+'\nAutorizo publicar mi opinión con mi nombre de pila.'});
+send(document.getElementById('wait'),'Lista de espera',function(){var i=document.getElementById('w-lv').selectedIndex,lv=['Principiante','Básico','Intermedio','Avanzado','No está seguro'][i];return 'LISTA DE ESPERA Springlearning\nLlena: '+(document.getElementById('w-who').selectedIndex?'Alumno mayor de 18':'Madre, padre o tutor')+'\nAlumno: '+v('w-sn')+'\nContacto: '+v('w-cn')+'\nWhatsApp/teléfono: '+v('w-ph')+'\nCorreo: '+v('w-em')+'\nInstagram: '+v('w-ig')+'\nFacebook: '+v('w-fb')+'\nTikTok: '+v('w-tt')+'\nFecha de nacimiento: '+v('w-dob')+'\nNivel de inglés: '+lv+'\nPrograma: '+v('w-pr')+'\n(Idioma del sitio: '+lang+')'});
 var q=(location.search.match(/[?&]lang=(es|en|ko)/)||[])[1],s=null;try{s=localStorage.getItem('sl-lang')}catch(e){}
 setLang(q||s||'es');route();
 </script>
