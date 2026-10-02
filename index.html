@@ -1,1557 +1,376 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title data-i18n="meta.title">Springlearning — Aprender es como hacer brotar algo</title>
-<meta name="description" data-i18n="meta.desc" content="Springlearning es un laboratorio creativo de aprendizaje para niños, adolescentes, adultos y maestros. Discovery, Creators, Architects." />
-<meta property="og:title" content="Springlearning" />
-<meta property="og:description" content="Aprender es como hacer brotar algo. — Springlearning.mx" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://springlearning.mx" />
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Springlearning · IA, inglés y habilidades digitales</title>
+<meta name="description" content="Springlearning: inteligencia artificial, inglés y habilidades digitales para niños, adolescentes, adultos, docentes y escuelas. Tuxtla Gutiérrez y en línea.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Abril+Fatface&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap">
 <style>
-:root{
-  /* Springlearning palette — green tuned brighter to match vision board (please confirm exact hex) */
-  --sprout:#5BB849;         /* primary spring green, more vibrant than v1 */
-  --sprout-deep:#3F8A30;    /* deep leaf */
-  --sprout-glow:#A4E089;    /* highlight, fresh shoot */
-  --bloom:#F25F4C; --bloom-deep:#C84231;
-  --sun:#F9C846;
-  --sky:#A7D7E8; --sky-deep:#5BA8C9;
-  --pulse:#7C3AED;          /* tech-forward violet */
-  --pulse-glow:#A78BFA;
-  --page:#FBF7EC;
-  --story:#1B2A2F;
-  --whisper:#E8E2D1;
-  --shadow-sm: 0 4px 14px rgba(27,42,47,0.06);
-  --shadow-md: 0 12px 30px rgba(27,42,47,0.12);
-  --shadow-lg: 0 24px 50px rgba(27,42,47,0.18);
-}
+:root{--tinta:#0F2A1D;--bosque:#087A5B;--esm:#10B183;--brote:#9FDD58;--hoja:#C3E8A6;--crema:#FAF8F1;--azul:#4E72FF;--azul2:#3B5BDB;--sol:#F6C945;--linea:#E3E8DA}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth; overflow-x:clip; max-width:100%}
-html,body{margin:0;padding:0}
-body{
-  font-family:'Crimson Pro',Georgia,serif;
-  background:var(--page); color:var(--story);
-  line-height:1.6; font-size:18px;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden; overflow-x:clip;
-  width:100%; max-width:100vw; position:relative;
-}
-img{max-width:100%; display:block}
-a{color:var(--sprout-deep)}
-
-/* ---------- ambient bg pattern: dotted grid (tech texture) ---------- */
-.dotgrid{display:none}  /* dotted-grid texture removed — too busy */
-
-/* ---------- nav ---------- */
-.nav{
-  position:sticky; top:0; z-index:50;
-  background:rgba(251,247,236,0.85);
-  backdrop-filter:saturate(160%) blur(12px);
-  -webkit-backdrop-filter:saturate(160%) blur(12px);
-  border-bottom:1px solid var(--whisper);
-}
-.nav-inner{
-  max-width:1240px; margin:0 auto;
-  display:flex; align-items:center; gap:18px;
-  padding:14px 24px;
-}
-.brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--story)}
-.brand .mark{width:38px; height:38px; transition:transform .4s cubic-bezier(.2,.9,.2,1.2)}
-.brand:hover .mark{transform:rotate(-12deg) scale(1.08)}
-.brand .name{font-family:'Yeseva One',serif; font-size:22px; line-height:1}
-.brand .name span{color:var(--sprout-deep)}
-.nav ul.menu{display:flex; gap:2px; list-style:none; padding:0; margin:0 0 0 18px; flex-wrap:wrap}
-.nav a.link{
-  font-family:'Inter',sans-serif; font-size:14px; font-weight:500;
-  color:var(--story); text-decoration:none; padding:8px 12px; border-radius:8px;
-  position:relative; transition:color .15s;
-}
-.nav a.link:hover{color:var(--sprout-deep); background:#fff}
-.nav a.link.classroom{
-  background:linear-gradient(135deg, var(--pulse), var(--sprout));
-  color:#fff; padding:8px 14px; font-weight:600;
-  box-shadow:0 4px 12px rgba(124,58,237,0.25);
-}
-.nav a.link.classroom:hover{background:linear-gradient(135deg, var(--sprout), var(--pulse)); color:#fff; transform:translateY(-1px)}
-.nav .right{margin-left:auto; display:flex; align-items:center; gap:10px}
-.toggle{
-  display:inline-flex; border:1px solid var(--whisper); border-radius:999px; overflow:hidden;
-  background:#fff; font-family:'Inter',sans-serif; font-size:12px; font-weight:600;
-}
-.toggle button{
-  border:none; background:transparent; padding:6px 12px; cursor:pointer; color:var(--story);
-}
-.toggle button.active{background:var(--story); color:#fff}
-.cta{
-  display:inline-block; background:var(--sprout); color:#fff; text-decoration:none;
-  font-family:'Inter',sans-serif; font-weight:600; font-size:14px;
-  padding:10px 18px; border-radius:999px;
-  transition:transform .2s, box-shadow .2s, background .15s;
-  box-shadow:0 4px 14px rgba(79,163,74,0.35);
-}
-.cta:hover{background:var(--sprout-deep); transform:translateY(-2px); box-shadow:0 8px 22px rgba(79,163,74,0.45)}
-.cta.ghost{background:transparent; color:var(--story); border:1.5px solid var(--story); box-shadow:none}
-.cta.ghost:hover{background:var(--story); color:#fff; transform:translateY(-2px)}
-.cta.violet{background:linear-gradient(135deg, var(--pulse), var(--bloom)); box-shadow:0 4px 14px rgba(124,58,237,0.35)}
-.cta.violet:hover{background:linear-gradient(135deg, var(--bloom), var(--pulse))}
-
-/* hamburger */
-.burger{display:none; background:none; border:none; cursor:pointer; padding:8px; margin-left:auto}
-.burger span{display:block; width:22px; height:2px; background:var(--story); margin:4px 0; transition:all .25s}
-.burger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
-.burger.open span:nth-child(2){opacity:0}
-.burger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
-
-/* ---------- layout ---------- */
-.wrap{max-width:1240px; margin:0 auto; padding:0 24px; position:relative}
-section{padding:96px 0; position:relative}
-h1,h2,h3{font-family:'Yeseva One',serif; font-weight:400; line-height:1.12; letter-spacing:-0.01em; margin:0 0 .35em}
-h1{font-size:clamp(42px, 7vw, 84px)}
-h2{font-size:clamp(32px, 4.4vw, 52px)}
-h3{font-family:'Inter',sans-serif; font-weight:700; font-size:28px; color:var(--sprout-deep)}
-.eyebrow{
-  font-family:'Inter',sans-serif; font-size:12px; letter-spacing:.22em;
-  text-transform:uppercase; color:var(--bloom); font-weight:700;
-  display:inline-block;
-}
-.eyebrow.violet{color:var(--pulse)}
-.eyebrow.sky{color:var(--sky-deep)}
-
-/* ---------- HERO ---------- */
-/* ===== HERO — editorial, type-driven, photo-ready ===== */
-.hero{padding:80px 0 110px; position:relative; overflow:hidden; background:var(--page)}
-.hero-shape{
-  position:absolute; top:80px; left:-100px; width:420px; height:420px;
-  z-index:0; pointer-events:none; opacity:0.42;
-}
-.hero-shape.right{
-  top:auto; left:auto; bottom:-80px; right:-120px; width:340px; height:340px;
-  opacity:0.32;
-}
-.hero-shape svg{width:100%; height:100%}
-.hero-bg-blob, .hero-bg-blob.two{display:none}
-
-/* photo placeholder frame (waiting for real photography) */
-.photo-frame{
-  position:relative;
-  width:100%; max-width:440px;
-  aspect-ratio:4/5;
-  margin:0 auto;
-  transform:rotate(-1.5deg);
-  border-radius:14px;
-  overflow:visible;
-  z-index:2;
-}
-.photo-frame .inner{
-  position:absolute; inset:0;
-  border-radius:14px;
-  overflow:hidden;
-  background:linear-gradient(135deg, #FDF6E8 0%, #FCE5DD 50%, #F2CDC0 100%);
-  box-shadow:0 30px 60px rgba(27,42,47,0.18), 0 8px 16px rgba(27,42,47,0.08);
-}
-.photo-frame .inner::after{
-  content:""; position:absolute; inset:0;
-  background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), transparent 50%);
-  pointer-events:none;
-}
-.photo-frame .scene{
-  position:absolute; inset:0;
-  display:flex; align-items:center; justify-content:center;
-}
-.photo-frame .scene svg{width:62%; height:auto; filter:drop-shadow(0 12px 22px rgba(27,42,47,0.18))}
-
-/* washi tape — collage detail */
-.washi-tape{
-  position:absolute;
-  width:110px; height:24px;
-  background:
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.65) 0 6px, transparent 6px 12px),
-    var(--sun);
-  opacity:0.85;
-  box-shadow:0 2px 5px rgba(27,42,47,0.08);
-  z-index:3;
-}
-.washi-tape.tl{top:-10px; left:-18px; transform:rotate(-12deg)}
-.washi-tape.br{bottom:-12px; right:-22px; transform:rotate(-168deg); background:
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.65) 0 6px, transparent 6px 12px),
-    var(--sky)}
-
-/* polaroid frame (used on book card) */
-.polaroid{
-  background:#fff; padding:18px 18px 56px;
-  border-radius:4px;
-  box-shadow:0 18px 40px rgba(27,42,47,0.18), 0 4px 8px rgba(27,42,47,0.08);
-  transform:rotate(-1.5deg);
-  position:relative;
-}
-.polaroid .caption{
-  position:absolute; left:18px; right:18px; bottom:14px;
-  font-family:'Yeseva One',serif; font-size:18px; color:#34474d; line-height:1.1;
-}
-.polaroid:hover{transform:rotate(0deg) translateY(-4px); transition:transform .35s}
-
-/* gallery: oval portal frames (the AVEC move) */
-.gallery-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:36px 22px; margin-top:48px}
-.work{
-  border-radius:200px / 36% !important;
-  aspect-ratio:3/4 !important;
-  overflow:hidden; position:relative;
-  cursor:pointer;
-  transition:transform .35s cubic-bezier(.2,.9,.2,1.05), box-shadow .35s;
-}
-.work .work-content{padding:24px; justify-content:center; text-align:center}
-.work .work-content h4{margin:8px 0; font-size:20px}
-.work .icon-overlay{top:auto; bottom:24px; left:50%; right:auto; transform:translateX(-50%); width:48px; height:48px; font-size:18px}
-.work .work-tag{margin-top:30px}
-
-/* paper clip on the contact form */
-form.join{position:relative}
-form.join::before{
-  content:""; position:absolute; top:-6px; right:32px; width:28px; height:64px;
-  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 64'><path d='M 14 6 Q 22 6 22 18 V 50 Q 22 58 14 58 Q 6 58 6 50 V 22 Q 6 16 12 16 Q 18 16 18 22 V 46' stroke='%23A78BFA' stroke-width='2.5' fill='none' stroke-linecap='round'/></svg>") center/contain no-repeat;
-  z-index:2;
-}
-@keyframes blob-float{
-  0%,100%{transform:translate(0,0) scale(1)}
-  33%{transform:translate(30px,-20px) scale(1.05)}
-  66%{transform:translate(-20px,30px) scale(0.95)}
-}
-.hero-grid{display:grid; grid-template-columns: 1.1fr .9fr; gap:48px; align-items:center; position:relative; z-index:2}
-.hero-copy .lede{font-size:22px; line-height:1.5; color:#34474d; max-width:540px; margin:18px 0 28px}
-.hero-actions{display:flex; gap:12px; flex-wrap:wrap}
-.hero-illu{position:relative}
-.hero-illu svg.brote{position:relative; z-index:1; width:100%; max-width:480px; margin:0 auto; display:block; filter:drop-shadow(0 30px 40px rgba(27,42,47,0.18))}
-
-/* brote idle animations */
-.brote-body{transform-origin:center; animation:breathe 4s ease-in-out infinite}
-@keyframes breathe{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.02)}
-}
-.brote-eye-l, .brote-eye-r{transform-origin:center; animation:blink 5.5s infinite}
-@keyframes blink{
-  0%,92%,100%{transform:scaleY(1)}
-  94%,98%{transform:scaleY(0.1)}
-}
-.brote-leaf{transform-origin:200px 80px; animation:leaf-sway 5s ease-in-out infinite}
-@keyframes leaf-sway{
-  0%,100%{transform:rotate(0deg)}
-  50%{transform:rotate(8deg)}
-}
-.sparkle{animation:sparkle-twinkle 3s ease-in-out infinite}
-.sparkle:nth-child(2){animation-delay:.7s}
-.sparkle:nth-child(3){animation-delay:1.4s}
-.sparkle:nth-child(4){animation-delay:2.1s}
-@keyframes sparkle-twinkle{
-  0%,100%{opacity:.3; transform:scale(.8)}
-  50%{opacity:1; transform:scale(1.2)}
-}
-
-/* floating particles in hero */
-.particles{position:absolute; inset:0; pointer-events:none; z-index:1; overflow:hidden}
-.particle{
-  position:absolute; width:8px; height:8px; border-radius:50%;
-  opacity:0.5; animation:float-up 14s linear infinite;
-}
-.particle.leaf{
-  width:14px; height:14px; border-radius:50% 0;
-  transform:rotate(45deg); opacity:0.4;
-}
-@keyframes float-up{
-  0%{transform:translateY(110vh) rotate(0deg); opacity:0}
-  10%{opacity:0.6}
-  90%{opacity:0.4}
-  100%{transform:translateY(-10vh) rotate(360deg); opacity:0}
-}
-
-.tag-row{display:flex; gap:8px; flex-wrap:wrap; margin-top:32px}
-.tag{
-  display:inline-flex; align-items:center; gap:6px;
-  font-family:'Inter',sans-serif; font-size:12px; font-weight:600;
-  padding:6px 14px; border-radius:999px;
-  background:#fff; border:1px solid var(--whisper); color:var(--story);
-  transition:transform .2s;
-}
-.tag:hover{transform:translateY(-2px); box-shadow:var(--shadow-sm)}
-.tag .dot{width:6px; height:6px; border-radius:50%; background:var(--sprout)}
-.tag.violet .dot{background:var(--pulse)}
-.tag.bloom .dot{background:var(--bloom)}
-.tag.sky .dot{background:var(--sky-deep)}
-.tag.sun .dot{background:var(--sun)}
-
-/* ---------- DOORS (4 programs) ---------- */
-.doors{background:#fff; border-top:1px solid var(--whisper); border-bottom:1px solid var(--whisper); position:relative}
-.doors-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:36px; perspective:1000px}
-.door{
-  background:var(--page); border-radius:20px; padding:26px 24px;
-  text-decoration:none; color:var(--story); display:flex; flex-direction:column;
-  transition:transform .35s cubic-bezier(.2,.9,.2,1.05), box-shadow .35s;
-  border:1px solid var(--whisper); position:relative;
-  transform-style:preserve-3d;
-  /* overflow:hidden removed — was cropping body text on narrow cards */
-}
-.door::before{
-  content:""; position:absolute; inset:0;
-  border-radius:20px;  /* match parent so the gradient stays inside rounded corners */
-  background:linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.4));
-  opacity:0; transition:opacity .35s; pointer-events:none;
-}
-/* card-scale typography (overrides the global h3 rule) */
-.door h3{
-  font-family:'Yeseva One',serif; font-weight:400;
-  font-size:21px; line-height:1.15;
-  margin:4px 0 6px;
-  color:var(--story);
-  word-wrap:break-word; overflow-wrap:break-word; min-width:0;
-}
-.door p{
-  font-size:15px; line-height:1.55; margin:6px 0 0; flex:1;
-  word-wrap:break-word; overflow-wrap:break-word; min-width:0;
-}
-.door .age{font-size:11px; margin-bottom:4px; word-break:keep-all}
-.door .icon{font-size:30px; margin-bottom:12px}
-.door .more{font-size:13px; margin-top:14px}
-.door:hover{transform:translateY(-8px) rotateX(2deg) rotateY(-2deg); box-shadow:var(--shadow-lg)}
-.door:hover::before{opacity:1}
-.door .icon{
-  width:auto; height:auto; padding:0; margin-bottom:14px;
-  font-family:'Yeseva One',serif; font-size:34px; line-height:1;
-  color:var(--sprout-deep); background:none; box-shadow:none;
-  letter-spacing:0.04em; display:block;
-}
-.door.kids .icon{color:var(--sky-deep)}
-.door.teens .icon{color:#b88a00}
-.door.adults .icon{color:var(--bloom-deep)}
-.door.teachers .icon{color:var(--pulse)}
-/* tiny accent line under the number */
-.door .icon::after{
-  content:""; display:block; width:32px; height:2px; background:currentColor;
-  margin-top:6px; opacity:0.6;
-}
-.door h3{margin-top:6px}
-.door .age{font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--bloom); font-weight:700; display:block; margin-bottom:6px}
-.door.teachers .age{color:var(--pulse)}
-.door p{margin:8px 0 0; color:#34474d; font-size:16px}
-.door .more{display:inline-block; margin-top:18px; font-family:'Inter',sans-serif; font-size:14px; font-weight:600; color:var(--sprout-deep)}
-.door.teachers .more{color:var(--pulse)}
-
-/* ---------- OUTCOMES / FRAMEWORK ---------- */
-.outcomes{background:linear-gradient(180deg, var(--page), #fff7df 50%, var(--page) 100%); overflow:hidden}
-.tier-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:48px; position:relative}
-/* connector line removed per UX feedback */
-.tier{
-  background:#fff; border-radius:18px; padding:30px;
-  border:1px solid var(--whisper); position:relative; z-index:1;
-  transition:transform .3s;
-}
-.tier:hover{transform:translateY(-6px); box-shadow:var(--shadow-md)}
-.tier .num{
-  position:absolute; top:-18px; left:24px; background:var(--sprout); color:#fff;
-  font-family:'Yeseva One',serif; font-size:20px; width:42px; height:42px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow-sm);
-}
-.tier:nth-child(2) .num{background:var(--bloom)}
-.tier:nth-child(3) .num{background:var(--pulse)}
-.tier h3{margin-top:8px}
-.tier .verb{font-family:'Inter',sans-serif; font-weight:700; font-size:36px; color:var(--bloom); margin:0 0 6px; line-height:1}
-.tier:nth-child(2) .verb{color:var(--sun)}
-.tier:nth-child(3) .verb{color:var(--pulse)}
-.tier .meta{font-family:'Inter',sans-serif; font-size:12px; color:#5a6c71; letter-spacing:.06em; margin-bottom:10px}
-.tier p{margin:8px 0 0}
-
-/* ---------- SPRING TALKS (tech-forward section) ---------- */
-.springtalks{
-  background:linear-gradient(135deg, #1B2A2F 0%, #2D1B4F 100%);
-  color:var(--page); overflow:hidden; position:relative;
-}
-.springtalks::before{
-  content:""; position:absolute; inset:0;
-  background-image:
-    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0);
-  background-size:18px 18px;
-  pointer-events:none;
-}
-.springtalks::after{
-  content:""; position:absolute; top:-20%; right:-10%; width:600px; height:600px;
-  background:radial-gradient(circle, rgba(124,58,237,0.4) 0%, transparent 60%);
-  filter:blur(40px); pointer-events:none;
-  animation:blob-float 20s ease-in-out infinite;
-}
-.springtalks h2{color:var(--page)}
-.springtalks .eyebrow{color:var(--pulse-glow)}
-.talk-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:48px; position:relative; z-index:2}
-.talk{
-  background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1);
-  border-radius:18px; padding:28px;
-  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
-  transition:transform .3s, border-color .3s;
-  position:relative; overflow:hidden;
-}
-.talk:hover{transform:translateY(-6px); border-color:var(--pulse-glow)}
-.talk::before{
-  content:""; position:absolute; top:0; left:-100%; width:100%; height:2px;
-  background:linear-gradient(90deg, transparent, var(--pulse-glow), transparent);
-  transition:left .8s;
-}
-.talk:hover::before{left:100%}
-.talk .cat{font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--pulse-glow); font-weight:700; margin-bottom:12px}
-.talk h4{font-family:'Yeseva One',serif; font-size:22px; color:var(--page); margin:0 0 8px; line-height:1.2}
-.talk p{color:#c8d2d6; font-size:15px; margin:0 0 16px}
-.talk .meta{font-family:'Inter',sans-serif; font-size:12px; color:#8a98a0; display:flex; gap:14px; flex-wrap:wrap}
-.talk .meta span{display:inline-flex; align-items:center; gap:5px}
-.talks-cta{margin-top:36px; text-align:center; position:relative; z-index:2}
-
-/* ---------- BOOK CLUB ---------- */
-.bookclub{background:linear-gradient(180deg, var(--page) 0%, #fff5f3 100%); overflow:hidden}
-.bookclub-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:center; margin-top:36px}
-.bookclub p.lede{font-size:20px; max-width:520px; color:#34474d}
-.bookclub .quote{
-  font-family:'Yeseva One',serif; font-size:26px; line-height:1.3; color:var(--bloom-deep);
-  border-left:3px solid var(--sun); padding:8px 18px; margin:24px 0;
-}
-.book-card{
-  background:#fff; border-radius:18px; padding:30px;
-  display:flex; gap:24px; align-items:flex-start;
-  border:1px solid var(--whisper); box-shadow:var(--shadow-md);
-  transition:transform .3s;
-}
-.book-card:hover{transform:translateY(-4px) rotateZ(-0.5deg); box-shadow:var(--shadow-lg)}
-.book-cover{
-  width:130px; height:185px; flex-shrink:0;
-  background:linear-gradient(135deg, var(--bloom), var(--bloom-deep));
-  border-radius:6px; display:flex; align-items:flex-end; padding:14px;
-  font-family:'Inter',sans-serif; font-weight:700; font-size:22px; color:#fff; line-height:1.05;
-  box-shadow: 6px 6px 0 var(--sun), 8px 8px 18px rgba(0,0,0,0.15);
-  transform:rotate(-2deg); transition:transform .3s;
-}
-.book-card:hover .book-cover{transform:rotate(0deg) scale(1.03)}
-.book-card .meta{font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--bloom); margin-bottom:8px; font-weight:700}
-.book-card h4{font-family:'Yeseva One',serif; font-size:24px; color:var(--story); margin:0 0 6px}
-.book-card .author{color:#5a6c71; font-size:15px; margin:0 0 14px; font-style:italic}
-
-/* ---------- STUDENTS GALLERY ---------- */
-.gallery{background:#fff; border-top:1px solid var(--whisper); border-bottom:1px solid var(--whisper); overflow:hidden}
-.gallery-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:40px}
-.work{
-  border-radius:18px; overflow:hidden; position:relative;
-  aspect-ratio:4/3; cursor:pointer;
-  transition:transform .35s cubic-bezier(.2,.9,.2,1.05), box-shadow .35s;
-  background:linear-gradient(135deg, var(--sprout), var(--sprout-deep));
-}
-.work:hover{transform:translateY(-6px) scale(1.02); box-shadow:var(--shadow-lg)}
-.work.w2{background:linear-gradient(135deg, var(--bloom), var(--bloom-deep))}
-.work.w3{background:linear-gradient(135deg, var(--pulse), var(--pulse-glow))}
-.work.w4{background:linear-gradient(135deg, var(--sun), #e6a800)}
-.work.w5{background:linear-gradient(135deg, var(--sky-deep), var(--sky))}
-.work.w6{background:linear-gradient(135deg, var(--story), #2D1B4F)}
-.work .work-bg{
-  position:absolute; inset:0; opacity:0.18;
-  background-image:radial-gradient(circle at 25% 30%, #fff 0, transparent 30%),
-                   radial-gradient(circle at 75% 70%, #fff 0, transparent 25%);
-}
-.work .work-content{
-  position:absolute; inset:0; padding:24px;
-  display:flex; flex-direction:column; justify-content:flex-end;
-  color:#fff; text-shadow:0 2px 8px rgba(0,0,0,0.25);
-}
-.work .work-tag{font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; font-weight:700; opacity:0.9; margin-bottom:6px}
-.work h4{font-family:'Yeseva One',serif; font-size:22px; color:#fff; margin:0 0 6px; line-height:1.2}
-.work .by{font-family:'Inter',sans-serif; font-size:13px; opacity:0.85}
-.work .icon-overlay{
-  position:absolute; top:20px; right:20px;
-  width:40px; height:40px; border-radius:50%;
-  background:rgba(255,255,255,0.2); backdrop-filter:blur(8px);
-  display:flex; align-items:center; justify-content:center;
-  color:#fff; font-family:'Inter',sans-serif; font-weight:700; font-size:14px;
-}
-
-/* ---------- TESTIMONIAL ---------- */
-.testimonial{padding:120px 0; text-align:center; position:relative; overflow:hidden}
-.testimonial::before, .testimonial::after{
-  content:"""; position:absolute; font-family:'Yeseva One',serif;
-  font-size:200px; color:var(--sun); opacity:0.3; line-height:1;
-}
-.testimonial::before{top:40px; left:8%}
-.testimonial::after{content:"""; bottom:40px; right:8%}
-.testimonial blockquote{
-  font-family:'Yeseva One',serif; font-size:clamp(28px,3.6vw,42px); line-height:1.3;
-  max-width:840px; margin:0 auto; color:var(--story); position:relative; z-index:1;
-}
-.testimonial .who{display:block; margin-top:24px; font-family:'Inter',sans-serif; font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--bloom); font-weight:700}
-
-/* ---------- CONTACT ---------- */
-.contact{background:linear-gradient(135deg, #fff7df 0%, var(--page) 60%, #f3e8ff 100%); overflow:hidden}
-.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; margin-top:36px}
-form.join{
-  background:#fff; border-radius:20px; padding:32px;
-  border:1px solid var(--whisper); box-shadow:var(--shadow-lg);
-}
-form.join label{display:block; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#5a6c71; margin-bottom:6px; margin-top:14px}
-form.join input, form.join select, form.join textarea{
-  width:100%; padding:13px 16px; border:1px solid var(--whisper); border-radius:12px;
-  font-family:'Crimson Pro',serif; font-size:17px; background:var(--page); color:var(--story);
-  transition:border-color .15s, background .15s;
-}
-form.join input:focus, form.join select:focus, form.join textarea:focus{
-  outline:2px solid var(--sprout); outline-offset:1px; background:#fff;
-}
-form.join textarea{min-height:120px; resize:vertical}
-form.join button{
-  margin-top:22px; width:100%; padding:15px;
-  background:linear-gradient(135deg, var(--sprout), var(--sprout-deep)); color:#fff; border:none; border-radius:999px;
-  font-family:'Inter',sans-serif; font-size:15px; font-weight:600; cursor:pointer;
-  transition:transform .15s, box-shadow .15s;
-  box-shadow:0 6px 16px rgba(79,163,74,0.35);
-}
-form.join button:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(79,163,74,0.5)}
-.contact-side h2{margin-top:0}
-.contact-side ul{list-style:none; padding:0; margin:18px 0 0}
-.contact-side li{margin:14px 0; font-size:17px; display:flex; align-items:flex-start; gap:14px}
-.contact-side li .pin{
-  width:36px; height:36px; border-radius:10px; flex-shrink:0;
-  display:flex; align-items:center; justify-content:center;
-  background:linear-gradient(135deg, var(--sprout), var(--sprout-deep)); color:#fff;
-  font-size:18px; font-weight:700; box-shadow:var(--shadow-sm);
-}
-.contact-side li .pin.bloom{background:linear-gradient(135deg, var(--bloom), var(--bloom-deep))}
-.contact-side li .pin.violet{background:linear-gradient(135deg, var(--pulse), var(--pulse-glow))}
-.contact-side li .pin.sky{background:linear-gradient(135deg, var(--sky-deep), var(--sky)); color:var(--story)}
-.contact-side li strong{font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#5a6c71; display:block; margin-bottom:2px}
-.contact-side li a{color:var(--story); text-decoration:none; border-bottom:2px solid var(--sun)}
-
-/* ---------- FOOTER ---------- */
-footer{background:var(--story); color:#a8b3b6; padding:64px 0 32px; position:relative; overflow:hidden}
-footer::before{
-  content:""; position:absolute; top:0; left:0; right:0; height:4px;
-  background:linear-gradient(90deg, var(--sprout), var(--sun), var(--bloom), var(--pulse), var(--sky));
-}
-footer a{color:var(--page); text-decoration:none}
-footer a:hover{color:var(--sun)}
-.foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px}
-.foot-grid h5{font-family:'Inter',sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--sun); margin:0 0 12px; font-weight:700}
-.foot-grid ul{list-style:none; padding:0; margin:0}
-.foot-grid li{margin:8px 0; font-size:14px}
-.foot-bottom{
-  margin-top:40px; padding-top:20px; border-top:1px solid #2a3d44;
-  display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
-  font-family:'Inter',sans-serif; font-size:12px;
-}
-
-/* ---------- scroll reveal ---------- */
-.reveal{opacity:0; transform:translateY(30px); transition:opacity .8s ease, transform .8s ease}
-.reveal.in{opacity:1; transform:translateY(0)}
-.reveal-stagger > *{opacity:0; transform:translateY(30px); transition:opacity .7s ease, transform .7s ease}
-.reveal-stagger.in > *:nth-child(1){opacity:1; transform:translateY(0); transition-delay:.05s}
-.reveal-stagger.in > *:nth-child(2){opacity:1; transform:translateY(0); transition-delay:.18s}
-.reveal-stagger.in > *:nth-child(3){opacity:1; transform:translateY(0); transition-delay:.31s}
-.reveal-stagger.in > *:nth-child(4){opacity:1; transform:translateY(0); transition-delay:.44s}
-.reveal-stagger.in > *:nth-child(5){opacity:1; transform:translateY(0); transition-delay:.57s}
-.reveal-stagger.in > *:nth-child(6){opacity:1; transform:translateY(0); transition-delay:.70s}
-
-/* growing vine separator (book + leaves) */
-.vine-sep{height:120px; position:relative; pointer-events:none; z-index:5}
-.vine-sep svg{position:absolute; top:0; left:50%; transform:translateX(-50%); width:240px; height:120px; overflow:visible}
-.vine-sep .stem{
-  stroke:var(--sprout); stroke-width:3; fill:none; stroke-linecap:round;
-  stroke-dasharray:300; stroke-dashoffset:300;
-  transition:stroke-dashoffset 1.6s ease;
-}
-.vine-sep.in .stem{stroke-dashoffset:0}
-.vine-sep .leaf, .vine-sep .petal{
-  opacity:0; transform:scale(0); transform-origin:center;
-  transition:opacity .6s ease, transform .6s cubic-bezier(.2,1.5,.4,1);
-}
-.vine-sep.in .leaf{opacity:1; transform:scale(1)}
-.vine-sep.in .leaf:nth-of-type(1){transition-delay:.7s}
-.vine-sep.in .leaf:nth-of-type(2){transition-delay:.95s}
-.vine-sep.in .leaf:nth-of-type(3){transition-delay:1.2s}
-.vine-sep.in .leaf:nth-of-type(4){transition-delay:1.45s}
-.vine-sep.in .petal{opacity:1; transform:scale(1)}
-.vine-sep.in .petal:nth-of-type(1){transition-delay:1.7s}
-.vine-sep.in .petal:nth-of-type(2){transition-delay:1.85s}
-.vine-sep .book-pages{
-  transform-origin:120px 60px; opacity:0;
-  transition:opacity .5s ease, transform .8s cubic-bezier(.2,1.2,.4,1);
-}
-.vine-sep.in .book-pages{opacity:1; transition-delay:.3s}
-.vine-sep .page-l{transform-origin:120px 60px; transform:rotateY(0deg)}
-.vine-sep .page-r{transform-origin:120px 60px; transform:rotateY(0deg)}
-.vine-sep.in .page-l{animation:page-flip-l 2s ease-out .4s forwards}
-.vine-sep.in .page-r{animation:page-flip-r 2s ease-out .4s forwards}
-@keyframes page-flip-l{
-  0%{transform:rotateY(40deg)} 100%{transform:rotateY(0deg)}
-}
-@keyframes page-flip-r{
-  0%{transform:rotateY(-40deg)} 100%{transform:rotateY(0deg)}
-}
-
-/* (side-of-page scroll vine fully removed) */
-
-/* ---------- responsive ---------- */
-/* ================== RESPONSIVE ================== */
-
-/* Tablet and below */
-@media (max-width: 980px){
-  .doors-grid{grid-template-columns:repeat(2,1fr) !important}
-  .talk-grid, .gallery-grid{grid-template-columns:repeat(2,1fr) !important}
-  .hero-grid, .tier-grid, .bookclub-grid, .contact-grid, .foot-grid{grid-template-columns:1fr !important}
-  .tier-grid::before{display:none !important}
-  .hero-grid{gap:32px}
-}
-
-/* Phone — full mobile rebuild */
-@media (max-width: 720px){
-  /* tighter section rhythm */
-  section{padding:48px 0}
-  .wrap{padding:0 20px}
-
-  /* type scaling for narrow viewports */
-  body{font-size:16px}
-  h1{font-size:clamp(34px, 8vw, 48px)}
-  h2{font-size:clamp(26px, 6.5vw, 36px)}
-  h3{font-size:22px}
-  .lede, p.lede{font-size:18px !important; line-height:1.5}
-
-  /* ===== NAV / HAMBURGER (rebuilt cleanly) ===== */
-  .nav-inner{flex-wrap:wrap; gap:10px}
-  .burger{display:block; margin-left:auto; order:2}
-  .brand{order:1}
-  .nav .menu, .nav .right{display:none}
-  /* when .nav has .open, both menu and right become a vertical drawer below */
-  .nav.open .menu{
-    display:flex; flex-direction:column; flex-basis:100%; order:3;
-    margin:8px 0 0; padding:8px 0 4px;
-    border-top:1px solid var(--whisper);
-    gap:0;
-  }
-  .nav.open .menu li{width:100%}
-  .nav.open .menu a.link{display:block; padding:12px 6px; font-size:16px}
-  .nav.open .menu a.link.classroom{margin:6px 0; text-align:center}
-  .nav.open .right{
-    display:flex; flex-basis:100%; order:4;
-    align-items:center; justify-content:space-between;
-    padding:10px 0 6px;
-    border-top:1px solid var(--whisper);
-  }
-  .nav.open .toggle{flex-shrink:0}
-  .nav.open .cta{flex:1; margin-left:14px; text-align:center}
-
-  /* ===== HERO ===== */
-  .hero{padding:24px 0 56px}
-  /* hide the bleeding background shapes on phone — they overflow ugly */
-  .hero-shape, .hero-shape.right{display:none}
-  .hero-grid{gap:28px}
-  .hero-actions{justify-content:flex-start; gap:10px}
-  .hero-actions .cta{padding:11px 18px; font-size:14px}
-  /* photo frame: smaller, still tilted */
-  .photo-frame{max-width:300px; aspect-ratio:4/5}
-  .photo-frame .scene svg{width:78%}
-  .washi-tape{width:80px; height:20px}
-  .washi-tape.tl{top:-8px; left:-12px}
-  .washi-tape.br{bottom:-10px; right:-14px}
-  /* fewer hero leaves on phone */
-  .particle.leaf{width:10px; height:10px}
-
-  /* ===== VINE SEPARATORS ===== */
-  .vine-sep{height:80px}
-  .vine-sep svg{width:160px; height:80px}
-
-  /* ===== DOORS ===== */
-  .doors-grid{grid-template-columns:1fr !important; gap:14px}
-  .door{padding:22px 20px; max-width:100%; min-width:0}
-  .door .icon{font-size:26px; margin-bottom:10px}
-  .door h3{font-size:20px; margin-bottom:5px}
-  .door p{font-size:14.5px; line-height:1.5}
-  .door .age{font-size:10.5px; letter-spacing:.14em}
-  .door .more{font-size:13px; margin-top:12px}
-
-  /* ===== OUTCOMES TIERS ===== */
-  .tier-grid{grid-template-columns:1fr !important; gap:30px}
-  .tier{padding:24px; max-width:100%; min-width:0}
-  .tier .verb{font-size:30px}
-  .tier .num{top:-14px; width:34px; height:34px; font-size:16px}
-
-  /* ===== SPRING TALKS ===== */
-  .talk-grid{grid-template-columns:1fr !important; gap:14px}
-  .talk{padding:22px; max-width:100%; min-width:0}
-  .talk h4{font-size:20px}
-  .talk .meta{gap:10px; font-size:11px; flex-wrap:wrap}
-
-  /* ===== BOOK CLUB / POLAROID ===== */
-  .book-card{flex-direction:column; padding:14px 14px 44px; max-width:280px; margin:0 auto}
-  .book-cover{width:110px; height:155px; font-size:18px; margin:4px auto 16px}
-  .polaroid:hover{transform:rotate(-1.5deg)}  /* don't unrotate on touch */
-
-  /* ===== GALLERY OVAL PORTALS ===== */
-  .gallery-grid{grid-template-columns:1fr !important; gap:24px}
-  .work{aspect-ratio:5/6 !important; border-radius:160px / 24% !important; max-width:280px; margin:0 auto}
-  .work .work-content{padding:16px}
-  .work h4{font-size:18px}
-
-  /* ===== TESTIMONIAL ===== */
-  .testimonial{padding:64px 0}
-  .testimonial::before, .testimonial::after{font-size:120px}
-
-  /* ===== CONTACT ===== */
-  .contact-grid{gap:28px}
-  form.join{padding:22px}
-  form.join::before{right:18px; width:22px; height:50px}
-  .contact-side li{font-size:16px}
-  .contact-side li .pin{width:32px; height:32px; font-size:16px}
-
-  /* ===== FOOTER ===== */
-  .foot-grid{grid-template-columns:1fr; gap:24px}
-  .foot-bottom{flex-direction:column; align-items:flex-start; font-size:11px; gap:6px}
-}
-
-/* Very narrow screens (older / smaller phones) */
-@media (max-width: 380px){
-  h1{font-size:32px}
-  .photo-frame{max-width:240px}
-  .hero-actions{flex-direction:column; align-items:stretch; width:100%}
-  .hero-actions .cta{width:100%; text-align:center}
-  .nav-inner{padding:12px 16px}
-  .wrap{padding:0 16px}
-  /* even tighter cards for the smallest phones */
-  .door{padding:20px 18px}
-  .door h3{font-size:18px}
-  .door p{font-size:14px}
-  .door .icon{font-size:24px}
-}
-
-/* Touch devices: kill the 3D card tilt — there's no cursor to follow */
-@media (hover: none){
-  .door:hover{transform:none !important}
-  .work:hover{transform:none !important}
-  .book-card:hover{transform:rotate(-1.5deg) !important}
-}
-
-/* ============================================================
-   PORTRAIT ORIENTATION OVERRIDES — fires regardless of detected
-   viewport width. Belt-and-suspenders so phones in portrait ALWAYS
-   stack to 1 column even if width-based @media doesn't trigger.
-   ============================================================ */
-@media (orientation: portrait) and (max-width: 1024px){
-  /* Force every grid to a single column on any portrait device */
-  .doors-grid,
-  .talk-grid,
-  .gallery-grid,
-  .tier-grid,
-  .hero-grid,
-  .bookclub-grid,
-  .contact-grid,
-  .foot-grid{
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
-  }
-  /* Decorative connector under tier cards */
-  .tier-grid::before{display:none !important}
-
-  /* Containment so nothing pushes width past viewport */
-  .door, .talk, .work, .tier, .book-card, .photo-frame, form.join, .contact-side{
-    max-width: 100% !important;
-    min-width: 0 !important;
-    width: auto !important;
-  }
-  /* Section side-padding sane for portrait */
-  .wrap{padding-left:18px; padding-right:18px}
-  /* Hide the bleeding hero blobs in portrait — they're decorative */
-  .hero-shape, .hero-shape.right{display:none !important}
-
-  /* Type tightening for portrait */
-  h1{font-size:clamp(32px, 8vw, 44px)}
-  h2{font-size:clamp(26px, 6.5vw, 34px)}
-  body{font-size:16px}
-
-  /* Card-scale typography */
-  .door h3{font-size:20px}
-  .door p{font-size:14.5px; line-height:1.5}
-  .door .icon{font-size:26px}
-
-  /* Force the gallery oval to a sensible portrait shape */
-  .work{aspect-ratio: 5/6 !important; max-width: 320px; margin:0 auto}
-
-  /* Polaroid book card sized for portrait */
-  .book-card{flex-direction:column !important; max-width:300px; margin:0 auto}
-  .book-cover{width:120px; height:170px; margin:0 auto 16px}
-}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--crema);color:var(--tinta);font-family:'DM Sans',sans-serif;font-size:17px;line-height:1.5}
+h1,h2,h3{font-family:'Outfit',sans-serif;line-height:1.08;margin:0}
+h1{font-size:clamp(38px,6vw,66px)}
+h2{font-size:clamp(28px,3.6vw,36px)}
+h3{font-size:26px}
+p{margin:0}
+a{color:var(--bosque)}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+.sec{padding:56px 0}
+.kicker{font-size:13px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase}
+.btn{display:inline-block;border:0;border-radius:999px;padding:14px 26px;font:700 17px 'DM Sans',sans-serif;text-decoration:none;cursor:pointer;background:var(--bosque);color:#fff;transition:transform .15s,filter .15s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.07)}
+.btn.dark{background:var(--tinta)}
+.btn.line{background:#fff;color:var(--tinta);border:2px solid var(--tinta);padding:12px 24px}
+.btn.lime{background:var(--brote);color:var(--tinta)}
+.btn.sun{background:var(--sol);color:var(--tinta)}
+:focus-visible{outline:3px solid var(--azul);outline-offset:2px}
+.row{display:flex;flex-wrap:wrap;gap:18px}
+.card{background:#fff;border-radius:24px;padding:24px}
+.lift{transition:transform .2s,box-shadow .2s}
+.lift:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(15,42,29,.14)}
+.more{font-weight:700;color:var(--bosque);margin-top:10px}
+/* header */
+header{position:sticky;top:0;z-index:9;background:rgba(250,248,241,.95);border-bottom:1px solid var(--linea)}
+.bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:10px 20px;max-width:1160px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:8px;font:700 22px 'Outfit',sans-serif;color:var(--tinta);text-decoration:none;min-height:44px}
+.logo i{width:18px;height:18px;border-radius:50%;background:var(--brote);display:inline-block}
+nav{display:flex;flex-wrap:wrap;gap:2px;flex:1;justify-content:center}
+nav a{padding:10px 12px;min-height:44px;color:var(--tinta);text-decoration:none;font-weight:500;border-bottom:3px solid transparent}
+nav a.on{font-weight:700;border-color:var(--esm)}
+/* pages */
+.page{display:none}
+.page.on{display:block;animation:in .45s ease both}
+@keyframes in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-16px) rotate(8deg)}}
+@keyframes sway{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.09)}}
+.sway{transform-box:fill-box;transform-origin:50% 100%;animation:sway 3.2s ease-in-out infinite}
+.spin{transform-box:fill-box;transform-origin:center;animation:spin 14s linear infinite}
+.breathe{transform-box:fill-box;transform-origin:50% 100%;animation:breathe 3.6s ease-in-out infinite}
+.lift:hover .spin{animation-duration:3s}
+.lift:hover .sway,.lift:hover .breathe{animation-duration:1.1s}
+/* hero */
+.hero{position:relative;overflow:hidden;padding:76px 20px 84px;text-align:center}
+.hero .in{position:relative;max-width:760px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:20px}
+.shape{position:absolute;animation:float 8s ease-in-out infinite}
+.pill{background:#fff;border-radius:999px;padding:10px 22px;font-weight:700;font-size:14px;letter-spacing:2px}
+.path{flex:1 1 320px;text-align:left;border:0;border-radius:28px;padding:32px;font:17px 'DM Sans',sans-serif;cursor:pointer;text-decoration:none;color:var(--tinta);display:block}
+.path b{display:block;font:700 30px 'Outfit',sans-serif;margin:6px 0}
+.door{flex:1 1 230px;background:#fff;border-radius:140px 140px 24px 24px;overflow:hidden;text-decoration:none;color:var(--tinta);padding-bottom:24px;display:block}
+.door .top{height:170px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;padding-bottom:14px;font-weight:700;font-size:13px;letter-spacing:2px}
+.door .body{padding:18px 22px 0}
+.door .body b{font:700 26px 'Outfit',sans-serif;display:block}
+.video{width:100%;aspect-ratio:16/9;border-radius:28px;background:var(--bosque);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-weight:700;text-align:center;padding:20px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 28px}
+.tab{border:2px solid var(--tinta);background:#fff;color:var(--tinta);border-radius:999px;padding:10px 20px;min-height:44px;font:700 16px 'DM Sans',sans-serif;cursor:pointer}
+.tab.on{background:var(--tinta);color:#fff}
+.arch{flex:1 1 300px;min-height:340px;border-radius:180px 180px 28px 28px;display:flex;flex-direction:column;justify-content:flex-end;padding:32px}
+.arch svg{align-self:center;margin-bottom:auto;margin-top:20px}
+.fact{flex:1 1 200px}
+.fact .kicker{margin-bottom:4px}
+.step{flex:1 1 280px;text-align:left;border:0;border-radius:28px;padding:28px;font:17px 'DM Sans',sans-serif;cursor:pointer;display:flex;flex-direction:column;gap:8px;outline:4px solid transparent;outline-offset:3px}
+.step.on{outline-color:var(--tinta)}
+.step b{font:700 30px 'Outfit',sans-serif}
+.detail{display:none}
+.detail.on{display:flex;flex-direction:column;gap:20px;animation:in .4s ease both}
+.mod{display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--linea)}
+.mod b:first-child{min-width:34px}
+ul.clean{margin:10px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:6px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.tile{aspect-ratio:4/3;border-radius:20px;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;font-size:15px}
+label{display:flex;flex-direction:column;gap:6px;font-weight:700}
+input,select,textarea{font:400 17px 'DM Sans',sans-serif;padding:12px 14px;border:1.5px solid var(--tinta);border-radius:12px;background:var(--crema);color:var(--tinta)}
+.ph{border:2px dashed var(--bosque);border-radius:20px;padding:22px}
+footer{background:var(--tinta);color:#fff;padding:36px 0}
+footer a{color:var(--brote);font-weight:700}
+.wa{position:fixed;right:18px;bottom:18px;z-index:9;width:60px;height:60px;border-radius:50%;background:#128C4B;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+.mnote{display:none;background:var(--sol);color:var(--tinta);padding:12px 20px;font-weight:700;font-size:15px;gap:12px;align-items:center;justify-content:space-between}
+.mnote button{border:2px solid var(--tinta);background:none;border-radius:999px;padding:8px 14px;min-height:44px;font:700 14px 'DM Sans',sans-serif;color:var(--tinta);cursor:pointer}
+@media (max-width:820px){.mnote{display:flex}.logo{flex:1}nav{order:3;flex:1 1 100%;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start}nav a{white-space:nowrap}.shape{opacity:.3;scale:.6}.hero{padding:48px 20px 56px}}
+@media (max-width:640px){.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}.sec{padding:40px 0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 
-<!-- ===== NAV ===== -->
-<header class="nav">
-  <div class="nav-inner">
-    <a href="#top" class="brand">
-      <svg class="mark" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <linearGradient id="markGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#4FA34A"/>
-            <stop offset="100%" stop-color="#2E6B2C"/>
-          </linearGradient>
-        </defs>
-        <circle cx="30" cy="30" r="28" fill="#FBF7EC" stroke="url(#markGrad)" stroke-width="2.5"/>
-        <path d="M18 38 Q22 22 30 26 Q38 30 42 18" stroke="url(#markGrad)" stroke-width="3.2" fill="none" stroke-linecap="round"/>
-        <circle cx="42" cy="18" r="3" fill="#F25F4C"/>
-        <path d="M20 42 q2 -2 4 0" stroke="#F9C846" stroke-width="2" fill="none" stroke-linecap="round"/>
-      </svg>
-      <span class="name">spring<span>learning</span></span>
-    </a>
-    <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    <ul class="menu">
-      <li><a class="link" href="#top" data-i18n="nav.home">Inicio</a></li>
-      <li><a class="link" href="#programs" data-i18n="nav.programs">Programas</a></li>
-      <li><a class="link" href="#springtalks" data-i18n="nav.springtalks">Spring Talks</a></li>
-      <li><a class="link" href="#gallery" data-i18n="nav.gallery">Galería</a></li>
-      <li><a class="link" href="#contact" data-i18n="nav.contact">Contacto</a></li>
-      <li><a class="link classroom" href="https://classroom.google.com/" target="_blank" rel="noopener" data-i18n="nav.class" title="Inicia sesión con tu cuenta @springlearning.mx">Clase ↗</a></li>
-    </ul>
-    <div class="right">
-      <div class="toggle" role="group" aria-label="Language">
-        <button data-lang="es" class="active" aria-pressed="true">ES</button>
-        <button data-lang="en" aria-pressed="false">EN</button>
-      </div>
-      <a href="#contact" class="cta" data-i18n="nav.cta">Reservar</a>
-    </div>
-  </div>
+<div class="mnote" id="mnote" role="status">
+<span>Estamos terminando el diseño para celular. Para la experiencia completa, visítanos desde una computadora.</span>
+<button onclick="document.getElementById('mnote').style.display='none'" aria-label="Cerrar aviso">Cerrar</button>
+</div>
+<header>
+<div class="bar">
+<a class="logo" href="#inicio"><i></i>Springlearning</a>
+<nav aria-label="Principal">
+<a href="#inicio">Inicio</a>
+<a href="#programas">Programas</a>
+<a href="#escuelas">Para escuelas</a>
+<a href="#estudiantes">Estudiantes</a>
+<a href="#nosotros">Quiénes somos</a>
+<a href="#contacto">Contacto</a>
+</nav>
+<a class="btn" href="https://classroom.google.com/" style="padding:11px 18px">Clase</a>
+</div>
 </header>
 
-<!-- ===== HERO ===== -->
-<section class="hero" id="top">
-  <!-- single organic coral shape behind type (Lowri move) -->
-  <div class="hero-shape" aria-hidden="true">
-    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <path d="M 92 10 C 158 4, 196 70, 178 130 C 162 184, 92 200, 48 178 C 4 154, -6 86, 28 44 C 50 18, 70 12, 92 10 Z" fill="#F9655A"/>
-    </svg>
-  </div>
-  <div class="hero-shape right" aria-hidden="true">
-    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <path d="M 100 12 C 162 8, 196 80, 170 140 C 144 188, 70 192, 32 156 C -6 116, 14 38, 60 18 C 76 12, 88 12, 100 12 Z" fill="#F9C846"/>
-    </svg>
-  </div>
-  <!-- minimal hero motion: 3 small leaves, not 7 mixed particles -->
-  <div class="particles" aria-hidden="true">
-    <div class="particle leaf" style="left:14%;background:#5BB849;animation-delay:0s"></div>
-    <div class="particle leaf" style="left:52%;background:#A4E089;animation-delay:-7s"></div>
-    <div class="particle leaf" style="left:84%;background:#5BB849;animation-delay:-12s"></div>
-  </div>
-  <div class="wrap">
-    <div class="hero-grid">
-      <div class="hero-copy reveal">
-        <p class="eyebrow" data-i18n="hero.eyebrow">Laboratorio creativo de aprendizaje</p>
-        <h1 data-i18n="hero.title">Aprender es como hacer brotar algo.</h1>
-        <div class="hero-actions" style="margin-top:22px;">
-          <a href="#contact" class="cta" data-i18n="hero.cta1">Reservar clase muestra</a>
-          <a href="#programs" class="cta ghost" data-i18n="hero.cta2">Conoce los programas</a>
-        </div>
-      </div>
-      <div class="hero-illu reveal">
-        <div class="photo-frame" aria-label="Editorial photo placeholder — replace with a real photograph of hands, books, or a class scene">
-          <span class="washi-tape tl" aria-hidden="true"></span>
-          <span class="washi-tape br" aria-hidden="true"></span>
-          <div class="inner">
-            <div class="scene">
-              <!-- editorial still life: stacked books + leaf, flat-but-tasteful -->
-              <svg viewBox="0 0 320 380" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <defs>
-                  <linearGradient id="bookA" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#3F8A30"/>
-                    <stop offset="100%" stop-color="#2E6B2C"/>
-                  </linearGradient>
-                  <linearGradient id="bookB" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#FBF7EC"/>
-                    <stop offset="100%" stop-color="#E8E2D1"/>
-                  </linearGradient>
-                  <linearGradient id="bookC" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#F25F4C"/>
-                    <stop offset="100%" stop-color="#C84231"/>
-                  </linearGradient>
-                </defs>
-                <!-- table shadow -->
-                <ellipse cx="160" cy="340" rx="120" ry="10" fill="#1B2A2F" opacity="0.18"/>
-                <!-- bottom book (green) -->
-                <rect x="50" y="280" width="220" height="48" rx="3" fill="url(#bookA)"/>
-                <line x1="60" y1="294" x2="260" y2="294" stroke="#A4E089" stroke-width="1" opacity="0.5"/>
-                <line x1="60" y1="314" x2="260" y2="314" stroke="#A4E089" stroke-width="1" opacity="0.5"/>
-                <text x="160" y="312" text-anchor="middle" font-family="Yeseva One, serif" font-size="14" fill="#FBF7EC" opacity="0.85" letter-spacing="2">SPRINGLEARNING</text>
-                <!-- middle book (cream/tilted) -->
-                <g transform="rotate(-3 160 250)">
-                  <rect x="60" y="226" width="200" height="50" rx="3" fill="url(#bookB)" stroke="#A8B3B6" stroke-width="0.6"/>
-                  <line x1="70" y1="242" x2="250" y2="242" stroke="#A8B3B6" stroke-width="0.8" opacity="0.5"/>
-                  <text x="160" y="260" text-anchor="middle" font-family="Yeseva One, serif" font-size="13" fill="#34474d" letter-spacing="1.5">FELLOWSHIP OF THE BOOK</text>
-                </g>
-                <!-- top book (coral, tilted other way) -->
-                <g transform="rotate(2 160 200)">
-                  <rect x="80" y="178" width="160" height="42" rx="3" fill="url(#bookC)"/>
-                  <line x1="90" y1="192" x2="230" y2="192" stroke="#fff" stroke-width="0.8" opacity="0.5"/>
-                  <text x="160" y="208" text-anchor="middle" font-family="Yeseva One, serif" font-size="11" fill="#fff" letter-spacing="2">DISCOVERY · CREATORS · ARCHITECTS</text>
-                </g>
-                <!-- a real-feeling leaf -->
-                <g transform="translate(180,90) rotate(20)">
-                  <path d="M 0 30 Q -20 10 0 -10 Q 35 -25 55 -10 Q 60 25 30 35 Q 10 38 0 30 Z" fill="#5BB849"/>
-                  <path d="M 0 30 Q 20 10 35 5 Q 45 0 50 -5" stroke="#3F8A30" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-                  <path d="M 50 -8 Q 55 -16 58 -22" stroke="#3F8A30" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-                </g>
-                <!-- a small loose page corner -->
-                <g transform="translate(60,60) rotate(-15)">
-                  <rect x="0" y="0" width="48" height="60" fill="#fff" stroke="#A8B3B6" stroke-width="0.5"/>
-                  <line x1="6" y1="12" x2="42" y2="12" stroke="#A8B3B6" stroke-width="0.5"/>
-                  <line x1="6" y1="20" x2="42" y2="20" stroke="#A8B3B6" stroke-width="0.5"/>
-                  <line x1="6" y1="28" x2="36" y2="28" stroke="#A8B3B6" stroke-width="0.5"/>
-                  <path d="M 6 42 Q 18 38 30 44 Q 38 48 42 46" stroke="#F25F4C" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
-                </g>
-                <!-- a fountain pen -->
-                <g transform="translate(220,320) rotate(-65)">
-                  <rect x="0" y="0" width="80" height="8" rx="2" fill="#1B2A2F"/>
-                  <polygon points="80,0 96,4 80,8" fill="#7C3AED"/>
-                  <rect x="20" y="0" width="3" height="8" fill="#F9C846"/>
-                </g>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- vine separator: open book + sprouting leaves -->
-<div class="vine-sep" aria-hidden="true">
-  <svg viewBox="0 0 240 120" xmlns="http://www.w3.org/2000/svg">
-    <!-- open book base -->
-    <g class="book-pages">
-      <!-- shadow -->
-      <ellipse cx="120" cy="106" rx="72" ry="6" fill="#1B2A2F" opacity="0.12"/>
-      <!-- left page -->
-      <path class="page-l" d="M120 60 L72 70 Q70 70 70 72 L70 96 Q70 98 72 98 L120 90 Z" fill="#FBF7EC" stroke="#5BB849" stroke-width="1.5"/>
-      <line x1="80" y1="78" x2="112" y2="76" stroke="#A8B3B6" stroke-width="0.8"/>
-      <line x1="80" y1="84" x2="112" y2="82" stroke="#A8B3B6" stroke-width="0.8"/>
-      <line x1="80" y1="90" x2="105" y2="88" stroke="#A8B3B6" stroke-width="0.8"/>
-      <!-- right page -->
-      <path class="page-r" d="M120 60 L168 70 Q170 70 170 72 L170 96 Q170 98 168 98 L120 90 Z" fill="#FBF7EC" stroke="#5BB849" stroke-width="1.5"/>
-      <line x1="128" y1="76" x2="160" y2="78" stroke="#A8B3B6" stroke-width="0.8"/>
-      <line x1="128" y1="82" x2="160" y2="84" stroke="#A8B3B6" stroke-width="0.8"/>
-      <line x1="128" y1="88" x2="155" y2="90" stroke="#A8B3B6" stroke-width="0.8"/>
-      <!-- spine -->
-      <line x1="120" y1="60" x2="120" y2="90" stroke="#3F8A30" stroke-width="2.5" stroke-linecap="round"/>
-    </g>
-    <!-- stem growing up out of the book -->
-    <path class="stem" d="M120 60 Q115 45 120 30 Q125 18 120 4"/>
-    <!-- leaves on the stem -->
-    <ellipse class="leaf" cx="105" cy="44" rx="14" ry="6" fill="#A4E089" transform="rotate(-25 105 44)"/>
-    <ellipse class="leaf" cx="135" cy="32" rx="14" ry="6" fill="#5BB849" transform="rotate(25 135 32)"/>
-    <ellipse class="leaf" cx="110" cy="20" rx="11" ry="5" fill="#A4E089" transform="rotate(-30 110 20)"/>
-    <ellipse class="leaf" cx="130" cy="10" rx="11" ry="5" fill="#5BB849" transform="rotate(30 130 10)"/>
-    <!-- a tiny flower at the top -->
-    <circle class="petal" cx="120" cy="2" r="3" fill="#F25F4C"/>
-    <circle class="petal" cx="120" cy="2" r="1.5" fill="#F9C846"/>
-  </svg>
+<!-- ===================== INICIO ===================== -->
+<main class="page" id="p-inicio">
+<section class="hero">
+<div class="shape" style="left:6%;top:60px;width:110px;height:110px;border-radius:50%;background:var(--brote)"></div>
+<div class="shape" style="right:8%;top:90px;width:150px;height:150px;border-radius:50%;background:var(--esm);animation-duration:10s;animation-delay:-3s"></div>
+<div class="shape" style="left:14%;bottom:40px;border-left:48px solid transparent;border-right:48px solid transparent;border-bottom:84px solid var(--sol);animation-duration:11s;animation-delay:-6s"></div>
+<div class="shape" style="right:16%;bottom:50px;width:74px;height:74px;border-radius:18px;background:var(--azul);animation-delay:-2s"></div>
+<div class="in">
+<div class="pill">NO PEDIMOS PERMISO PARA APRENDER</div>
+<h1>Aprender es como hacer brotar algo.</h1>
+<p style="font-size:20px;max-width:600px">Inteligencia artificial, inglés y habilidades digitales para niños, adolescentes, adultos, docentes y escuelas.</p>
+<div class="row" style="justify-content:center;gap:12px">
+<a class="btn" href="#contacto">Reserva una clase demo</a>
+<a class="btn line" href="https://classroom.google.com/">Entra a tu clase</a>
 </div>
-
-<!-- ===== FOUR DOORS ===== -->
-<section class="doors" id="programs">
-  <div class="dotgrid"></div>
-  <div class="wrap">
-    <p class="eyebrow reveal" data-i18n="doors.eyebrow">Programas y cursos</p>
-    <h2 class="reveal" data-i18n="doors.title">Cuatro puertas. Un mismo método.</h2>
-    <p class="reveal" data-i18n="doors.lede" style="max-width:720px; font-size:20px; color:#34474d;">Estudiantes y maestros: cada quien recorre Discovery → Creators → Architects, adaptado a su edad, voz y oficio.</p>
-    <div class="doors-grid reveal-stagger">
-      <a href="#contact" class="door kids">
-        <div class="icon">01</div>
-        <span class="age" data-i18n="doors.kids.age">Discovery · 8 – 13 años</span>
-        <h3 data-i18n="doors.kids.title">Springlearning · Kids</h3>
-        <p data-i18n="doors.kids.body">Historias, dibujos, juego. Aprenden inglés y a hacer preguntas como quien arma un Lego — probando, rompiendo y volviendo a armar.</p>
-        <span class="more" data-i18n="doors.more">Conocer más →</span>
-      </a>
-      <a href="#contact" class="door teens">
-        <div class="icon">02</div>
-        <span class="age" data-i18n="doors.teens.age">Creators · 14 – 17 años</span>
-        <h3 data-i18n="doors.teens.title">Springlearning · Teens</h3>
-        <p data-i18n="doors.teens.body">Proyectos que sí quieren mostrar: un podcast, una reseña, un corto. Aprenden a pensar y a publicar al mismo tiempo.</p>
-        <span class="more" data-i18n="doors.more">Conocer más →</span>
-      </a>
-      <a href="#contact" class="door adults">
-        <div class="icon">03</div>
-        <span class="age" data-i18n="doors.adults.age">Architects · 18+</span>
-        <h3 data-i18n="doors.adults.title">Springlearning · Adults</h3>
-        <p data-i18n="doors.adults.body">Escritura creativa, retórica profesional, lectura crítica. La clase de inglés (o de pensamiento) que te hubiera gustado tener.</p>
-        <span class="more" data-i18n="doors.more">Conocer más →</span>
-      </a>
-      <a href="#contact" class="door teachers">
-        <div class="icon">04</div>
-        <span class="age" data-i18n="doors.teachers.age">Maestros · PD + Certificación</span>
-        <h3 data-i18n="doors.teachers.title">Springlearning · Teachers</h3>
-        <p data-i18n="doors.teachers.body">Para maestros: usar AI y Canva para mejores clases, y certificación en el método Springlearning.</p>
-        <span class="more" data-i18n="doors.more">Conocer más →</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- vine separator -->
-<div class="vine-sep" aria-hidden="true">
-  <svg viewBox="0 0 240 120" xmlns="http://www.w3.org/2000/svg">
-    <g class="book-pages">
-      <ellipse cx="120" cy="106" rx="72" ry="6" fill="#1B2A2F" opacity="0.12"/>
-      <path class="page-l" d="M120 60 L72 70 Q70 70 70 72 L70 96 Q70 98 72 98 L120 90 Z" fill="#FBF7EC" stroke="#5BB849" stroke-width="1.5"/>
-      <line x1="80" y1="78" x2="112" y2="76" stroke="#A8B3B6" stroke-width="0.8"/>
-      <line x1="80" y1="84" x2="112" y2="82" stroke="#A8B3B6" stroke-width="0.8"/>
-      <path class="page-r" d="M120 60 L168 70 Q170 70 170 72 L170 96 Q170 98 168 98 L120 90 Z" fill="#FBF7EC" stroke="#5BB849" stroke-width="1.5"/>
-      <line x1="128" y1="76" x2="160" y2="78" stroke="#A8B3B6" stroke-width="0.8"/>
-      <line x1="128" y1="82" x2="160" y2="84" stroke="#A8B3B6" stroke-width="0.8"/>
-      <line x1="120" y1="60" x2="120" y2="90" stroke="#3F8A30" stroke-width="2.5" stroke-linecap="round"/>
-    </g>
-    <path class="stem" d="M120 60 Q115 45 120 30 Q125 18 120 4"/>
-    <ellipse class="leaf" cx="105" cy="44" rx="14" ry="6" fill="#A4E089" transform="rotate(-25 105 44)"/>
-    <ellipse class="leaf" cx="135" cy="32" rx="14" ry="6" fill="#5BB849" transform="rotate(25 135 32)"/>
-    <ellipse class="leaf" cx="110" cy="20" rx="11" ry="5" fill="#A4E089" transform="rotate(-30 110 20)"/>
-    <ellipse class="leaf" cx="130" cy="10" rx="11" ry="5" fill="#5BB849" transform="rotate(30 130 10)"/>
-    <circle class="petal" cx="120" cy="2" r="3" fill="#F25F4C"/>
-    <circle class="petal" cx="120" cy="2" r="1.5" fill="#F9C846"/>
-  </svg>
 </div>
-
-<!-- ===== OUTCOMES / FRAMEWORK ===== -->
-<section class="outcomes" id="outcomes">
-  <div class="wrap">
-    <p class="eyebrow reveal" data-i18n="out.eyebrow">El método · Outcomes</p>
-    <h2 class="reveal" data-i18n="out.title">Discovery → Creators → Architects.</h2>
-    <p class="reveal" data-i18n="out.lede" style="max-width:720px; font-size:20px; color:#34474d;">Tres etapas que un estudiante recorre, en su tiempo, con resultados que se pueden contar a un amigo.</p>
-    <div class="tier-grid reveal-stagger">
-      <div class="tier">
-        <div class="num">1</div>
-        <p class="verb" data-i18n="tier.discovery.verb">Explora</p>
-        <p class="meta" data-i18n="tier.discovery.meta">CEFR A1 – A2 · curiosidad</p>
-        <h3 data-i18n="tier.discovery.name">Discovery</h3>
-        <p data-i18n="tier.discovery.body">El estudiante juega con el idioma como con plastilina. Termina la etapa habiendo leído cuentos completos y armado pequeñas obras: un cómic, una receta, una guía de museo.</p>
-      </div>
-      <div class="tier">
-        <div class="num">2</div>
-        <p class="verb" data-i18n="tier.creators.verb">Construye</p>
-        <p class="meta" data-i18n="tier.creators.meta">CEFR B1 – B2 · oficio</p>
-        <h3 data-i18n="tier.creators.name">Creators</h3>
-        <p data-i18n="tier.creators.body">Pasa de consumir a producir. Termina con un portafolio real — un episodio de podcast, un ensayo personal, una reseña publicada — y la confianza que da haber hecho algo de principio a fin.</p>
-      </div>
-      <div class="tier">
-        <div class="num">3</div>
-        <p class="verb" data-i18n="tier.architects.verb">Argumenta</p>
-        <p class="meta" data-i18n="tier.architects.meta">CEFR C1 + · autoría</p>
-        <h3 data-i18n="tier.architects.name">Architects</h3>
-        <p data-i18n="tier.architects.body">Defiende ideas por escrito y en voz alta. Para adultos que quieren aplicar a un máster, escribir una columna, dar una charla o, simplemente, pensar mejor.</p>
-      </div>
-    </div>
-  </div>
 </section>
 
-<!-- ===== SPRING TALKS ===== -->
-<section class="springtalks" id="springtalks">
-  <div class="wrap">
-    <p class="eyebrow violet reveal" data-i18n="talks.eyebrow">Spring Talks · Masterclasses</p>
-    <h2 class="reveal" data-i18n="talks.title">Una hora. Una idea. Una habilidad.</h2>
-    <p class="reveal" data-i18n="talks.lede" style="max-width:720px; font-size:20px; color:#c8d2d6;">Talleres en vivo de una sola sesión. Para quien quiere aprender una cosa específica, bien, en un formato corto.</p>
-    <div class="talk-grid reveal-stagger">
-      <div class="talk">
-        <p class="cat" data-i18n="talks.t1.cat">Escritura</p>
-        <h4 data-i18n="talks.t1.title">Cómo escribir una columna que alguien quiera leer</h4>
-        <p data-i18n="talks.t1.body">90 minutos. Estructura, hook, ritmo. Salís con un borrador real y feedback en vivo.</p>
-        <div class="meta">
-          <span data-i18n="talks.t1.duration">⏱ 90 min</span>
-          <span data-i18n="talks.t1.format">💻 Online</span>
-          <span data-i18n="talks.t1.price">💵 $450 MXN</span>
-        </div>
-      </div>
-      <div class="talk">
-        <p class="cat" data-i18n="talks.t2.cat">AI + Educación</p>
-        <h4 data-i18n="talks.t2.title">Usar IA sin perder el oficio de pensar</h4>
-        <p data-i18n="talks.t2.body">Para maestros y curiosos. Cómo integrar IA en el aula sin que reemplace el músculo crítico del estudiante.</p>
-        <div class="meta">
-          <span data-i18n="talks.t2.duration">⏱ 2 hrs</span>
-          <span data-i18n="talks.t2.format">💻 Online</span>
-          <span data-i18n="talks.t2.price">💵 $650 MXN</span>
-        </div>
-      </div>
-      <div class="talk">
-        <p class="cat" data-i18n="talks.t3.cat">Lectura</p>
-        <h4 data-i18n="talks.t3.title">Leer mejor: del subrayado al ensayo</h4>
-        <p data-i18n="talks.t3.body">Una estrategia de lectura activa que sirve para libros, papers y artículos largos. Útil de la prepa al doctorado.</p>
-        <div class="meta">
-          <span data-i18n="talks.t3.duration">⏱ 90 min</span>
-          <span data-i18n="talks.t3.format">💻 Online</span>
-          <span data-i18n="talks.t3.price">💵 $450 MXN</span>
-        </div>
-      </div>
-    </div>
-    <div class="talks-cta reveal">
-      <a href="#contact" class="cta violet" data-i18n="talks.cta">Reservar lugar →</a>
-    </div>
-  </div>
+<section class="wrap row" style="padding-bottom:56px">
+<a class="path lift" href="#programas" style="background:var(--hoja)"><span class="kicker">Camino 1</span><b>Para ti o tu familia</b>Cuatro programas por edad y meta.<div class="more" style="color:var(--tinta)">Haz clic para explorar →</div></a>
+<a class="path lift" href="#escuelas" style="background:var(--tinta);color:#fff"><span class="kicker" style="color:var(--brote)">Camino 2</span><b>Para tu escuela</b>Formación docente y Canva para la Educación.<div class="more" style="color:var(--brote)">Haz clic para explorar →</div></a>
 </section>
 
-<!-- ===== BOOK CLUB ===== -->
-<section class="bookclub" id="bookclub">
-  <div class="wrap">
-    <p class="eyebrow reveal" data-i18n="club.eyebrow">The Fellowship of the Book</p>
-    <h2 class="reveal" data-i18n="club.title">Un libro al mes. Conversación amable. Argumentos fuertes.</h2>
-    <div class="bookclub-grid">
-      <div class="reveal">
-        <p class="lede" data-i18n="club.body">Leemos un libro al mes, despacio, y nos juntamos a discutirlo con cariño. Bienvenida la persona que se une el día que empieza el libro — no el día que lo termina.</p>
-        <div class="quote" data-i18n="club.quote">"Leer en compañía es la forma más barata de viajar dos veces."</div>
-        <a href="#contact" class="cta" data-i18n="club.cta">Únete gratis</a>
-      </div>
-      <div class="book-card polaroid reveal">
-        <div class="book-cover" data-i18n="club.cover">Bestiario</div>
-        <div>
-          <p class="meta" data-i18n="club.month">Lectura del mes</p>
-          <h4 data-i18n="club.bookname">Bestiario</h4>
-          <p class="author" data-i18n="club.author">Julio Cortázar · 1951</p>
-          <p style="color:#5a6c71; font-size:15px" data-i18n="club.blurb">Ocho cuentos donde lo cotidiano y lo extraño comparten cocina. Sesión en línea el último jueves del mes.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+<section class="wrap" style="padding-bottom:64px">
+<h2>Cuatro puertas. Un mismo método.</h2>
+<p style="margin:6px 0 24px">Toca una puerta para saber más.</p>
+<div class="row" id="doors"></div>
 </section>
 
-<!-- vine separator -->
-<div class="vine-sep" aria-hidden="true">
-  <svg viewBox="0 0 240 120" xmlns="http://www.w3.org/2000/svg">
-    <g class="book-pages">
-      <ellipse cx="120" cy="106" rx="72" ry="6" fill="#1B2A2F" opacity="0.12"/>
-      <path class="page-l" d="M120 60 L72 70 Q70 70 70 72 L70 96 Q70 98 72 98 L120 90 Z" fill="#FBF7EC" stroke="#5BB849" stroke-width="1.5"/>
-      <line x1="80" y1="78" x2="112" y2="76" stroke="#A8B3B6" stroke-width="0.8"/>
-      <line x1="80" y1="84" x2="112" y2="82" stroke="#A8B3B6" stroke-width="0.8"/>
-      <path class="page-r" d="M120 60 L168 70 Q170 70 170 72 L170 96 Q170 98 168 98 L120 90 Z" fill="#FBF7EC" stroke="#5BB849" stroke-width="1.5"/>
-      <line x1="128" y1="76" x2="160" y2="78" stroke="#A8B3B6" stroke-width="0.8"/>
-      <line x1="128" y1="82" x2="160" y2="84" stroke="#A8B3B6" stroke-width="0.8"/>
-      <line x1="120" y1="60" x2="120" y2="90" stroke="#3F8A30" stroke-width="2.5" stroke-linecap="round"/>
-    </g>
-    <path class="stem" d="M120 60 Q115 45 120 30 Q125 18 120 4"/>
-    <ellipse class="leaf" cx="105" cy="44" rx="14" ry="6" fill="#A4E089" transform="rotate(-25 105 44)"/>
-    <ellipse class="leaf" cx="135" cy="32" rx="14" ry="6" fill="#5BB849" transform="rotate(25 135 32)"/>
-    <ellipse class="leaf" cx="110" cy="20" rx="11" ry="5" fill="#A4E089" transform="rotate(-30 110 20)"/>
-    <ellipse class="leaf" cx="130" cy="10" rx="11" ry="5" fill="#5BB849" transform="rotate(30 130 10)"/>
-    <circle class="petal" cx="120" cy="2" r="3" fill="#F25F4C"/>
-    <circle class="petal" cx="120" cy="2" r="1.5" fill="#F9C846"/>
-  </svg>
+<section class="wrap row" style="padding-bottom:72px;align-items:center;gap:28px">
+<div style="flex:1 1 420px"><div class="video"><span style="width:76px;height:76px;border-radius:50%;background:var(--brote);display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="#0F2A1D"><path d="M7 4l14 8-14 8z"/></svg></span>Video de bienvenida, muy pronto</div></div>
+<div style="flex:1 1 340px">
+<h2>Hola, somos Springlearning</h2>
+<p style="margin:10px 0 18px">Un proyecto educativo bilingüe nacido en Tuxtla Gutiérrez para aprender tecnología creando.</p>
+<a class="btn dark" href="#nosotros">Conoce quiénes somos →</a>
 </div>
-
-<!-- ===== STUDENTS GALLERY ===== -->
-<section class="gallery" id="gallery">
-  <div class="wrap">
-    <p class="eyebrow sky reveal" data-i18n="gallery.eyebrow">Galería de estudiantes</p>
-    <h2 class="reveal" data-i18n="gallery.title">Trabajo real, hecho por estudiantes reales.</h2>
-    <p class="reveal" data-i18n="gallery.lede" style="max-width:720px; font-size:20px; color:#34474d;">Lo que sale del laboratorio. Cuentos, podcasts, ensayos, ilustraciones, charlas. Una muestra rotativa del trabajo de la comunidad Springlearning.</p>
-    <div class="gallery-grid reveal-stagger">
-      <div class="work">
-        <div class="work-bg"></div>
-        <div class="icon-overlay">📖</div>
-        <div class="work-content">
-          <p class="work-tag" data-i18n="gallery.w1.tag">Discovery · Cuento</p>
-          <h4 data-i18n="gallery.w1.title">El gato que aprendió a leer</h4>
-          <p class="by" data-i18n="gallery.w1.by">Sofía, 9 años</p>
-        </div>
-      </div>
-      <div class="work w2">
-        <div class="work-bg"></div>
-        <div class="icon-overlay">🎙</div>
-        <div class="work-content">
-          <p class="work-tag" data-i18n="gallery.w2.tag">Creators · Podcast</p>
-          <h4 data-i18n="gallery.w2.title">¿Por qué nos da miedo aburrirnos?</h4>
-          <p class="by" data-i18n="gallery.w2.by">Mateo, 15 años</p>
-        </div>
-      </div>
-      <div class="work w3">
-        <div class="work-bg"></div>
-        <div class="icon-overlay">✍</div>
-        <div class="work-content">
-          <p class="work-tag" data-i18n="gallery.w3.tag">Architects · Ensayo</p>
-          <h4 data-i18n="gallery.w3.title">Una defensa pública del olvido</h4>
-          <p class="by" data-i18n="gallery.w3.by">Andrea, 34</p>
-        </div>
-      </div>
-      <div class="work w4">
-        <div class="work-bg"></div>
-        <div class="icon-overlay">🎨</div>
-        <div class="work-content">
-          <p class="work-tag" data-i18n="gallery.w4.tag">Discovery · Cómic</p>
-          <h4 data-i18n="gallery.w4.title">Brote y la biblioteca prohibida</h4>
-          <p class="by" data-i18n="gallery.w4.by">Lucas, 11 años</p>
-        </div>
-      </div>
-      <div class="work w5">
-        <div class="work-bg"></div>
-        <div class="icon-overlay">🎬</div>
-        <div class="work-content">
-          <p class="work-tag" data-i18n="gallery.w5.tag">Creators · Reseña</p>
-          <h4 data-i18n="gallery.w5.title">Por qué Wes Anderson sigue importando</h4>
-          <p class="by" data-i18n="gallery.w5.by">Camila, 16</p>
-        </div>
-      </div>
-      <div class="work w6">
-        <div class="work-bg"></div>
-        <div class="icon-overlay">🎤</div>
-        <div class="work-content">
-          <p class="work-tag" data-i18n="gallery.w6.tag">Architects · Charla</p>
-          <h4 data-i18n="gallery.w6.title">Cómo leer una elección sin perder la cordura</h4>
-          <p class="by" data-i18n="gallery.w6.by">Diego, 41</p>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
+</main>
 
-<!-- ===== TESTIMONIAL ===== -->
-<section class="testimonial">
-  <div class="wrap">
-    <blockquote class="reveal" data-i18n="test.quote">"Mi hija salía de la clase contándome la historia que estaban leyendo. Eso no me pasaba con otras escuelas."</blockquote>
-    <span class="who reveal" data-i18n="test.who">— Madre de estudiante Discovery, Tuxtla Gutiérrez</span>
-  </div>
+<!-- ===================== PROGRAMAS ===================== -->
+<main class="page" id="p-programas">
+<div class="wrap sec">
+<h1 style="font-size:clamp(34px,5vw,52px)">Programas</h1>
+<p style="margin-top:8px">Elige un programa para ver para quién es y qué se aprende.</p>
+<div class="tabs" role="tablist" id="tabs"></div>
+<div class="row" id="prog" style="gap:28px"></div>
+</div>
+</main>
+
+<!-- ===================== ESCUELAS ===================== -->
+<main class="page" id="p-escuelas">
+<section style="background:var(--esm);padding:64px 0;position:relative;overflow:hidden">
+<div class="shape" style="right:6%;top:30px;width:180px;height:180px;border-radius:50%;background:var(--brote)"></div>
+<div class="wrap" style="position:relative">
+<div class="kicker">Para escuelas</div>
+<h1 style="margin:6px 0 10px">Leamos el manual, juntos.</h1>
+<p style="font-size:20px;max-width:640px">Inteligencia artificial para todo el ecosistema escolar: directivos, docentes, alumnos y familias.</p>
+</div>
 </section>
+<div class="wrap" style="padding-top:48px">
+<h2>Tres productos. Una sola ruta.</h2>
+<p style="margin:6px 0 20px">Haz clic en cada paso para ver qué incluye.</p>
+<div class="row">
+<button class="step lift" data-d="talk" style="background:var(--brote);color:var(--tinta)"><span class="kicker">1 · Despertar</span><b>SpringTalk</b>Plática para toda la comunidad.<strong>1 h 20 min</strong><u>Ver detalles</u></button>
+<button class="step lift on" data-d="deploy" style="background:var(--bosque);color:#fff"><span class="kicker">2 · Formar</span><b>SpringDeploy</b>Curso de formación docente en IA y Canva.<strong>15 · 30 · 40 horas</strong><u>Ver detalles</u></button>
+<button class="step lift" data-d="forward" style="background:var(--azul2);color:#fff"><span class="kicker">3 · Sostener</span><b>SpringForward</b>Implementación de Canva para la Educación.<strong>4 meses · docentes + staff</strong><u>Ver detalles</u></button>
+</div>
+</div>
+<div class="wrap" style="padding-top:24px">
+<div class="card detail" id="d-talk" style="padding:32px">
+<h3>SpringTalk: una plática para empezar a hablar el mismo idioma</h3>
+<p>Una sesión de 1 h 20 min para familias, docentes y alumnos.</p>
+<ul class="clean"><li>Qué es la IA y de dónde viene</li><li>Riesgos reales: datos, imágenes falsas, dependencia</li><li>Cómo acompañar el uso en casa</li><li>Qué habilidades vienen para el futuro</li></ul>
+</div>
+<div class="card detail on" id="d-deploy" style="padding:32px">
+<div><h3>SpringDeploy: tus docentes aprenden a enseñar con IA</h3>
+<p style="margin-top:8px;max-width:760px">Es un curso que la escuela contrata para su planta docente. No enseña a usar botones: forma criterio pedagógico para decidir cuándo la IA ayuda a pensar y cuándo estorba. Se trabaja con IA y Canva.</p></div>
+<div><div class="kicker" style="margin-bottom:10px">Elige la duración</div>
+<div class="row" style="gap:14px">
+<div class="fact" style="background:var(--hoja);border-radius:20px;padding:20px"><b style="font:700 22px 'Outfit',sans-serif">Taller · 15 horas</b><br>La puerta de entrada.</div>
+<div class="fact" style="background:var(--hoja);border-radius:20px;padding:20px"><b style="font:700 22px 'Outfit',sans-serif">Estratégica · 30 horas</b><br>Más práctica para llevar el método al aula.</div>
+<div class="fact" style="background:var(--hoja);border-radius:20px;padding:20px"><b style="font:700 22px 'Outfit',sans-serif">Completa · 40 horas</b><br>Los cinco módulos completos.</div>
+</div></div>
+<div><div class="kicker">Los cinco módulos</div>
+<div class="mod"><b>M1</b><span><b>Mentalidad docente</b> · del temor a una postura informada</span></div>
+<div class="mod"><b>M2</b><span><b>Nuevo motor del aula</b> · de transmitir a diseñar</span></div>
+<div class="mod"><b>M3</b><span><b>IA como co-docente</b> · de usar a crear con ética</span></div>
+<div class="mod"><b>M4</b><span><b>Aprendizaje creador</b> · de recibir a producir</span></div>
+<div class="mod"><b>M5</b><span><b>Automatización</b> · de labor manual a sistema</span></div></div>
+<p style="font-weight:700;color:var(--bosque)">Cada módulo entrega un artefacto real de aula. Sin exámenes: evidencia.</p>
+</div>
+<div class="card detail" id="d-forward" style="padding:32px">
+<div><h3>SpringForward: tu escuela opera su propia plataforma creativa</h3>
+<p style="margin-top:8px;max-width:760px">Es un acompañamiento de 4 meses para implementar Canva para la Educación en toda la escuela. SpringDeploy forma a las personas; SpringForward deja instalado el sistema. Trabajamos con dos equipos al mismo tiempo.</p></div>
+<div class="row" style="gap:14px">
+<div style="flex:1 1 300px;background:#E4E9FF;border-radius:20px;padding:22px"><div class="kicker">Equipo 1 · Staff administrativo</div><ul class="clean"><li>Cuenta institucional de Canva y licencias</li><li>Brand Kit de la escuela</li><li>Biblioteca de plantillas</li><li>Manual de mantenimiento</li></ul></div>
+<div style="flex:1 1 300px;background:var(--hoja);border-radius:20px;padding:22px"><div class="kicker">Equipo 2 · Docentes</div><ul class="clean"><li>Ocho sesiones con metas propias</li><li>Un artefacto de aula por sesión</li><li>Portafolio final</li></ul></div>
+</div>
+<p style="font-weight:700;color:var(--bosque)">Canva para la Educación es gratuito para escuelas que califican. Nosotros gestionamos la solicitud y formamos a tu equipo.</p>
+</div>
+</div>
+<div class="wrap" style="padding-top:24px">
+<div style="background:var(--tinta);color:#fff;border-radius:28px;padding:28px"><h3 style="font-size:24px;margin-bottom:8px">SpringLab, en paralelo</h3><p>Laboratorio de tecnología después de clases, en tu escuela, para alumnos y sus familias. Una sesión semanal.</p></div>
+</div>
+<div class="wrap" style="padding:24px 20px 72px">
+<div class="row" style="background:var(--sol);border-radius:28px;padding:28px;align-items:center;justify-content:space-between">
+<div style="flex:1 1 320px"><b style="font:700 26px 'Outfit',sans-serif">Agenda una reunión</b><br>¿Eres docente y quieres formarte por tu cuenta? Eso es Sembradores.</div>
+<div class="row" style="gap:10px"><a class="btn dark" href="https://wa.me/528127582207?text=Hola%2C%20quiero%20agendar%20una%20reuni%C3%B3n%20para%20mi%20escuela.">Agendar reunión</a><a class="btn line" href="#programas" onclick="pick('sowers')">Ver Sembradores</a></div>
+</div>
+</div>
+</main>
 
-<!-- ===== CONTACT ===== -->
-<section class="contact" id="contact">
-  <div class="wrap">
-    <div class="contact-grid">
-      <div class="contact-side reveal">
-        <p class="eyebrow" data-i18n="contact.eyebrow">Contacto · Únete</p>
-        <h2 data-i18n="contact.title">Una conversación, no un formulario.</h2>
-        <p data-i18n="contact.lede" style="font-size:19px; color:#34474d;">Cuéntame para quién es esto y qué te llamó la atención. Te respondo en menos de 48 horas con una propuesta concreta.</p>
-        <ul>
-          <li>
-            <span class="pin">@</span>
-            <div>
-              <strong data-i18n="contact.email">Correo</strong>
-              <a href="mailto:primavera@springlearning.mx">primavera@springlearning.mx</a>
-            </div>
-          </li>
-          <li>
-            <span class="pin bloom">☎</span>
-            <div>
-              <strong data-i18n="contact.phone">Teléfono / WhatsApp</strong>
-              <a href="tel:+528127582207">+52 812 758 2207</a>
-            </div>
-          </li>
-          <li>
-            <span class="pin sky">📍</span>
-            <div>
-              <strong data-i18n="contact.where">Modalidad</strong>
-              <span data-i18n="contact.where.body">Online en todo el mundo · Grupos presenciales en Tuxtla Gutiérrez, Chiapas</span>
-            </div>
-          </li>
-          <li>
-            <span class="pin violet">⚡</span>
-            <div>
-              <strong data-i18n="contact.companies">Para empresas y escuelas</strong>
-              <span data-i18n="contact.companies.body">Talleres a medida, Spring Talks corporativos, certificación de maestros</span>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <form class="join reveal" onsubmit="event.preventDefault(); document.getElementById('thanks').style.display='block';" novalidate>
-        <label for="name" data-i18n="form.name">Nombre</label>
-        <input id="name" type="text" required>
-        <label for="email" data-i18n="form.email">Correo</label>
-        <input id="email" type="email" required>
-        <label for="who" data-i18n="form.who">¿Para quién?</label>
-        <select id="who">
-          <option data-i18n="form.who.kid">Para un niño / niña (8–13)</option>
-          <option data-i18n="form.who.teen">Para un adolescente (14–17)</option>
-          <option data-i18n="form.who.adult">Para mí (adulto, 18+)</option>
-          <option data-i18n="form.who.teacher">Soy maestro/a</option>
-          <option data-i18n="form.who.company">Para mi empresa o escuela</option>
-          <option data-i18n="form.who.club">Solo quiero unirme al Club de Lectura</option>
-          <option data-i18n="form.who.talk">Quiero reservar un Spring Talk</option>
-        </select>
-        <label for="msg" data-i18n="form.msg">Cuéntame más</label>
-        <textarea id="msg" placeholder="Lo que te gustaría aprender, en qué horario, lo que sea relevante."></textarea>
-        <button type="submit" data-i18n="form.submit">Enviar</button>
-        <p id="thanks" style="display:none; margin-top:14px; font-size:15px; color:var(--sprout-deep);" data-i18n="form.thanks">¡Gracias! Te respondo en menos de 48 horas. — Primavera</p>
-      </form>
-    </div>
-  </div>
+<!-- ===================== ESTUDIANTES ===================== -->
+<main class="page" id="p-estudiantes">
+<div class="wrap sec">
+<h1 style="font-size:clamp(34px,5vw,52px)">Estudiantes</h1>
+<p style="margin:8px 0 28px">Tu espacio: entra a tu clase, mira lo que han creado tus compañeros y lee lo que dicen las familias.</p>
+<section class="row" style="background:var(--bosque);color:#fff;border-radius:28px;padding:32px;align-items:center;gap:24px;margin-bottom:48px">
+<div style="flex:1 1 320px"><h2 style="margin-bottom:10px">1. Entra a tu clase</h2>
+<ol style="margin:0;padding-left:22px"><li>Haz clic en el botón.</li><li>Elige la cuenta de Google con la que te inscribiste.</li><li>Abre tu grupo. ¿No puedes entrar? Escríbenos por WhatsApp.</li></ol></div>
+<a class="btn lime" href="https://classroom.google.com/" style="font:700 22px 'Outfit',sans-serif;padding:18px 34px">Ir a mi clase →</a>
 </section>
+<section style="margin-bottom:48px">
+<h2>2. Galería de trabajos</h2>
+<p style="margin:6px 0 18px">Muy pronto: trabajos reales de nuestros alumnos.</p>
+<div class="grid3">
+<div class="tile" style="background:var(--brote)"><b>Descubridores</b></div>
+<div class="tile" style="background:var(--azul);color:#fff"><b>Creadores</b></div>
+<div class="tile" style="background:var(--esm)"><b>Arquitectos</b></div>
+<div class="tile" style="background:var(--hoja)"><b>Descubridores</b></div>
+<div class="tile" style="background:var(--sol)"><b>Sembradores</b></div>
+<div class="tile" style="background:var(--azul2);color:#fff"><b>Creadores</b></div>
+</div>
+</section>
+<section>
+<h2>3. Lo que dicen las familias</h2>
+<p style="margin:6px 0 18px">Tu opinión nos ayuda a mejorar. La publicamos solo con tu permiso.</p>
+<div class="row" style="gap:28px;align-items:flex-start">
+<form class="card" id="opinion" style="flex:1 1 360px;display:flex;flex-direction:column;gap:14px;padding:28px">
+<label>Tu nombre (solo nombre de pila)<input id="o-n" required></label>
+<label>Programa<select id="o-p"><option>Descubridores</option><option>Creadores</option><option>Arquitectos</option><option>Sembradores</option></select></label>
+<label>Calificación<select id="o-s"><option>5 de 5</option><option>4 de 5</option><option>3 de 5</option><option>2 de 5</option><option>1 de 5</option></select></label>
+<label>Tu comentario<textarea id="o-m" rows="4" required></textarea></label>
+<button class="btn" type="submit">Enviar opinión por WhatsApp</button>
+</form>
+<div style="flex:1 1 360px" class="ph">Aquí publicaremos las opiniones de las familias.</div>
+</div>
+</section>
+</div>
+</main>
 
-<!-- ===== FOOTER ===== -->
+<!-- ===================== NOSOTROS ===================== -->
+<main class="page" id="p-nosotros">
+<div class="wrap sec">
+<section class="row" style="gap:32px;align-items:center;margin-bottom:56px">
+<div style="flex:1 1 300px;aspect-ratio:4/5;max-width:380px;border-radius:200px 200px 28px 28px;background:var(--hoja)"></div>
+<div style="flex:2 1 420px">
+<div class="kicker">Quiénes somos</div>
+<h1 style="font-size:clamp(34px,5vw,54px);margin:6px 0 14px">Somos Springlearning.</h1>
+<p style="font-size:19px;margin-bottom:12px">Un proyecto educativo bilingüe nacido en Tuxtla Gutiérrez para que niños, jóvenes, adultos y docentes aprendan a crear con tecnología, sin miedo y con criterio.</p>
+<p><b>Fundadora: Primavera Flores,</b> animadora 3D y docente bilingüe. Cada módulo nace de lo que ha funcionado con estudiantes y docentes reales, en México y con niños de Corea del Sur que crecen en Monterrey.</p>
+</div>
+</section>
+<section style="margin-bottom:56px">
+<h2 style="margin-bottom:18px">De dónde venimos</h2>
+<div class="row" style="gap:14px">
+<div class="card lift" style="flex:1 1 240px"><b style="font:700 20px 'Outfit',sans-serif">Arte</b><br>Historia del arte en Florencia: de ahí viene nuestra forma de mirar.</div>
+<div class="card lift" style="flex:1 1 240px"><b style="font:700 20px 'Outfit',sans-serif">Animación</b><br>Licenciatura en animación, entornos y diseño de personajes, en LA Film School.</div>
+<div class="card lift" style="flex:1 1 240px"><b style="font:700 20px 'Outfit',sans-serif">Tecnología</b><br>Canva Certified, CS50 de Harvard e IA aplicada al aula.</div>
+<div class="card lift" style="flex:1 1 240px"><b style="font:700 20px 'Outfit',sans-serif">Aula</b><br>Docente bilingüe y puente entre México y Corea.</div>
+</div>
+</section>
+<section style="background:var(--tinta);color:#fff;border-radius:28px;padding:36px;margin-bottom:56px">
+<div class="kicker" style="color:var(--brote)">Nuestro método</div>
+<p style="font:700 clamp(24px,3.4vw,36px) 'Outfit',sans-serif;line-height:1.2;margin:10px 0 14px">“No pedimos permiso para aprender.”</p>
+<p>Todo se aprende en cinco pasos: Exploración, Investigación, Creación, Aplicación y Reflexión.</p>
+</section>
+<section class="row" style="background:var(--hoja);border-radius:28px;padding:28px;align-items:center;justify-content:space-between">
+<div style="flex:1 1 320px"><b style="font:700 26px 'Outfit',sans-serif">Hablemos</b><br>Síguenos para ver lo que crean los alumnos cada semana.</div>
+<div class="row" style="gap:10px"><a class="btn dark" href="https://wa.me/528127582207">WhatsApp</a><a class="btn line" href="https://instagram.com/springlearning.mx">Instagram</a></div>
+</section>
+</div>
+</main>
+
+<!-- ===================== CONTACTO ===================== -->
+<main class="page" id="p-contacto">
+<div class="wrap sec">
+<h1 style="font-size:clamp(34px,5vw,52px)">Contacto</h1>
+<p style="margin:8px 0 28px">Cuéntanos para quién es y te respondemos por WhatsApp.</p>
+<div class="row" style="gap:28px;align-items:flex-start">
+<form class="card" id="contact" style="flex:1 1 380px;display:flex;flex-direction:column;gap:14px;padding:28px">
+<label>Tu nombre<input id="c-n" required></label>
+<label>¿Para quién es?<select id="c-p"><option>Descubridores (niños de 8 a 15)</option><option>Creadores (adolescentes)</option><option>Arquitectos (adultos)</option><option>Sembradores (docentes por su cuenta)</option><option>Mi escuela o institución</option></select></label>
+<label>Mensaje<textarea id="c-m" rows="4"></textarea></label>
+<button class="btn" type="submit">Enviar por WhatsApp</button>
+<a href="mailto:primavera@springlearning.mx">O escríbenos por correo: primavera@springlearning.mx</a>
+</form>
+<div style="flex:1 1 300px;display:flex;flex-direction:column;gap:14px">
+<a class="card lift" style="text-decoration:none;color:var(--tinta)" href="https://wa.me/528127582207"><b style="font:700 20px 'Outfit',sans-serif">WhatsApp</b><br>812 758 2207</a>
+<a class="card lift" style="text-decoration:none;color:var(--tinta)" href="https://instagram.com/springlearning.mx"><b style="font:700 20px 'Outfit',sans-serif">Instagram</b><br>@springlearning.mx</a>
+<a class="card lift" style="text-decoration:none;color:var(--tinta)" href="https://tiktok.com/@springlearning7"><b style="font:700 20px 'Outfit',sans-serif">TikTok</b><br>@springlearning7</a>
+<div class="card"><b style="font:700 20px 'Outfit',sans-serif">Dónde</b><br>Tuxtla Gutiérrez, Chiapas, y en línea.</div>
+</div>
+</div>
+</div>
+</main>
+
 <footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <div class="brand" style="margin-bottom:14px;">
-          <svg class="mark" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <circle cx="30" cy="30" r="28" fill="#1B2A2F" stroke="#F9C846" stroke-width="2.5"/>
-            <path d="M18 38 Q22 22 30 26 Q38 30 42 18" stroke="#F9C846" stroke-width="3.2" fill="none" stroke-linecap="round"/>
-            <circle cx="42" cy="18" r="3" fill="#F25F4C"/>
-          </svg>
-          <span class="name" style="color:var(--page);">spring<span style="color:var(--sun);">learning</span></span>
-        </div>
-        <p style="font-size:14px; color:#a8b3b6; max-width:320px;" data-i18n="foot.tagline">Laboratorio creativo de aprendizaje. Vibrante. Lúdico. Tech-forward.</p>
-      </div>
-      <div>
-        <h5 data-i18n="foot.programs">Programas</h5>
-        <ul>
-          <li><a href="#programs" data-i18n="foot.kids">Kids · Discovery</a></li>
-          <li><a href="#programs" data-i18n="foot.teens">Teens · Creators</a></li>
-          <li><a href="#programs" data-i18n="foot.adults">Adults · Architects</a></li>
-          <li><a href="#programs" data-i18n="foot.teachers">Teachers</a></li>
-          <li><a href="#contact" data-i18n="foot.companies">Para empresas</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5 data-i18n="foot.community">Comunidad</h5>
-        <ul>
-          <li><a href="#bookclub" data-i18n="foot.bookclub">Club de Lectura</a></li>
-          <li><a href="#springtalks" data-i18n="foot.springtalks">Spring Talks</a></li>
-          <li><a href="#gallery" data-i18n="foot.gallery">Galería</a></li>
-          <li><a href="about.html" data-i18n="foot.about">Sobre Springlearning</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5 data-i18n="foot.contact">Contacto</h5>
-        <ul>
-          <li><a href="mailto:primavera@springlearning.mx">primavera@springlearning.mx</a></li>
-          <li><a href="tel:+528127582207">+52 812 758 2207</a></li>
-          <li><a href="https://classroom.google.com/" target="_blank" rel="noopener" data-i18n="foot.class">Entrar a clase ↗</a></li>
-          <li style="font-size:12px; color:#8a98a0; margin-top:-2px;" data-i18n="foot.classnote">Inicia sesión con tu cuenta @springlearning.mx</li>
-        </ul>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <span>© 2026 Springlearning · Hecho con cuidado en Tuxtla Gutiérrez, Chiapas</span>
-      <span data-i18n="foot.rights">Todos los derechos reservados.</span>
-    </div>
-  </div>
+<div class="wrap row" style="justify-content:space-between;align-items:center">
+<div><b style="font:700 22px 'Outfit',sans-serif">Springlearning</b><br><span style="font-size:15px">primavera@springlearning.mx · 812 758 2207</span></div>
+<div class="row" style="gap:16px"><a href="https://instagram.com/springlearning.mx">Instagram</a><a href="https://tiktok.com/@springlearning7">TikTok</a><a href="https://wa.me/528127582207">WhatsApp</a><a href="https://classroom.google.com/">Clase</a></div>
+</div>
 </footer>
 
-<!-- ===== SCRIPTS: i18n + scroll reveal + nav ===== -->
+<a class="wa" href="https://wa.me/528127582207" aria-label="Escríbenos por WhatsApp"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg></a>
+
 <script>
-const i18n = {
-  es: {
-    "meta.title":"Springlearning — Aprender es como hacer brotar algo",
-    "meta.desc":"Springlearning es un laboratorio creativo de aprendizaje para niños, adolescentes, adultos y maestros. Discovery, Creators, Architects.",
-    "nav.home":"Inicio","nav.programs":"Programas","nav.springtalks":"Spring Talks",
-    "nav.gallery":"Galería","nav.contact":"Contacto","nav.class":"Clase ↗","nav.cta":"Reservar",
-    "hero.eyebrow":"Laboratorio creativo de aprendizaje",
-    "hero.title":"Aprender es como hacer brotar algo.",
-    "hero.cta1":"Reservar clase muestra","hero.cta2":"Conoce los programas",
-    "doors.eyebrow":"Programas y cursos","doors.title":"Cuatro puertas. Un mismo método.",
-    "doors.lede":"Estudiantes y maestros: cada quien recorre Discovery → Creators → Architects, adaptado a su edad, voz y oficio.",
-    "doors.kids.age":"Discovery · 8 – 13 años","doors.kids.title":"Springlearning · Kids",
-    "doors.kids.body":"Historias, dibujos, juego. Aprenden inglés y a hacer preguntas como quien arma un Lego — probando, rompiendo y volviendo a armar.",
-    "doors.teens.age":"Creators · 14 – 17 años","doors.teens.title":"Springlearning · Teens",
-    "doors.teens.body":"Proyectos que sí quieren mostrar: un podcast, una reseña, un corto. Aprenden a pensar y a publicar al mismo tiempo.",
-    "doors.adults.age":"Architects · 18+","doors.adults.title":"Springlearning · Adults",
-    "doors.adults.body":"Escritura creativa, retórica profesional, lectura crítica. La clase de inglés (o de pensamiento) que te hubiera gustado tener.",
-    "doors.teachers.age":"Maestros · PD + Certificación","doors.teachers.title":"Springlearning · Teachers",
-    "doors.teachers.body":"Para maestros: usar AI y Canva para mejores clases, y certificación en el método Springlearning.",
-    "doors.more":"Conocer más →",
-    "out.eyebrow":"El método · Outcomes","out.title":"Discovery → Creators → Architects.",
-    "out.lede":"Tres etapas que un estudiante recorre, en su tiempo, con resultados que se pueden contar a un amigo.",
-    "tier.discovery.verb":"Explora","tier.discovery.meta":"CEFR A1 – A2 · curiosidad","tier.discovery.name":"Discovery",
-    "tier.discovery.body":"El estudiante juega con el idioma como con plastilina. Termina la etapa habiendo leído cuentos completos y armado pequeñas obras: un cómic, una receta, una guía de museo.",
-    "tier.creators.verb":"Construye","tier.creators.meta":"CEFR B1 – B2 · oficio","tier.creators.name":"Creators",
-    "tier.creators.body":"Pasa de consumir a producir. Termina con un portafolio real — un episodio de podcast, un ensayo personal, una reseña publicada — y la confianza que da haber hecho algo de principio a fin.",
-    "tier.architects.verb":"Argumenta","tier.architects.meta":"CEFR C1 + · autoría","tier.architects.name":"Architects",
-    "tier.architects.body":"Defiende ideas por escrito y en voz alta. Para adultos que quieren aplicar a un máster, escribir una columna, dar una charla o, simplemente, pensar mejor.",
-    "talks.eyebrow":"Spring Talks · Masterclasses","talks.title":"Una hora. Una idea. Una habilidad.",
-    "talks.lede":"Talleres en vivo de una sola sesión. Para quien quiere aprender una cosa específica, bien, en un formato corto.",
-    "talks.t1.cat":"Escritura","talks.t1.title":"Cómo escribir una columna que alguien quiera leer",
-    "talks.t1.body":"90 minutos. Estructura, hook, ritmo. Salís con un borrador real y feedback en vivo.",
-    "talks.t1.duration":"⏱ 90 min","talks.t1.format":"💻 Online","talks.t1.price":"💵 $450 MXN",
-    "talks.t2.cat":"AI + Educación","talks.t2.title":"Usar IA sin perder el oficio de pensar",
-    "talks.t2.body":"Para maestros y curiosos. Cómo integrar IA en el aula sin que reemplace el músculo crítico del estudiante.",
-    "talks.t2.duration":"⏱ 2 hrs","talks.t2.format":"💻 Online","talks.t2.price":"💵 $650 MXN",
-    "talks.t3.cat":"Lectura","talks.t3.title":"Leer mejor: del subrayado al ensayo",
-    "talks.t3.body":"Una estrategia de lectura activa que sirve para libros, papers y artículos largos. Útil de la prepa al doctorado.",
-    "talks.t3.duration":"⏱ 90 min","talks.t3.format":"💻 Online","talks.t3.price":"💵 $450 MXN",
-    "talks.cta":"Reservar lugar →",
-    "club.eyebrow":"The Fellowship of the Book","club.title":"Un libro al mes. Conversación amable. Argumentos fuertes.",
-    "club.body":"Leemos un libro al mes, despacio, y nos juntamos a discutirlo con cariño. Bienvenida la persona que se une el día que empieza el libro — no el día que lo termina.",
-    "club.quote":"\"Leer en compañía es la forma más barata de viajar dos veces.\"",
-    "club.cta":"Únete gratis","club.cover":"Bestiario","club.month":"Lectura del mes",
-    "club.bookname":"Bestiario","club.author":"Julio Cortázar · 1951",
-    "club.blurb":"Ocho cuentos donde lo cotidiano y lo extraño comparten cocina. Sesión en línea el último jueves del mes.",
-    "gallery.eyebrow":"Galería de estudiantes","gallery.title":"Trabajo real, hecho por estudiantes reales.",
-    "gallery.lede":"Lo que sale del laboratorio. Cuentos, podcasts, ensayos, ilustraciones, charlas. Una muestra rotativa del trabajo de la comunidad Springlearning.",
-    "gallery.w1.tag":"Discovery · Cuento","gallery.w1.title":"El gato que aprendió a leer","gallery.w1.by":"Sofía, 9 años",
-    "gallery.w2.tag":"Creators · Podcast","gallery.w2.title":"¿Por qué nos da miedo aburrirnos?","gallery.w2.by":"Mateo, 15 años",
-    "gallery.w3.tag":"Architects · Ensayo","gallery.w3.title":"Una defensa pública del olvido","gallery.w3.by":"Andrea, 34",
-    "gallery.w4.tag":"Discovery · Cómic","gallery.w4.title":"Brote y la biblioteca prohibida","gallery.w4.by":"Lucas, 11 años",
-    "gallery.w5.tag":"Creators · Reseña","gallery.w5.title":"Por qué Wes Anderson sigue importando","gallery.w5.by":"Camila, 16",
-    "gallery.w6.tag":"Architects · Charla","gallery.w6.title":"Cómo leer una elección sin perder la cordura","gallery.w6.by":"Diego, 41",
-    "test.quote":"\"Mi hija salía de la clase contándome la historia que estaban leyendo. Eso no me pasaba con otras escuelas.\"",
-    "test.who":"— Madre de estudiante Discovery, Tuxtla Gutiérrez",
-    "contact.eyebrow":"Contacto · Únete","contact.title":"Una conversación, no un formulario.",
-    "contact.lede":"Cuéntame para quién es esto y qué te llamó la atención. Te respondo en menos de 48 horas con una propuesta concreta.",
-    "contact.email":"Correo","contact.phone":"Teléfono / WhatsApp",
-    "contact.where":"Modalidad","contact.where.body":"Online en todo el mundo · Grupos presenciales en Tuxtla Gutiérrez, Chiapas",
-    "contact.companies":"Para empresas y escuelas","contact.companies.body":"Talleres a medida, Spring Talks corporativos, certificación de maestros",
-    "form.name":"Nombre","form.email":"Correo","form.who":"¿Para quién?",
-    "form.who.kid":"Para un niño / niña (8–13)","form.who.teen":"Para un adolescente (14–17)",
-    "form.who.adult":"Para mí (adulto, 18+)","form.who.teacher":"Soy maestro/a","form.who.company":"Para mi empresa o escuela",
-    "form.who.club":"Solo quiero unirme al Club de Lectura","form.who.talk":"Quiero reservar un Spring Talk",
-    "form.msg":"Cuéntame más","form.submit":"Enviar",
-    "form.thanks":"¡Gracias! Te respondo en menos de 48 horas. — Primavera",
-    "foot.tagline":"Laboratorio creativo de aprendizaje. Vibrante. Lúdico. Tech-forward.",
-    "foot.programs":"Programas","foot.kids":"Kids · Discovery","foot.teens":"Teens · Creators","foot.adults":"Adults · Architects",
-    "foot.teachers":"Teachers","foot.companies":"Para empresas",
-    "foot.community":"Comunidad","foot.bookclub":"Club de Lectura","foot.springtalks":"Spring Talks",
-    "foot.gallery":"Galería","foot.about":"Sobre Springlearning","foot.contact":"Contacto","foot.class":"Entrar a clase ↗",
-    "foot.classnote":"Inicia sesión con tu cuenta @springlearning.mx",
-    "foot.rights":"Todos los derechos reservados."
-  },
-  en: {
-    "meta.title":"Springlearning — Learning is making something sprout",
-    "meta.desc":"Springlearning is a creative learning laboratory for kids, teens, adults and teachers. Discovery, Creators, Architects.",
-    "nav.home":"Home","nav.programs":"Programs","nav.springtalks":"Spring Talks",
-    "nav.gallery":"Gallery","nav.contact":"Contact","nav.class":"Class ↗","nav.cta":"Book a class",
-    "hero.eyebrow":"Creative learning laboratory",
-    "hero.title":"Learning is making something sprout.",
-    "hero.cta1":"Book a sample class","hero.cta2":"See the programs",
-    "doors.eyebrow":"Programs & courses","doors.title":"Four doors. One method.",
-    "doors.lede":"Students and teachers alike walk Discovery → Creators → Architects — shaped to age, voice and craft.",
-    "doors.kids.age":"Discovery · ages 8 – 13","doors.kids.title":"Springlearning · Kids",
-    "doors.kids.body":"Stories, drawing, play. They learn English and how to ask questions the way you build with Lego — try, break, rebuild.",
-    "doors.teens.age":"Creators · ages 14 – 17","doors.teens.title":"Springlearning · Teens",
-    "doors.teens.body":"Projects they actually want to show people: a podcast, a review, a short film. They learn to think and to publish at the same time.",
-    "doors.adults.age":"Architects · 18+","doors.adults.title":"Springlearning · Adults",
-    "doors.adults.body":"Creative writing, professional rhetoric, critical reading. The class — in English or in thinking — you wish you'd had.",
-    "doors.teachers.age":"Teachers · PD + Certification","doors.teachers.title":"Springlearning · Teachers",
-    "doors.teachers.body":"For teachers: using AI and Canva for better lessons, and certification in the Springlearning method.",
-    "doors.more":"Learn more →",
-    "out.eyebrow":"The method · Outcomes","out.title":"Discovery → Creators → Architects.",
-    "out.lede":"Three stages a student walks, in their time, with outcomes you can describe to a friend.",
-    "tier.discovery.verb":"Explore","tier.discovery.meta":"CEFR A1 – A2 · curiosity","tier.discovery.name":"Discovery",
-    "tier.discovery.body":"The student plays with the language the way they play with clay. They leave having read whole stories and built small works: a comic, a recipe, a museum guide.",
-    "tier.creators.verb":"Build","tier.creators.meta":"CEFR B1 – B2 · craft","tier.creators.name":"Creators",
-    "tier.creators.body":"They move from consuming to producing. They leave with a real portfolio — a podcast episode, a personal essay, a published review — and the confidence that comes from finishing something.",
-    "tier.architects.verb":"Argue","tier.architects.meta":"CEFR C1 + · authorship","tier.architects.name":"Architects",
-    "tier.architects.body":"They defend ideas in writing and out loud. For adults applying to a master's, writing a column, giving a talk, or — simply — wanting to think more sharply.",
-    "talks.eyebrow":"Spring Talks · Masterclasses","talks.title":"One hour. One idea. One skill.",
-    "talks.lede":"Live single-session workshops. For people who want to learn one specific thing, well, in a short format.",
-    "talks.t1.cat":"Writing","talks.t1.title":"How to write a column someone actually wants to read",
-    "talks.t1.body":"90 minutes. Structure, hook, rhythm. You walk out with a real draft and live feedback.",
-    "talks.t1.duration":"⏱ 90 min","talks.t1.format":"💻 Online","talks.t1.price":"💵 $450 MXN",
-    "talks.t2.cat":"AI + Education","talks.t2.title":"Using AI without losing the craft of thinking",
-    "talks.t2.body":"For teachers and the curious. How to integrate AI in the classroom without it replacing the student's critical muscle.",
-    "talks.t2.duration":"⏱ 2 hrs","talks.t2.format":"💻 Online","talks.t2.price":"💵 $650 MXN",
-    "talks.t3.cat":"Reading","talks.t3.title":"Read better: from underlining to the essay",
-    "talks.t3.body":"An active reading strategy that works for books, papers and long-form articles. Useful from high school to a doctorate.",
-    "talks.t3.duration":"⏱ 90 min","talks.t3.format":"💻 Online","talks.t3.price":"💵 $450 MXN",
-    "talks.cta":"Reserve a seat →",
-    "club.eyebrow":"The Fellowship of the Book","club.title":"One book a month. Kind conversation. Strong arguments.",
-    "club.body":"We read one book a month, slowly, and meet to argue about it kindly. New members welcome the day they start the book — not the day they finish it.",
-    "club.quote":"\"Reading in company is the cheapest way to travel twice.\"",
-    "club.cta":"Join free","club.cover":"Bestiary","club.month":"This month's read",
-    "club.bookname":"Bestiary","club.author":"Julio Cortázar · 1951",
-    "club.blurb":"Eight stories where the everyday and the strange share a kitchen. Online session the last Thursday of the month.",
-    "gallery.eyebrow":"Students gallery","gallery.title":"Real work, made by real students.",
-    "gallery.lede":"What comes out of the laboratory. Stories, podcasts, essays, illustrations, talks. A rotating sample of the Springlearning community's work.",
-    "gallery.w1.tag":"Discovery · Story","gallery.w1.title":"The cat who learned to read","gallery.w1.by":"Sofía, age 9",
-    "gallery.w2.tag":"Creators · Podcast","gallery.w2.title":"Why are we so afraid of being bored?","gallery.w2.by":"Mateo, age 15",
-    "gallery.w3.tag":"Architects · Essay","gallery.w3.title":"A public defense of forgetting","gallery.w3.by":"Andrea, 34",
-    "gallery.w4.tag":"Discovery · Comic","gallery.w4.title":"Brote and the forbidden library","gallery.w4.by":"Lucas, age 11",
-    "gallery.w5.tag":"Creators · Review","gallery.w5.title":"Why Wes Anderson still matters","gallery.w5.by":"Camila, 16",
-    "gallery.w6.tag":"Architects · Talk","gallery.w6.title":"How to read an election without losing your mind","gallery.w6.by":"Diego, 41",
-    "test.quote":"\"My daughter would walk out of class telling me the story they were reading. That hadn't happened with other schools.\"",
-    "test.who":"— Mother of a Discovery student, Tuxtla Gutiérrez",
-    "contact.eyebrow":"Contact · Join","contact.title":"A conversation, not a form.",
-    "contact.lede":"Tell me who this is for and what caught your eye. I'll get back to you in under 48 hours with a concrete proposal.",
-    "contact.email":"Email","contact.phone":"Phone / WhatsApp",
-    "contact.where":"Where","contact.where.body":"Online worldwide · In-person groups in Tuxtla Gutiérrez, Chiapas",
-    "contact.companies":"For companies & schools","contact.companies.body":"Bespoke workshops, corporate Spring Talks, teacher certification",
-    "form.name":"Name","form.email":"Email","form.who":"Who is it for?",
-    "form.who.kid":"A child (8–13)","form.who.teen":"A teen (14–17)",
-    "form.who.adult":"For me (adult, 18+)","form.who.teacher":"I'm a teacher","form.who.company":"My company or school",
-    "form.who.club":"Just the Book Club, please","form.who.talk":"I want to book a Spring Talk",
-    "form.msg":"Tell me more","form.submit":"Send",
-    "form.thanks":"Thanks! I'll get back to you in under 48 hours. — Primavera",
-    "foot.tagline":"A creative learning laboratory. Vibrant. Playful. Tech-forward.",
-    "foot.programs":"Programs","foot.kids":"Kids · Discovery","foot.teens":"Teens · Creators","foot.adults":"Adults · Architects",
-    "foot.teachers":"Teachers","foot.companies":"For companies",
-    "foot.community":"Community","foot.bookclub":"Book Club","foot.springtalks":"Spring Talks",
-    "foot.gallery":"Gallery","foot.about":"About Springlearning","foot.contact":"Contact","foot.class":"Enter class ↗",
-    "foot.classnote":"Sign in with your @springlearning.mx account",
-    "foot.rights":"All rights reserved."
-  }
-};
-
-function setLang(lang){
-  document.documentElement.lang = lang;
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    const val = i18n[lang][key];
-    if(!val) return;
-    if(el.tagName === 'TITLE') document.title = val;
-    else if(el.tagName === 'META') el.setAttribute('content', val);
-    else el.textContent = val;
-  });
-  document.querySelectorAll('.toggle button').forEach(b => {
-    const active = b.dataset.lang === lang;
-    b.classList.toggle('active', active);
-    b.setAttribute('aria-pressed', active ? 'true' : 'false');
-  });
-  try { localStorage.setItem('sl.lang', lang); } catch(e){}
-  const u = new URL(window.location);
-  u.searchParams.set('lang', lang);
-  history.replaceState(null, '', u);
+var ICON={
+brote:'<svg width="W" height="W" viewBox="0 0 64 64" fill="currentColor" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><g class="sway"><path d="M32 58V30" fill="none"/><path d="M32 36c-11 0-17-6-17-15 11 0 17 6 17 15z" stroke="none"/><path d="M32 30c0-10 6-16 16-16 0 10-6 16-16 16z" stroke="none"/></g></svg>',
+flor:'<svg width="W" height="W" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><g class="spin"><ellipse cx="32" cy="15" rx="7" ry="11"/><ellipse cx="32" cy="15" rx="7" ry="11" transform="rotate(60 32 32)"/><ellipse cx="32" cy="15" rx="7" ry="11" transform="rotate(120 32 32)"/><ellipse cx="32" cy="15" rx="7" ry="11" transform="rotate(180 32 32)"/><ellipse cx="32" cy="15" rx="7" ry="11" transform="rotate(240 32 32)"/><ellipse cx="32" cy="15" rx="7" ry="11" transform="rotate(300 32 32)"/></g><circle cx="32" cy="32" r="7" fill="#F6C945"/></svg>',
+arbol:'<svg width="W" height="W" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><rect x="29" y="38" width="6" height="22" rx="2"/><g class="breathe"><circle cx="32" cy="24" r="17"/><circle cx="19" cy="32" r="10"/><circle cx="45" cy="32" r="10"/></g></svg>',
+sol:'<svg width="W" height="W" viewBox="0 0 64 64" fill="currentColor" stroke="currentColor" stroke-width="4" stroke-linecap="round" aria-hidden="true"><g class="spin"><path d="M32 4v8M32 52v8M4 32h8M52 32h8M12 12l6 6M46 46l6 6M52 12l-6 6M18 46l-6 6" fill="none"/></g><circle cx="32" cy="32" r="13" stroke="none"/></svg>'};
+var P=[
+{id:'discovery',es:'Descubridores',en:'Discovery',who:'8 a 15 años',stage:'BROTE',icon:'brote',c:'#9FDD58',ink:'#0F2A1D',mean:'Quienes exploran el mundo con curiosidad: el primer brote.',whoL:'Niños de 8 a 15 años.',learn:'Inglés, tecnología educativa, IA y emprendimiento.',fmt:'Grupos después de clases, mínimo 5 alumnos.'},
+{id:'creators',es:'Creadores',en:'Creators',who:'Adolescentes',stage:'FLOR',icon:'flor',c:'#4E72FF',ink:'#FFFFFF',mean:'Quienes convierten ideas en proyectos reales.',whoL:'Adolescentes.',learn:'Diseño 3D y gráfico, proyectos creativos.',fmt:'Grupos.'},
+{id:'architects',es:'Arquitectos',en:'Architects',who:'Adultos 18+',stage:'ÁRBOL',icon:'arbol',c:'#10B183',ink:'#0F2A1D',mean:'Quienes diseñan y construyen su propio camino profesional.',whoL:'Adultos de 18 años en adelante.',learn:'Inglés y habilidades de IA.',fmt:'Grupos, o instalación en escuela o empresa.'},
+{id:'sowers',es:'Sembradores',en:'Sowers',who:'Docentes',stage:'SOL',icon:'sol',c:'#F6C945',ink:'#0F2A1D',mean:'Quienes siembran conocimiento en otros: el docente como jardinero del aprendizaje.',whoL:'Grupos de docentes que desarrollan sus habilidades de IA por su cuenta, de forma independiente de su institución.',learn:'IA en el aula y Canva, con certificación SpringLearning.',fmt:'Grupos de docentes. La escuela no contrata ni interviene.'}];
+var WA='https://wa.me/528127582207?text=';
+var cur='discovery';
+function ic(n,w){return ICON[n].replace(/W/g,w)}
+document.getElementById('doors').innerHTML=P.map(function(p){return '<a class="door lift" href="#programas" onclick="pick(\''+p.id+'\')"><div class="top" style="background:'+p.c+';color:'+p.ink+'">'+ic(p.icon,84)+'<span>'+p.stage+'</span></div><div class="body"><b>'+p.es+'</b><div style="font-size:14px;font-weight:700;margin-bottom:8px">'+p.en+' · '+p.who+'</div><div class="more">Saber más →</div></div></a>'}).join('');
+function drawProg(){
+document.getElementById('tabs').innerHTML=P.map(function(p){return '<button class="tab'+(p.id===cur?' on':'')+'" role="tab" aria-selected="'+(p.id===cur)+'" onclick="pick(\''+p.id+'\')">'+p.es+'</button>'}).join('');
+var p=P.filter(function(x){return x.id===cur})[0];
+var extra=p.id==='sowers'?'<div class="row" style="background:#0F2A1D;color:#fff;border-radius:20px;padding:20px;align-items:center;justify-content:space-between"><div style="flex:1 1 280px">¿Eres directivo y buscas formar a toda tu planta docente? Eso es SpringDeploy.</div><a class="btn sun" href="#escuelas">Ver Para escuelas</a></div>':'';
+document.getElementById('prog').innerHTML='<div class="arch lift" style="background:'+p.c+';color:'+p.ink+'">'+ic(p.icon,130)+'<div class="kicker">Etapa · '+p.stage+'</div><div style="font:700 44px Outfit,sans-serif;line-height:1.05">'+p.es+'</div><b>'+p.en+'</b></div><div style="flex:2 1 420px;display:flex;flex-direction:column;gap:16px"><p style="font:600 22px Outfit,sans-serif">'+p.mean+'</p><div class="row" style="gap:14px"><div class="card fact"><div class="kicker">Para quién</div>'+p.whoL+'</div><div class="card fact"><div class="kicker">Qué aprende</div>'+p.learn+'</div><div class="card fact"><div class="kicker">Formato</div>'+p.fmt+'</div></div>'+extra+'<div><a class="btn" href="'+WA+encodeURIComponent('Hola, quiero unirme a un grupo de '+p.es+'.')+'">Unirse a un grupo</a></div></div>';
 }
-
-(function(){
-  const params = new URLSearchParams(window.location.search);
-  const fromUrl = params.get('lang');
-  let stored = null; try { stored = localStorage.getItem('sl.lang'); } catch(e){}
-  const lang = (fromUrl === 'en' || fromUrl === 'es') ? fromUrl : (stored === 'en' ? 'en' : 'es');
-  setLang(lang);
-  document.querySelectorAll('.toggle button').forEach(b => {
-    b.addEventListener('click', () => setLang(b.dataset.lang));
-  });
-
-  // Hamburger — toggle .open on the .nav parent so all child layout flows naturally
-  const burger = document.querySelector('.burger');
-  const navEl = document.querySelector('.nav');
-  burger.addEventListener('click', () => {
-    const open = burger.classList.toggle('open');
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-    navEl.classList.toggle('open', open);
-  });
-  // Close the menu when a link inside it is tapped (so user lands on the section)
-  document.querySelectorAll('.nav .menu a').forEach(a => {
-    a.addEventListener('click', () => {
-      navEl.classList.remove('open');
-      burger.classList.remove('open');
-      burger.setAttribute('aria-expanded', 'false');
-    });
-  });
-
-  // Scroll reveal
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-  document.querySelectorAll('.reveal, .reveal-stagger, .vine-sep').forEach(el => io.observe(el));
-
-  // 3D card tilt for doors
-  document.querySelectorAll('.door').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top) / r.height - 0.5;
-      card.style.transform = `translateY(-8px) rotateY(${x*8}deg) rotateX(${-y*8}deg)`;
-    });
-    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
-  });
-
-})();
+function pick(id){cur=id;drawProg()}
+function route(){
+var h=(location.hash||'#inicio').slice(1);if(!document.getElementById('p-'+h))h='inicio';
+[].forEach.call(document.querySelectorAll('.page'),function(e){e.classList.toggle('on',e.id==='p-'+h)});
+[].forEach.call(document.querySelectorAll('nav a'),function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+h)});
+window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',route);drawProg();route();
+[].forEach.call(document.querySelectorAll('.step'),function(b){b.onclick=function(){
+[].forEach.call(document.querySelectorAll('.step'),function(x){x.classList.toggle('on',x===b)});
+[].forEach.call(document.querySelectorAll('.detail'),function(d){d.classList.toggle('on',d.id==='d-'+b.dataset.d)});
+}});
+function v(i){return document.getElementById(i).value.trim()}
+document.getElementById('contact').onsubmit=function(e){e.preventDefault();
+window.open(WA+encodeURIComponent('Hola, soy '+v('c-n')+'. Me interesa: '+v('c-p')+'. '+v('c-m')),'_blank')};
+document.getElementById('opinion').onsubmit=function(e){e.preventDefault();
+window.open(WA+encodeURIComponent('Opinión para Springlearning\nNombre: '+v('o-n')+'\nPrograma: '+v('o-p')+'\nCalificación: '+v('o-s')+'\nComentario: '+v('o-m')+'\nAutorizo publicar mi opinión con mi nombre de pila.'),'_blank')};
 </script>
-
 </body>
 </html>
